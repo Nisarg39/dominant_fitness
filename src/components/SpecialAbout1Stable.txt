@@ -25,16 +25,16 @@ const SpecialAbout1 = () => {
     scrollYProgress,
     [0.2, 0.5, 0.6, 0.7, 1],
     [
-      "radial-gradient(circle at center, rgba(202,47,46,0.02) 0%, rgba(255,87,87,0.01) 15%, transparent 30%)",
-      "radial-gradient(circle at center, rgba(202,47,46,0.08) 0%, rgba(255,87,87,0.05) 20%, rgba(220,38,38,0.03) 35%, transparent 50%)",
-      "radial-gradient(circle at center, rgba(202,47,46,0.08) 0%, rgba(255,87,87,0.05) 20%, rgba(220,38,38,0.03) 35%, transparent 50%)",
-      "radial-gradient(circle at center, rgba(202,47,46,0.08) 0%, rgba(255,87,87,0.05) 20%, rgba(220,38,38,0.03) 35%, transparent 50%)",
-      "radial-gradient(circle at center, rgba(202,47,46,0.02) 0%, rgba(255,87,87,0.01) 15%, transparent 30%)"
+      "radial-gradient(circle at center, rgba(202,47,46,0.04) 0%, rgba(255,87,87,0.02) 15%, transparent 30%)",
+      "radial-gradient(circle at center, rgba(202,47,46,0.18) 0%, rgba(255,87,87,0.12) 20%, rgba(220,38,38,0.06) 35%, transparent 50%)",
+      "radial-gradient(circle at center, rgba(202,47,46,0.18) 0%, rgba(255,87,87,0.12) 20%, rgba(220,38,38,0.06) 35%, transparent 50%)",
+      "radial-gradient(circle at center, rgba(202,47,46,0.18) 0%, rgba(255,87,87,0.12) 20%, rgba(220,38,38,0.06) 35%, transparent 50%)",
+      "radial-gradient(circle at center, rgba(202,47,46,0.04) 0%, rgba(255,87,87,0.02) 15%, transparent 30%)"
     ]
   )
   
   // Pre-compute enhanced gradient opacity transform
-  const gradientOpacity = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.8, 1], [0, 0.3, 0.4, 0.4, 0])
+  const gradientOpacity = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.8, 1], [0, 0.5, 0.7, 0.7, 0])
   
   // Pre-compute core transforms
   const coreY = useTransform(scrollYProgress, [0, 0.3, 0.6, 1], ['-200px', '-50%', '-50%', '-50%'])
@@ -645,7 +645,7 @@ const SpecialAbout1 = () => {
           {Array.from({ length: 20 }, (_, i) => (
             <motion.div
               key={`diagonal-1-${i}`}
-              className="absolute bg-red-500/5"
+              className="absolute bg-red-500/10"
               style={{
                 width: '1px',
                 height: '200%',
@@ -656,7 +656,7 @@ const SpecialAbout1 = () => {
                 filter: 'blur(0.5px)'
               }}
               animate={{
-                opacity: [0.02, 0.08, 0.02],
+                opacity: [0.05, 0.15, 0.05],
               }}
               transition={{
                 duration: 8 + (i * 0.5),
@@ -670,7 +670,7 @@ const SpecialAbout1 = () => {
           {Array.from({ length: 20 }, (_, i) => (
             <motion.div
               key={`diagonal-2-${i}`}
-              className="absolute bg-red-400/4"
+              className="absolute bg-red-400/8"
               style={{
                 width: '1px',
                 height: '200%',
@@ -681,7 +681,7 @@ const SpecialAbout1 = () => {
                 filter: 'blur(0.5px)'
               }}
               animate={{
-                opacity: [0.02, 0.06, 0.02],
+                opacity: [0.04, 0.12, 0.04],
               }}
               transition={{
                 duration: 9 + (i * 0.3),
@@ -695,7 +695,7 @@ const SpecialAbout1 = () => {
           {Array.from({ length: 15 }, (_, i) => (
             <motion.div
               key={`horizontal-${i}`}
-              className="absolute bg-red-500/3"
+              className="absolute bg-red-500/6"
               style={{
                 width: '100%',
                 height: '1px',
@@ -704,7 +704,7 @@ const SpecialAbout1 = () => {
                 filter: 'blur(0.3px)'
               }}
               animate={{
-                opacity: [0.015, 0.04, 0.015],
+                opacity: [0.03, 0.08, 0.03],
               }}
               transition={{
                 duration: 12 + (i * 0.4),
@@ -718,7 +718,7 @@ const SpecialAbout1 = () => {
           {Array.from({ length: 15 }, (_, i) => (
             <motion.div
               key={`vertical-${i}`}
-              className="absolute bg-red-400/3"
+              className="absolute bg-red-400/6"
               style={{
                 width: '1px',
                 height: '100%',
@@ -727,7 +727,7 @@ const SpecialAbout1 = () => {
                 filter: 'blur(0.3px)'
               }}
               animate={{
-                opacity: [0.015, 0.04, 0.015],
+                opacity: [0.03, 0.08, 0.03],
               }}
               transition={{
                 duration: 11 + (i * 0.5),
