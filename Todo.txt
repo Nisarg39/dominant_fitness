@@ -1,0 +1,4 @@
+Change icons of the points in hexagon
+Change the core hexgon to the logo
+deploy on vercel
+
