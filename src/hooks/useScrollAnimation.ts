@@ -105,12 +105,14 @@ export const useSectionTransition = () => {
       }
     )
 
-    sectionsRef.current.forEach((section) => {
+    // Capture current sections to use in cleanup
+    const currentSections = sectionsRef.current
+    currentSections.forEach((section) => {
       if (section) observer.observe(section)
     })
 
     return () => {
-      sectionsRef.current.forEach((section) => {
+      currentSections.forEach((section) => {
         if (section) observer.unobserve(section)
       })
     }

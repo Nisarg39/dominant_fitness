@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 
 interface PixelCanvasProps {
   colors?: string
@@ -229,7 +229,7 @@ export default function PixelCanvas({
     }
   }
 
-  const init = (): void => {
+  const init = useCallback((): void => {
     const canvas = canvasRef.current
     if (!canvas) return
 
@@ -258,7 +258,7 @@ export default function PixelCanvas({
     if (ctx) {
       createPixels(canvas, ctx)
     }
-  }
+  }, [parentRef, createPixels])
 
   const animate = (fnName: 'appear' | 'disappear'): void => {
     animationRef.current = requestAnimationFrame(() => animate(fnName))
@@ -294,27 +294,27 @@ export default function PixelCanvas({
     animate(name)
   }
 
-  const handleMouseEnter = (): void => {
+  const handleMouseEnter = useCallback((): void => {
     handleAnimation('appear')
-  }
+  }, [handleAnimation])
 
-  const handleMouseLeave = (): void => {
+  const handleMouseLeave = useCallback((): void => {
     handleAnimation('disappear')
-  }
+  }, [handleAnimation])
 
-  const handleFocusIn = (e: FocusEvent): void => {
+  const handleFocusIn = useCallback((e: FocusEvent): void => {
     const target = e.currentTarget as HTMLElement
     const relatedTarget = e.relatedTarget as HTMLElement
     if (target.contains(relatedTarget)) return
     handleAnimation('appear')
-  }
+  }, [handleAnimation])
 
-  const handleFocusOut = (e: FocusEvent): void => {
+  const handleFocusOut = useCallback((e: FocusEvent): void => {
     const target = e.currentTarget as HTMLElement
     const relatedTarget = e.relatedTarget as HTMLElement
     if (target.contains(relatedTarget)) return
     handleAnimation('disappear')
-  }
+  }, [handleAnimation])
 
   useEffect(() => {
     // Add a small delay to ensure parent element is properly rendered
@@ -341,7 +341,7 @@ export default function PixelCanvas({
         cancelAnimationFrame(animationRef.current)
       }
     }
-  }, [parentRef])
+  }, [parentRef, init])
 
   useEffect(() => {
     // Use parent element for event handling
@@ -365,7 +365,7 @@ export default function PixelCanvas({
         targetElement.removeEventListener('focusout', handleFocusOut as EventListener)
       }
     }
-  }, [noFocus, parentRef])
+  }, [noFocus, parentRef, handleFocusIn, handleFocusOut, handleMouseEnter, handleMouseLeave])
 
   return (
     <canvas 

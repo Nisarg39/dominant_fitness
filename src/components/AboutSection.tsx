@@ -13,16 +13,11 @@ export default function AboutSection() {
     setMounted(true)
   }, [])
 
-  // Simple fallback values for server-side rendering
-  const defaultTransform = { y: 0, opacity: 1, scale: 1 }
-
   // Use intersection observer for reveal animations
-  const [headerInView, setHeaderInView] = useState(false)
   const [missionInView, setMissionInView] = useState(false)
   const [valuesInView, setValuesInView] = useState(false)
   const [founderInView, setFounderInView] = useState(false)
 
-  const headerRef = useRef<HTMLDivElement>(null)
   const missionRef = useRef<HTMLDivElement>(null)
   const valuesRef = useRef<HTMLDivElement>(null)
   const founderRef = useRef<HTMLDivElement>(null)
@@ -39,7 +34,6 @@ export default function AboutSection() {
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          if (entry.target === headerRef.current) setHeaderInView(true)
           if (entry.target === missionRef.current) setMissionInView(true)
           if (entry.target === valuesRef.current) setValuesInView(true)
           if (entry.target === founderRef.current) setFounderInView(true)
@@ -49,7 +43,6 @@ export default function AboutSection() {
 
     const observer = new IntersectionObserver(observerCallback, observerOptions)
 
-    if (headerRef.current) observer.observe(headerRef.current)
     if (missionRef.current) observer.observe(missionRef.current)
     if (valuesRef.current) observer.observe(valuesRef.current)
     if (founderRef.current) observer.observe(founderRef.current)
@@ -604,7 +597,7 @@ export default function AboutSection() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
-                Our unwavering commitment to each athlete's journey drives us to provide personalized attention 
+                Our unwavering commitment to each athlete&apos;s journey drives us to provide personalized attention 
                 and support every step of the way.
               </motion.p>
             </motion.div>

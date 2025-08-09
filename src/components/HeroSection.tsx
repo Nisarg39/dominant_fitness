@@ -1,10 +1,9 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import { motion } from 'framer-motion'
 
 const HeroSection = () => {
-  const [subtitleText, setSubtitleText] = useState('')
   const [taglineVisible, setTaglineVisible] = useState(false)
   const [maskWidth, setMaskWidth] = useState('100%')
   const [maskLeft, setMaskLeft] = useState('0px')
@@ -58,7 +57,7 @@ const HeroSection = () => {
     }
   }
 
-  const lightningStrike = () => {
+  const lightningStrike = useCallback(() => {
     const canvas = canvasRef.current
     if (!canvas) return
 
@@ -114,7 +113,7 @@ const HeroSection = () => {
         }, lightningConfig.fadeDuration / 12)
       }, i * 80)
     }
-  }
+  }, [createCanvasLightning, lightningConfig.color, lightningConfig.fadeDuration, lightningConfig.shadowColor])
 
   const generateThunder = () => {
     if (!svgRef.current) return
@@ -128,20 +127,20 @@ const HeroSection = () => {
     const maxLength = altura * 0.5 // Lightning will be half the viewport height
     const targetY = yInicio + maxLength
     let zigzag = `M${xInicio},${yActual}`
-    let grosor = Math.random() * 2 + 1
-    let color = Math.random() > 0.5 ? 'rgba(202,47,46,0.8)' : 'rgba(255,87,86,0.7)'
+    const grosor = Math.random() * 2 + 1
+    const color = Math.random() > 0.5 ? 'rgba(202,47,46,0.8)' : 'rgba(255,87,86,0.7)'
     
     // Continue until we reach half viewport height
     while (yActual < targetY && yActual < altura) {
-      let xOffset = (Math.random() - 0.5) * 80
-      let yOffset = Math.random() * 60 + 30
+      const xOffset = (Math.random() - 0.5) * 80
+      const yOffset = Math.random() * 60 + 30
       yActual += yOffset
       if (yActual > targetY) yActual = targetY // Ensure we don't exceed half height
       zigzag += ` L${xInicio + xOffset},${yActual}`
       
       if (Math.random() > 0.8) {
-        let branchX = xInicio + xOffset + (Math.random() - 0.5) * 30
-        let branchY = yActual + Math.random() * 20
+        const branchX = xInicio + xOffset + (Math.random() - 0.5) * 30
+        const branchY = yActual + Math.random() * 20
         zigzag += ` M${xInicio + xOffset},${yActual} L${branchX},${branchY}`
       }
     }
@@ -230,7 +229,7 @@ const HeroSection = () => {
       window.removeEventListener('resize', handleResize)
       clearTimeout(animationTimer)
     }
-  }, [])
+  }, [lightningStrike, subtitleLetters.length])
 
   return (
     <section 

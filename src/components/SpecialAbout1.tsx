@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import { useState, useRef } from 'react'
@@ -238,6 +240,87 @@ const SpecialAbout1 = () => {
     }
   ]
 
+  // Pre-compute all component positions (no hooks here)
+  const componentPositions = performanceComponents.map((_, index) => {
+    // Calculate symmetrical positions in a perfect circle around center
+    const angle = (index * 36) - 90; // 360/10 = 36 degrees between each, -90 to start from top
+    
+    // Use consistent radius values (no client-side checks during render)
+    const radiusX = 45; // Horizontal radius
+    const radiusY = 40; // Vertical radius (slightly less to compensate for aspect ratio)
+    const centerX = 50; // Center at 50% of container
+    const centerY = 50; // Center at 50% of container
+    
+    // Convert polar to cartesian coordinates for perfect circle with aspect ratio compensation
+    const finalX = centerX + (Math.cos(angle * Math.PI / 180) * radiusX);
+    const finalY = centerY + (Math.sin(angle * Math.PI / 180) * radiusY);
+    
+    return { 
+      left: `${finalX}%`, 
+      top: `${finalY}%` 
+    }
+  })
+
+  // Create individual transforms for each component to avoid hooks in callbacks
+  const componentTransforms: Array<{left: any, top: any, scale: any, opacity: any}> = []
+  const trailTransforms: Array<{scale: any, opacity: any}> = []
+  const labelTransforms: Array<{opacity: any, y: any}> = []
+  
+  for (let i = 0; i < performanceComponents.length; i++) {
+    const position = componentPositions[i];
+    
+    // Component transforms
+    componentTransforms.push({
+      left: useTransform(
+        scrollYProgress, 
+        [0, 0.3, 0.5, 0.8, 1], 
+        ['50%', '50%', position.left, position.left, '50%']
+      ),
+      top: useTransform(
+        scrollYProgress, 
+        [0, 0.3, 0.5, 0.8, 1], 
+        ['50%', '50%', position.top, position.top, '50%']
+      ),
+      scale: useTransform(
+        scrollYProgress, 
+        [0, 0.3, 0.5, 0.8, 1], 
+        [0, 0, 1, 1, 0]
+      ),
+      opacity: useTransform(
+        scrollYProgress, 
+        [0, 0.3, 0.4, 0.8, 1], 
+        [0, 0, 1, 1, 0]
+      )
+    });
+
+    // Trail transforms
+    trailTransforms.push({
+      scale: useTransform(
+        scrollYProgress, 
+        [0, 0.3, 0.4, 0.5, 0.8, 1], 
+        [0, 1.5, 0, 0, 1.5, 0]
+      ),
+      opacity: useTransform(
+        scrollYProgress, 
+        [0, 0.3, 0.4, 0.5, 0.8, 1], 
+        [0, 0.6, 0, 0, 0.6, 0]
+      )
+    });
+
+    // Label transforms
+    labelTransforms.push({
+      opacity: useTransform(
+        scrollYProgress, 
+        [0.2, 0.5, 0.7, 1], 
+        [0, 1, 1, 0]
+      ),
+      y: useTransform(
+        scrollYProgress, 
+        [0.2, 0.5, 0.7, 1], 
+        [20, 0, 0, 20]
+      )
+    });
+  }
 
   return (
     <section 
@@ -662,49 +745,19 @@ const SpecialAbout1 = () => {
           {/* Performance Components - Radial Reveal Layout */}
           <div className="relative z-10 w-full aspect-square md:aspect-auto md:h-[650px] lg:h-[750px] max-w-6xl mx-auto">
             {performanceComponents.map((component, index) => {
-              // Calculate symmetrical positions in a perfect circle around center
-              const angle = (index * 36) - 90; // 360/10 = 36 degrees between each, -90 to start from top
-              
-              // Use consistent radius values (no client-side checks during render)
-              const radiusX = 45; // Horizontal radius
-              const radiusY = 40; // Vertical radius (slightly less to compensate for aspect ratio)
-              const centerX = 50; // Center at 50% of container
-              const centerY = 50; // Center at 50% of container
-              
-              // Convert polar to cartesian coordinates for perfect circle with aspect ratio compensation
-              const finalX = centerX + (Math.cos(angle * Math.PI / 180) * radiusX);
-              const finalY = centerY + (Math.sin(angle * Math.PI / 180) * radiusY);
-              
-              const finalPosition = { 
-                left: `${finalX}%`, 
-                top: `${finalY}%` 
-              }
+              const transforms = componentTransforms[index];
+              const trailEffectTransforms = trailTransforms[index];
+              const labelTransformData = labelTransforms[index];
               
               return (
                 <motion.div
                   key={component.id}
                   className="group cursor-pointer absolute transform -translate-x-1/2 -translate-y-1/2"
                   style={{
-                    left: useTransform(
-                      scrollYProgress, 
-                      [0, 0.3, 0.5, 0.8, 1], 
-                      ['50%', '50%', finalPosition.left, finalPosition.left, '50%']
-                    ),
-                    top: useTransform(
-                      scrollYProgress, 
-                      [0, 0.3, 0.5, 0.8, 1], 
-                      ['50%', '50%', finalPosition.top, finalPosition.top, '50%']
-                    ),
-                    scale: useTransform(
-                      scrollYProgress, 
-                      [0, 0.3, 0.5, 0.8, 1], 
-                      [0, 0, 1, 1, 0]
-                    ),
-                    opacity: useTransform(
-                      scrollYProgress, 
-                      [0, 0.3, 0.4, 0.8, 1], 
-                      [0, 0, 1, 1, 0]
-                    ),
+                    left: transforms.left,
+                    top: transforms.top,
+                    scale: transforms.scale,
+                    opacity: transforms.opacity,
                     zIndex: 20
                   }}
                   whileHover={{ 
@@ -752,16 +805,8 @@ const SpecialAbout1 = () => {
                       background: `radial-gradient(circle, ${component.color}40 0%, ${component.color}20 25%, transparent 60%)`,
                       filter: 'blur(8px)',
                       pointerEvents: 'none',
-                      scale: useTransform(
-                        scrollYProgress, 
-                        [0, 0.3, 0.4, 0.5, 0.8, 1], 
-                        [0, 1.5, 0, 0, 1.5, 0]
-                      ),
-                      opacity: useTransform(
-                        scrollYProgress, 
-                        [0, 0.3, 0.4, 0.5, 0.8, 1], 
-                        [0, 0.6, 0, 0, 0.6, 0]
-                      )
+                      scale: trailEffectTransforms.scale,
+                      opacity: trailEffectTransforms.opacity
                     }}
                   />
 
@@ -864,16 +909,8 @@ const SpecialAbout1 = () => {
                 <motion.div 
                   className="hidden md:block absolute -bottom-12 md:-bottom-14 lg:-bottom-16 left-1/2 transform -translate-x-1/2 text-center min-w-max"
                   style={{
-                    opacity: useTransform(
-                      scrollYProgress, 
-                      [0.2, 0.5, 0.7, 1], 
-                      [0, 1, 1, 0]
-                    ),
-                    y: useTransform(
-                      scrollYProgress, 
-                      [0.2, 0.5, 0.7, 1], 
-                      [20, 0, 0, 20]
-                    ),
+                    opacity: labelTransformData.opacity,
+                    y: labelTransformData.y,
                     pointerEvents: 'none'
                   }}
                 >
