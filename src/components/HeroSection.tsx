@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { motion } from 'framer-motion'
 
 const HeroSection = () => {
@@ -17,7 +17,7 @@ const HeroSection = () => {
   const titleLetters = 'DOMINATE'.split('')
   const subtitleLetters = fullSubtitle.split('')
 
-  const lightningConfig = {
+  const lightningConfig = useMemo(() => ({
     color: '#ca2f2e',
     shadowColor: '#ff5757',
     thickness: 3,
@@ -27,9 +27,9 @@ const HeroSection = () => {
     maxSegments: 15,
     maxBranches: 2,
     fadeDuration: 800,
-  }
+  }), [])
 
-  const createCanvasLightning = (ctx: CanvasRenderingContext2D, startX: number, startY: number, endX: number, endY: number, displace: number, branchLevel = 0) => {
+  const createCanvasLightning = useCallback((ctx: CanvasRenderingContext2D, startX: number, startY: number, endX: number, endY: number, displace: number, branchLevel = 0) => {
     if (displace < lightningConfig.thickness || branchLevel > lightningConfig.maxBranches) {
       ctx.lineWidth = displace * 0.5
       ctx.beginPath()
@@ -55,7 +55,7 @@ const HeroSection = () => {
       const branchEndY = adjustedMidY + (Math.random() - 0.5) * displace * 2
       createCanvasLightning(ctx, adjustedMidX, adjustedMidY, branchEndX, branchEndY, displace * lightningConfig.branchFactor, branchLevel + 1)
     }
-  }
+  }, [lightningConfig])
 
   const lightningStrike = useCallback(() => {
     const canvas = canvasRef.current
@@ -115,7 +115,7 @@ const HeroSection = () => {
     }
   }, [createCanvasLightning, lightningConfig.color, lightningConfig.fadeDuration, lightningConfig.shadowColor])
 
-  const generateThunder = () => {
+  const generateThunder = useCallback(() => {
     if (!svgRef.current) return
     
     const svg = svgRef.current
@@ -159,8 +159,9 @@ const HeroSection = () => {
         linea.remove()
       }
     }, 400)
-  }
+  }, [])
 
+  // Initial animation effect - runs only once
   useEffect(() => {
     // Optimized animation sequence
     const animationTimer = setTimeout(() => {
@@ -200,8 +201,26 @@ const HeroSection = () => {
         setMaskOpacity(0)
       }, 400)
       
+      // Trigger lightning effect after text reveal completes
+      // Text reveal: 100ms delay + (subtitleLetters.length * 35ms per letter)
+      const textRevealDuration = 100 + (subtitleLetters.length * 35)
+      setTimeout(() => {
+        // Trigger both lightning effects for dramatic impact
+        if (Math.random() > 0.3) generateThunder()
+        setTimeout(() => {
+          lightningStrike()
+        }, 200)
+      }, textRevealDuration + 200) // Add 200ms buffer after text is fully revealed
+      
     }, 100) // Slight delay for smoother initial load
 
+    return () => {
+      clearTimeout(animationTimer)
+    }
+  }, [subtitleLetters.length, generateThunder, lightningStrike]) // Include lightning functions
+
+  // Lightning and canvas effects - separate useEffect
+  useEffect(() => {
     // Initialize canvas size
     const canvas = canvasRef.current
     if (canvas) {
@@ -218,18 +237,17 @@ const HeroSection = () => {
     }
     window.addEventListener('resize', handleResize)
 
-    // Thunder effect interval - less frequent for subtlety
+    // Thunder effect interval - every 5 seconds
     const thunderInterval = setInterval(() => {
       if (Math.random() > 0.5) generateThunder()
       if (Math.random() > 0.6) lightningStrike()
-    }, Math.random() * 12000 + 8000) // Random interval 8-20 seconds
+    }, 5000) // Every 5 seconds
 
     return () => {
       clearInterval(thunderInterval)
       window.removeEventListener('resize', handleResize)
-      clearTimeout(animationTimer)
     }
-  }, [lightningStrike, subtitleLetters.length])
+  }, [lightningStrike, generateThunder])
 
   return (
     <section 
@@ -382,7 +400,7 @@ const HeroSection = () => {
                       key={index}
                       className="dom-letter inline-block"
                       style={{
-                        animation: `letterGlow 3s ease-in-out infinite`,
+                        animation: `letterGlow 3s ease-in-out`,
                         animationDelay: `${index * 0.1}s`
                       }}
                     >
