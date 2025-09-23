@@ -100,12 +100,16 @@ class Pixel {
     let drawHeight = this.size
     
     // Extend size for edge pixels to ensure full coverage
-    if (this.x + centerOffset + this.size > this.width - 2) {
+    if (this.x + centerOffset + this.size > this.width - 1) {
       drawWidth = this.width - drawX
     }
-    if (this.y + centerOffset + this.size > this.height - 2) {
+    if (this.y + centerOffset + this.size > this.height - 1) {
       drawHeight = this.height - drawY
     }
+    
+    // Ensure minimum size for visibility
+    drawWidth = Math.max(1, drawWidth)
+    drawHeight = Math.max(1, drawHeight)
     
     this.ctx.fillRect(drawX, drawY, drawWidth, drawHeight)
   }
@@ -207,8 +211,17 @@ export default function PixelCanvas({
       }
     }
     
-    // Add extra pixels along the right and bottom edges for better coverage
+    // Add extra pixels along all edges for complete coverage
     const edgeOffset = Math.floor(gapValue / 2)
+    
+    // Top edge pixels
+    for (let x = edgeOffset; x < canvas.width; x += gapValue) {
+      const color = parsedColors[Math.floor(Math.random() * parsedColors.length)]
+      const delay = reducedMotion ? 0 : getDistanceToCanvasCenter(x, 0, canvas)
+      pixelsRef.current.push(
+        new Pixel(canvas, ctx, x, 0, color, speedValue, delay)
+      )
+    }
     
     // Right edge pixels
     for (let y = edgeOffset; y < canvas.height; y += gapValue) {
@@ -227,6 +240,31 @@ export default function PixelCanvas({
         new Pixel(canvas, ctx, x, canvas.height - 1, color, speedValue, delay)
       )
     }
+    
+    // Left edge pixels
+    for (let y = edgeOffset; y < canvas.height; y += gapValue) {
+      const color = parsedColors[Math.floor(Math.random() * parsedColors.length)]
+      const delay = reducedMotion ? 0 : getDistanceToCanvasCenter(0, y, canvas)
+      pixelsRef.current.push(
+        new Pixel(canvas, ctx, 0, y, color, speedValue, delay)
+      )
+    }
+    
+    // Corner pixels for complete coverage
+    const corners = [
+      { x: 0, y: 0 },
+      { x: canvas.width - 1, y: 0 },
+      { x: 0, y: canvas.height - 1 },
+      { x: canvas.width - 1, y: canvas.height - 1 }
+    ]
+    
+    corners.forEach(corner => {
+      const color = parsedColors[Math.floor(Math.random() * parsedColors.length)]
+      const delay = reducedMotion ? 0 : getDistanceToCanvasCenter(corner.x, corner.y, canvas)
+      pixelsRef.current.push(
+        new Pixel(canvas, ctx, corner.x, corner.y, color, speedValue, delay)
+      )
+    })
   }
 
   const init = useCallback((): void => {
@@ -237,9 +275,17 @@ export default function PixelCanvas({
     const sizeSource = parentRef?.current
     if (!sizeSource) return
 
-    const rect = sizeSource.getBoundingClientRect()
-    const width = Math.floor(rect.width)
-    const height = Math.floor(rect.height)
+    // Get the computed style to get the actual rendered size
+    const computedStyle = window.getComputedStyle(sizeSource)
+    const width = Math.floor(parseFloat(computedStyle.width))
+    const height = Math.floor(parseFloat(computedStyle.height))
+
+    // Ensure we have valid dimensions
+    if (width <= 0 || height <= 0) {
+      console.warn('PixelCanvas: Invalid dimensions, retrying...')
+      setTimeout(() => init(), 100)
+      return
+    }
 
     // Set canvas dimensions to match parent exactly
     canvas.width = width
@@ -253,9 +299,12 @@ export default function PixelCanvas({
     canvas.style.left = '0'
     canvas.style.right = '0'
     canvas.style.bottom = '0'
+    canvas.style.zIndex = '1'
 
     const ctx = canvas.getContext('2d')
     if (ctx) {
+      // Clear any existing pixels
+      pixelsRef.current = []
       createPixels(canvas, ctx)
     }
   }, [parentRef, createPixels])
@@ -320,10 +369,21 @@ export default function PixelCanvas({
     // Add a small delay to ensure parent element is properly rendered
     const initTimer = setTimeout(() => {
       init()
-    }, 150)
+    }, 200)
 
-    resizeObserverRef.current = new ResizeObserver(() => {
-      setTimeout(() => init(), 50) // Small delay for resize
+    // Debounced resize handler to prevent excessive re-initializations
+    let resizeTimeout: NodeJS.Timeout
+    resizeObserverRef.current = new ResizeObserver((entries) => {
+      // Only reinitialize if the size actually changed significantly
+      for (const entry of entries) {
+        const { width, height } = entry.contentRect
+        if (width > 0 && height > 0) {
+          clearTimeout(resizeTimeout)
+          resizeTimeout = setTimeout(() => {
+            init()
+          }, 100) // Debounce resize events
+        }
+      }
     })
     
     // Only observe the parent element (the card)
@@ -334,6 +394,7 @@ export default function PixelCanvas({
 
     return () => {
       clearTimeout(initTimer)
+      clearTimeout(resizeTimeout)
       if (resizeObserverRef.current) {
         resizeObserverRef.current.disconnect()
       }
@@ -380,8 +441,10 @@ export default function PixelCanvas({
         bottom: 0,
         position: 'absolute',
         display: 'block',
-        zIndex: 0,
-        borderRadius: 'inherit'
+        zIndex: 1,
+        borderRadius: 'inherit',
+        transform: 'translateZ(0)', // Force hardware acceleration
+        willChange: 'auto' // Optimize for performance
       }}
     />
   )
