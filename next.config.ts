@@ -6,10 +6,19 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'cdn-icons-gif.flaticon.com',
-        pathname: '/**',
+        hostname: '**',
+        pathname: '**'
       },
-    ],
+      {
+        protocol: 'http',
+        hostname: '**',
+        pathname: '**'
+      }
+    ]
+  },
+  // Add any custom rewrites here if needed
+  async rewrites() {
+    return [];
   },
 };
 
