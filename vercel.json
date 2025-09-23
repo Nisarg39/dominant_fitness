@@ -1,17 +1,1 @@
-{
-  "framework": "nextjs",
-  "buildCommand": "npm run build",
-  "devCommand": "npm run dev",
-  "installCommand": "npm install",
-  "functions": {
-    "src/app/api/**/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/((?!api|_next/static|_next/image|favicon.ico).*)",
-      "destination": "/"
-    }
-  ]
-}
+{ "rewrites": [{ "source": "/(.*)", "destination": "/" }] }
