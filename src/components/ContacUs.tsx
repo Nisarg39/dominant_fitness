@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { createContactUs } from '../server/actions/userActions'
+// Removed server action import - using API route instead
 // Custom animation components to replace React Bits
 const FadeContent = ({ children, duration = 1000, direction = 'up' }: { 
   children: React.ReactNode, 
@@ -167,8 +167,16 @@ const ContacUs = () => {
     setSubmitStatus('idle')
     
     try {
-      // Call server action to save contact data
-      const result = await createContactUs(formData)
+      // Call API route to save contact data
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      
+      const result = await response.json()
       
       if (result.success) {
         setSubmitStatus('success')

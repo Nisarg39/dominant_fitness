@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    serverActions: {
+      allowedOrigins: ['localhost:3000', 'dominant-fitness.vercel.app'],
+    },
+  },
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -10,6 +15,15 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
+  },
+  // Ensure proper routing for Vercel
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: '/api/:path*',
+      },
+    ];
   },
 };
 
