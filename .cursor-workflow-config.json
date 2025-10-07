@@ -1,0 +1,175 @@
+{
+  "project": {
+    "name": "DOMINATE Performance - Next.js Website",
+    "type": "Next.js 15.4.5 with TypeScript",
+    "domain": "Sports Performance Training",
+    "description": "Elite performance training website for athletes with UKSCA certified coaching"
+  },
+  "workflow": {
+    "name": "Multi-Agent Development Workflow",
+    "version": "1.0.0",
+    "description": "Structured workflow with Analyst, Architect, and Developer agents for comprehensive development process"
+  },
+  "agents": {
+    "analyst": {
+      "role": "Code Analyst & Context Manager",
+      "responsibilities": [
+        "Analyze project structure and dependencies",
+        "Review existing code patterns and conventions",
+        "Identify potential issues and improvements",
+        "Maintain context across sessions",
+        "Document findings and recommendations"
+      ],
+      "tools": ["codebase_search", "grep", "read_file", "list_dir"],
+      "outputs": ["analysis_report", "context_summary", "recommendations"]
+    },
+    "architect": {
+      "role": "Senior Architect & Structure Designer",
+      "responsibilities": [
+        "Design system architecture and component structure",
+        "Plan implementation strategy",
+        "Define coding standards and patterns",
+        "Ensure scalability and maintainability",
+        "Create technical specifications"
+      ],
+      "tools": ["codebase_search", "read_file", "web_search"],
+      "outputs": ["architecture_design", "implementation_plan", "technical_specs"]
+    },
+    "developer": {
+      "role": "Senior Developer & Implementation Specialist",
+      "responsibilities": [
+        "Implement code changes following architecture",
+        "Write clean, maintainable code",
+        "Handle testing and debugging",
+        "Optimize performance",
+        "Ensure code quality and standards"
+      ],
+      "tools": ["search_replace", "write", "MultiEdit", "read_lints"],
+      "outputs": ["implemented_code", "test_results", "performance_metrics"]
+    }
+  },
+  "workflow_steps": [
+    {
+      "step": 1,
+      "name": "Context Analysis",
+      "agent": "analyst",
+      "description": "Analyze current project state, dependencies, and context",
+      "actions": [
+        "Read package.json and understand dependencies",
+        "Analyze project structure and file organization",
+        "Review existing components and their relationships",
+        "Check for any linting errors or issues",
+        "Document current state and context"
+      ],
+      "outputs": ["project_analysis", "context_summary"]
+    },
+    {
+      "step": 2,
+      "name": "Architecture Planning",
+      "agent": "architect",
+      "description": "Design solution architecture and implementation strategy",
+      "actions": [
+        "Review analyst findings",
+        "Design component structure and relationships",
+        "Plan implementation approach",
+        "Define coding standards and patterns",
+        "Create technical specifications"
+      ],
+      "outputs": ["architecture_design", "implementation_plan"]
+    },
+    {
+      "step": 3,
+      "name": "Implementation",
+      "agent": "developer",
+      "description": "Implement the solution following architecture guidelines",
+      "actions": [
+        "Review architecture and implementation plan",
+        "Implement code changes systematically",
+        "Follow established patterns and conventions",
+        "Test and debug implementation",
+        "Ensure code quality and performance"
+      ],
+      "outputs": ["implemented_solution", "test_results"]
+    },
+    {
+      "step": 4,
+      "name": "Quality Assurance",
+      "agent": "analyst",
+      "description": "Review implementation and ensure quality",
+      "actions": [
+        "Review implemented code",
+        "Check for linting errors",
+        "Verify implementation matches architecture",
+        "Test functionality",
+        "Document any issues or improvements"
+      ],
+      "outputs": ["quality_report", "final_recommendations"]
+    }
+  ],
+  "context_memory": {
+    "persistent_files": [
+      ".cursor-workflow-config.json",
+      "PROJECT_CONTEXT.md",
+      "ARCHITECTURE_DECISIONS.md",
+      "CODING_STANDARDS.md"
+    ],
+    "context_retention": {
+      "project_structure": "Always maintain current understanding",
+      "dependencies": "Track package.json and version compatibility",
+      "coding_patterns": "Maintain consistent patterns across components",
+      "architecture_decisions": "Document and follow established patterns"
+    }
+  },
+  "best_practices": {
+    "context_management": [
+      "Always start with context analysis before any task",
+      "Maintain awareness of project structure and dependencies",
+      "Document architectural decisions and patterns",
+      "Use consistent coding standards across all components",
+      "Regularly update context memory files"
+    ],
+    "code_quality": [
+      "Follow TypeScript best practices",
+      "Use proper Next.js patterns and conventions",
+      "Implement responsive design with Tailwind CSS",
+      "Ensure accessibility and SEO optimization",
+      "Write clean, maintainable component code"
+    ],
+    "workflow_efficiency": [
+      "Always follow the multi-agent workflow steps",
+      "Complete each step before moving to the next",
+      "Document decisions and rationale",
+      "Maintain context across all interactions",
+      "Use appropriate tools for each agent role"
+    ]
+  },
+  "project_specific": {
+    "tech_stack": {
+      "framework": "Next.js 15.4.5",
+      "language": "TypeScript",
+      "styling": "Tailwind CSS 4",
+      "animations": "Framer Motion",
+      "3d_graphics": "Three.js, React Three Fiber",
+      "database": "MongoDB with Mongoose",
+      "authentication": "JWT"
+    },
+    "key_components": [
+      "Navigation.tsx",
+      "HeroSection.tsx", 
+      "AboutSection.tsx",
+      "Services.tsx",
+      "HowToDominate.tsx",
+      "Testimonials.tsx",
+      "ContacUs.tsx"
+    ],
+    "custom_hooks": [
+      "useCustomCursor.ts",
+      "useScrollAnimation.ts"
+    ],
+    "admin_features": [
+      "AdminDashboard.tsx",
+      "UserManagement.tsx",
+      "AdminContactUs.tsx"
+    ]
+  }
+}

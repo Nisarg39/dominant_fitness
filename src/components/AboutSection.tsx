@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
+import Image from 'next/image'
 import PixelCanvas from './PixelCanvas'
 
 // Declare particles.js types for CDN version
@@ -1058,7 +1059,7 @@ export default function AboutSection() {
           >
             MEET THE FOUNDER
           </h3>
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             <motion.div 
               ref={founderCardRef}
               className="relative overflow-hidden transition-all duration-500 ease-out rounded-2xl"
@@ -1105,11 +1106,11 @@ export default function AboutSection() {
               
               {/* Content */}
               <div className="relative z-10 p-8">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                  {/* Founder Image */}
-                  <div className="text-center">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                  {/* Left: Identity */}
+                  <div className="text-center lg:text-left lg:col-span-4">
                     <div 
-                      className="w-64 h-64 mx-auto rounded-full mb-6 overflow-hidden"
+                      className="w-72 h-72 mx-auto lg:mx-0 mb-6 overflow-hidden"
                       style={{
                         background: '#000000',
                         border: '3px solid rgba(202,47,46,0.3)'
@@ -1121,74 +1122,122 @@ export default function AboutSection() {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    
-                    {/* Logo/Certifications Placeholder */}
-                    <div className="flex justify-center space-x-4">
-                      <div 
-                        className="w-16 h-16 rounded-lg flex items-center justify-center"
-                        style={{
-                          background: 'rgba(202,47,46,0.1)',
-                          border: '1px solid rgba(202,47,46,0.3)'
-                        }}
-                      >
-                        <span className="text-red-400 text-xs">LOGO</span>
-                      </div>
-                      <div 
-                        className="w-16 h-16 rounded-lg flex items-center justify-center"
-                        style={{
-                          background: 'rgba(202,47,46,0.1)',
-                          border: '1px solid rgba(202,47,46,0.3)'
-                        }}
-                      >
-                        <span className="text-red-400 text-xs">CERT</span>
-                      </div>
-                      <div 
-                        className="w-16 h-16 rounded-lg flex items-center justify-center"
-                        style={{
-                          background: 'rgba(202,47,46,0.1)',
-                          border: '1px solid rgba(202,47,46,0.3)'
-                        }}
-                      >
-                        <span className="text-red-400 text-xs">AWARD</span>
-                      </div>
-                    </div>
-                  </div>
 
-                  {/* Founder Info */}
-                  <div>
-                    <h4 
-                      className="text-2xl font-bold mb-4 text-white"
-                      style={{
-                        fontFamily: "'Montserrat', sans-serif",
-                        textShadow: '0 1px 2px rgba(0,0,0,0.7)'
-                      }}
-                    >
-                      [FOUNDER NAME]
-                    </h4>
+                    <div className="flex items-center justify-center lg:justify-start gap-3 mb-2">
+                      <Image
+                        src="/images/logo.png"
+                        alt="Logo"
+                        width={40}
+                        height={40}
+                        className="transition-transform duration-300 hover:scale-110 flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10"
+                        priority
+                      />
+                      <h4 
+                        className="text-xl sm:text-2xl font-bold text-white"
+                        style={{
+                          fontFamily: "'Montserrat', sans-serif",
+                          textShadow: '0 1px 2px rgba(0,0,0,0.7)'
+                        }}
+                      >
+                        Om Chavan
+                      </h4>
+                    </div>
                     <p 
-                      className="text-red-400 mb-6 font-semibold"
+                      className="text-red-400 mt-1 font-semibold"
                       style={{
                         fontFamily: "'Montserrat', sans-serif"
                       }}
                     >
                       Founder & Lead Performance Coach
                     </p>
-                    <p 
-                      className="text-white/90 leading-relaxed mb-6"
-                      style={{
-                        textShadow: '0 1px 2px rgba(0,0,0,0.6)'
-                      }}
-                    >
-                      With over [X] years of experience in elite sports performance, [Founder Name] has dedicated 
-                      their career to unlocking human potential. Having worked with [professional teams/athletes], 
-                      they bring a unique blend of scientific knowledge and practical expertise to every training program.
-                    </p>
-                    <div className="space-y-2">
-                      <p className="text-white/80 text-sm">• [Certification/Degree 1]</p>
-                      <p className="text-white/80 text-sm">• [Certification/Degree 2]</p>
-                      <p className="text-white/80 text-sm">• [Notable Achievement/Experience]</p>
-                      <p className="text-white/80 text-sm">• [Notable Achievement/Experience]</p>
+
+                    {/* Qualification badges */}
+                    <div className="flex flex-wrap gap-2 mt-5 justify-center lg:justify-start">
+                      <span className="px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/15">UKSCA Accredited Coach</span>
+                      <span className="px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/15">M.Sc. Strength & Conditioning (Loughborough, UK)</span>
+                      <span className="px-3 py-1 text-xs rounded-full bg-white/10 text-white border border-white/15">B.Sc. Exercise & Sport Science (Manipal, India)</span>
                     </div>
+
+                    {/* Region meta removed per request */}
+
+                    {/* CTAs removed per request */}
+                  </div>
+
+                  {/* Right: Structured Content */}
+                  <div className="space-y-8 lg:col-span-8">
+                    {/* Professional Experience */}
+                    <motion.div 
+                      initial={{ y: 20, opacity: 0 }} 
+                      animate={{ y: 0, opacity: 1 }} 
+                      transition={{ duration: 0.5 }}
+                    >
+                      <h5 
+                        className="text-xl md:text-2xl font-bold mb-4"
+                        style={{
+                          fontFamily: "'Montserrat', sans-serif",
+                          color: '#ca2f2e',
+                          textShadow: '0 1px 2px rgba(0,0,0,0.6)'
+                        }}
+                      >
+                        Professional Experience
+                      </h5>
+                      <ul className="space-y-3 text-white/90">
+                        <li className="flex gap-3">
+                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0"></span>
+                          <span>Applied Sport Science and Strength & Conditioning support for athletes across Rugby, Football, Hockey, Tennis, and Badminton in the UK.</span>
+                        </li>
+                        <li className="flex gap-3">
+                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0"></span>
+                          <span>Strength & Conditioning Coach at the Derbyshire Institute of Sport, UK, supporting elite youth athletes.</span>
+                        </li>
+                        <li className="flex gap-3">
+                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0"></span>
+                          <span>Worked with Loughborough Women's Rugby 2s and the England Colleges U-17 Hockey Athletes.</span>
+                        </li>
+                        <li className="flex gap-3">
+                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0"></span>
+                          <span>Currently developing grassroots athlete programs in India, bringing global sport science standards to the local landscape.</span>
+                        </li>
+                      </ul>
+                    </motion.div>
+
+                    {/* Athletic Background & Achievements */}
+                    <motion.div 
+                      initial={{ y: 20, opacity: 0 }} 
+                      animate={{ y: 0, opacity: 1 }} 
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                    >
+                      <h5 
+                        className="text-xl md:text-2xl font-bold mb-4"
+                        style={{
+                          fontFamily: "'Montserrat', sans-serif",
+                          color: '#ca2f2e',
+                          textShadow: '0 1px 2px rgba(0,0,0,0.6)'
+                        }}
+                      >
+                        Athletic Background & Achievements
+                      </h5>
+                      <ul className="space-y-3 text-white/90">
+                        <li className="flex gap-3">
+                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0"></span>
+                          <span>District- and University-level athlete in football and track & field.</span>
+                        </li>
+                        <li className="flex gap-3">
+                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0"></span>
+                          <span>Winner, Reliance Foundation Youth Sports football tournament, Pune 2017 (held at DSK Shivajians).</span>
+                        </li>
+                        <li className="flex gap-3">
+                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0"></span>
+                          <span>Competed in 100m, 200m, 4x100m relays, and long jump at the intercollegiate and university level.</span>
+                        </li>
+                        <li className="flex gap-3">
+                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0"></span>
+                          <span>10+ years immersed in competitive sport, now channelling that experience into athlete development.</span>
+                        </li>
+                      </ul>
+
+                      {/* Sport tags removed per request */}
+                    </motion.div>
                   </div>
                 </div>
               </div>

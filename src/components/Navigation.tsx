@@ -19,14 +19,22 @@ const Navigation = () => {
 
   const navItems = [
     { href: '#home-section', label: 'Home' },
-    { href: '#portfolio-section', label: 'Portfolio' },
     { href: '#about-section', label: 'About' },
     { href: '#services-section', label: 'Services' },
-    { href: '#skills-section', label: 'Skills' },
-    { href: '#testimonial-section', label: 'Testimonial' },
-    { href: '#journal-section', label: 'Journal' },
+    { href: '#blogs-section', label: 'Blogs' },
+    { href: '#testimonials-section', label: 'Testimonials' },
     { href: '#contact-section', label: 'Contact' },
   ]
+
+  const handleNavClick = (href: string) => {
+    const element = document.querySelector(href)
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      })
+    }
+  }
 
   return (
     <nav className={`absolute top-0 left-0 right-0 z-50 transition-all duration-500 ${
@@ -36,10 +44,10 @@ const Navigation = () => {
         <div className="hidden lg:flex items-center justify-center py-6 space-x-6">
           {/* Left Navigation */}
           <div className="flex items-center space-x-6">
-            {navItems.slice(0, 4).map((item) => (
-              <motion.a
+            {navItems.slice(0, 3).map((item) => (
+              <motion.button
                 key={item.label}
-                href={item.href}
+                onClick={() => handleNavClick(item.href)}
                 className="text-white/90 hover:text-red-500 transition-all duration-300 font-roboto uppercase tracking-wider"
                 style={{
                   padding: '8px 12px',
@@ -47,13 +55,16 @@ const Navigation = () => {
                   fontWeight: 500,
                   letterSpacing: '0.08em',
                   display: 'block',
-                  position: 'relative'
+                  position: 'relative',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer'
                 }}
                 whileHover={{ y: -1 }}
                 whileTap={{ scale: 0.98 }}
               >
                 {item.label}
-              </motion.a>
+              </motion.button>
             ))}
           </div>
 
@@ -71,10 +82,10 @@ const Navigation = () => {
 
           {/* Right Navigation */}
           <div className="flex items-center space-x-6">
-            {navItems.slice(4).map((item) => (
-              <motion.a
+            {navItems.slice(3).map((item) => (
+              <motion.button
                 key={item.label}
-                href={item.href}
+                onClick={() => handleNavClick(item.href)}
                 className="text-white/90 hover:text-red-500 transition-all duration-300 font-roboto uppercase tracking-wider"
                 style={{
                   padding: '8px 12px',
@@ -82,13 +93,16 @@ const Navigation = () => {
                   fontWeight: 500,
                   letterSpacing: '0.08em',
                   display: 'block',
-                  position: 'relative'
+                  position: 'relative',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer'
                 }}
                 whileHover={{ y: -1 }}
                 whileTap={{ scale: 0.98 }}
               >
                 {item.label}
-              </motion.a>
+              </motion.button>
             ))}
           </div>
         </div>
@@ -134,14 +148,21 @@ const Navigation = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex flex-col space-y-4">
             {navItems.map((item) => (
-              <a
+              <button
                 key={item.label}
-                href={item.href}
-                className="text-white/90 hover:text-red-500 transition-colors duration-300 text-sm font-medium py-2"
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                  handleNavClick(item.href)
+                  setIsMobileMenuOpen(false)
+                }}
+                className="text-white/90 hover:text-red-500 transition-colors duration-300 text-sm font-medium py-2 text-left"
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}
               >
                 {item.label}
-              </a>
+              </button>
             ))}
           </div>
         </div>

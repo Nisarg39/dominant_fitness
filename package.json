@@ -19,6 +19,7 @@
     "gl-matrix": "^3.4.4",
     "gsap": "^3.13.0",
     "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^0.544.0",
     "matter-js": "^0.20.0",
     "mongoose": "^8.18.2",
     "next": "15.4.5",

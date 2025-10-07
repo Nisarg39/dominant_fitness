@@ -5,8 +5,18 @@
 import { useState, useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
+import { 
+  ClipboardCheck, 
+  Dumbbell, 
+  Heart, 
+  Activity, 
+  Apple, 
+  Users, 
+  Presentation, 
+  Laptop 
+} from 'lucide-react'
 
-const SpecialAbout1 = () => {
+const Services = () => {
   const [activeComponent, setActiveComponent] = useState<number | null>(null)
   const [hoveredComponent, setHoveredComponent] = useState<number | null>(null)
   const sectionRef = useRef<HTMLDivElement>(null)
@@ -70,180 +80,130 @@ const SpecialAbout1 = () => {
   const performanceComponents = [
     {
       id: 1,
-      title: "Athletic Development",
-      description: "Strength, power, conditioning, mobility - the physical foundation of sport.",
+      title: "Assessments",
+      description: "Science-led movement screening and performance testing to identify strengths, address weaknesses, and track measurable progress.",
       icon: (
-        <motion.img
-          src="https://cdn-icons-png.flaticon.com/128/5073/5073699.png"
-          alt="Athletic Development"
-          className="w-8 h-8"
-          style={{ filter: 'brightness(0) invert(1)' }}
+        <motion.div
           animate={{ scale: [1, 1.1, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
-        />
-      ),
-      color: "#ca2f2e",
-      category: "Physical"
-    },
-    {
-      id: 2,
-      title: "Technical Ability",
-      description: "Refining sport-specific skills to compete at your best.",
-      icon: (
-        <motion.img
-          src="https://cdn-icons-png.flaticon.com/128/7118/7118261.png"
-          alt="Technical Ability"
-          className="w-8 h-8"
-          style={{ filter: 'brightness(0) invert(1)' }}
-          animate={{ scale: [1, 1.1, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
-      ),
-      color: "#ff5757",
-      category: "Skills"
-    },
-    {
-      id: 3,
-      title: "Performance Testing",
-      description: "Test. Train. Retest. Track progress with purpose.",
-      icon: (
-        <motion.img
-          src="https://cdn-icons-png.flaticon.com/128/9321/9321497.png"
-          alt="Performance Testing"
-          className="w-8 h-8"
-          style={{ filter: 'brightness(0) invert(1)' }}
-          animate={{ scale: [1, 1.1, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
+        >
+          <ClipboardCheck className="w-8 h-8 text-white" />
+        </motion.div>
       ),
       color: "#ca2f2e",
       category: "Analysis"
     },
     {
-      id: 4,
-      title: "Sports Science & Technology",
-      description: "Data-Driven Coaching, force-velocity profiling, progress reports, feedback loops",
+      id: 2,
+      title: "Athlete Development",
+      description: "Strength, speed, power, agility, and endurance programs built for long-term athletic growth, resilience, and peak performance.",
       icon: (
-        <motion.img
-          src="https://cdn-icons-png.flaticon.com/128/18853/18853543.png"
-          alt="Sports Science & Technology"
-          className="w-8 h-8"
-          style={{ filter: 'brightness(0) invert(1)' }}
+        <motion.div
           animate={{ scale: [1, 1.1, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
-        />
+        >
+          <Dumbbell className="w-8 h-8 text-white" />
+        </motion.div>
       ),
       color: "#ff5757",
-      category: "Technology"
+      category: "Physical"
     },
     {
-      id: 5,
-      title: "Motor Learning",
-      description: "Co-ordination, movement literacy, proprioception, decision-making",
+      id: 3,
+      title: "Rehabilitation",
+      description: "Structured rehab, prehab, and return-to-play protocols to accelerate recovery and reduce reinjury risk.",
       icon: (
-        <motion.img
-          src="https://cdn-icons-png.flaticon.com/128/10446/10446361.png"
-          alt="Motor Learning & Skill Acquisition"
-          className="w-8 h-8"
-          style={{ filter: 'brightness(0) invert(1)' }}
+        <motion.div
           animate={{ scale: [1, 1.1, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
-        />
-      ),
-      color: "#ca2f2e",
-      category: "Cognitive"
-    },
-    {
-      id: 6,
-      title: "Performance Nutrition",
-      description: "Sport-specific fuelling, hydration, supplementation, recovery planning",
-      icon: (
-        <motion.img
-          src="https://cdn-icons-png.flaticon.com/128/10107/10107590.png"
-          alt="Performance Nutrition"
-          className="w-8 h-8"
-          style={{ filter: 'brightness(0) invert(1)' }}
-          animate={{ scale: [1, 1.1, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
-      ),
-      color: "#ff5757",
-      category: "Nutrition"
-    },
-    {
-      id: 7,
-      title: "Recovery & Rehab",
-      description: "Return-to-sport, load management, soft-tissue work.",
-      icon: (
-        <motion.img
-          src="https://cdn-icons-png.flaticon.com/128/14795/14795599.png"
-          alt="Recovery & Rehab"
-          className="w-8 h-8"
-          style={{ filter: 'brightness(0) invert(1)' }}
-          animate={{ scale: [1, 1.1, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
+        >
+          <Heart className="w-8 h-8 text-white" />
+        </motion.div>
       ),
       color: "#ca2f2e",
       category: "Recovery"
     },
     {
-      id: 8,
-      title: "Youth Development",
-      description: "Age-appropriate S&C for long-term success - not burnout.",
+      id: 4,
+      title: "General Training",
+      description: "Functional fitness and lifestyle coaching focused on strength, posture, mobility, and pain-free, sustainable living.",
       icon: (
-        <motion.img
-          src="https://cdn-icons-png.flaticon.com/128/10049/10049504.png"
-          alt="Youth Development"
-          className="w-8 h-8"
-          style={{ filter: 'brightness(0) invert(1)' }}
+        <motion.div
           animate={{ scale: [1, 1.1, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
-        />
+        >
+          <Activity className="w-8 h-8 text-white" />
+        </motion.div>
       ),
       color: "#ff5757",
-      category: "Development"
+      category: "Fitness"
     },
     {
-      id: 9,
-      title: "Mental Performance",
-      description: "Confidence, mindset, psychology, visualization, competition readiness",
+      id: 5,
+      title: "Nutrition & Lifestyle",
+      description: "Practical guidance on fueling, recovery, and daily habits — bridging the gap between training and real-life performance.",
       icon: (
-        <motion.img
-          src="https://cdn-icons-png.flaticon.com/128/2017/2017301.png"
-          alt="Mental Performance"
-          className="w-8 h-8"
-          style={{ filter: 'brightness(0) invert(1)' }}
+        <motion.div
           animate={{ scale: [1, 1.1, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
-        />
+        >
+          <Apple className="w-8 h-8 text-white" />
+        </motion.div>
       ),
       color: "#ca2f2e",
-      category: "Mental"
+      category: "Nutrition"
     },
     {
-      id: 10,
-      title: "Coach & Parent Education",
-      description: "Coach education, workshops, parent-athlete communication",
+      id: 6,
+      title: "Consultation",
+      description: "Personalized consultation for athletes, parents, and coaches",
       icon: (
-        <motion.img
-          src="https://cdn-icons-png.flaticon.com/128/9706/9706567.png"
-          alt="Coach & Parent Education"
-          className="w-8 h-8"
-          style={{ filter: 'brightness(0) invert(1)' }}
+        <motion.div
           animate={{ scale: [1, 1.1, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
-        />
+        >
+          <Users className="w-8 h-8 text-white" />
+        </motion.div>
       ),
       color: "#ff5757",
+      category: "Support"
+    },
+    {
+      id: 7,
+      title: "Workshops",
+      description: "Practical, science-backed workshops for athletes, parents, and coaches.",
+      icon: (
+        <motion.div
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <Presentation className="w-8 h-8 text-white" />
+        </motion.div>
+      ),
+      color: "#ca2f2e",
       category: "Education"
+    },
+    {
+      id: 8,
+      title: "Online Coaching",
+      description: "Remote S&C programs with structured feedback and monitoring — delivering elite coaching access anywhere, anytime.",
+      icon: (
+        <motion.div
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <Laptop className="w-8 h-8 text-white" />
+        </motion.div>
+      ),
+      color: "#ff5757",
+      category: "Technology"
     }
   ]
 
   // Pre-compute all component positions (no hooks here)
   const componentPositions = performanceComponents.map((_, index) => {
     // Calculate symmetrical positions in a perfect circle around center
-    const angle = (index * 36) - 90; // 360/10 = 36 degrees between each, -90 to start from top
+    const angle = (index * 45) - 90; // 360/8 = 45 degrees between each, -90 to start from top
     
     // Use consistent radius values (no client-side checks during render)
     const radiusX = 45; // Horizontal radius
@@ -324,6 +284,7 @@ const SpecialAbout1 = () => {
 
   return (
     <section 
+      id="services-section"
       ref={sectionRef}
       className="relative bg-black overflow-hidden py-8 md:py-12 lg:py-16 special-about-section flex items-center"
       style={{
@@ -571,19 +532,8 @@ const SpecialAbout1 = () => {
                         lineHeight: '1.1'
                       }}
                     >
-                      How To
-                      <br/>
-                      <span className="text-2xl md:text-3xl lg:text-4xl">DOMINATE</span>
+                      Services
                     </h2>
-                    <p 
-                      className="text-sm md:text-base text-white/80 font-medium mt-1"
-                      style={{
-                        textShadow: '0 2px 8px rgba(0,0,0,0.8)',
-                        fontStyle: 'italic'
-                      }}
-                    >
-                      Sport Performance
-                    </p>
                   </div>
                 </motion.div>
               )}
@@ -917,25 +867,14 @@ const SpecialAbout1 = () => {
                   <div 
                     className="hidden md:inline-block px-3 py-1 mb-2 rounded-full text-sm font-bold uppercase tracking-wider border whitespace-nowrap"
                     style={{
-                      backgroundColor: `${component.color}20`,
-                      color: component.color,
-                      borderColor: `${component.color}50`,
+                      backgroundColor: `${component.color}30`,
+                      color: '#ffffff',
+                      borderColor: `${component.color}70`,
                       backdropFilter: 'blur(8px)'
                     }}
                   >
-                    {component.category}
-                  </div>
-                  
-                  <h3 
-                    className="font-bold font-montserrat leading-tight transition-all duration-300 whitespace-nowrap max-w-24 md:max-w-28 lg:max-w-32 mx-auto text-[9px] md:text-[10px] lg:text-[11px]"
-                    style={{ 
-                      color: (activeComponent === component.id || hoveredComponent === component.id) ? component.color : '#ffffff',
-                      textShadow: '0 2px 8px rgba(0,0,0,0.9)',
-                      transform: hoveredComponent === component.id ? 'scale(1.1)' : 'scale(1)'
-                    }}
-                  >
                     {component.title}
-                  </h3>
+                  </div>
 
                   {/* Performance Indicator Bar */}
                   <motion.div
@@ -968,4 +907,4 @@ const SpecialAbout1 = () => {
   )
 }
 
-export default SpecialAbout1
+export default Services

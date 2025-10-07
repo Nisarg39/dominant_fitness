@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Montserrat, Oswald, Rajdhani, Caveat, Roboto } from "next/font/google";
 import ClientWrapper from "@/components/ClientWrapper";
+import StructuredData from "@/components/StructuredData";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -44,9 +45,77 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "DOMINATE — Built for Sport Performance",
-  description: "Elite performance isn't a privilege — it's a process. Professional sports performance training and coaching.",
-  keywords: "sports performance, training, coaching, fitness, athlete development",
+  title: {
+    default: "DOMINATE — Built for Sport Performance",
+    template: "%s | DOMINATE Sport Performance"
+  },
+  description: "Elite performance isn't a privilege — it's a process. Professional sports performance training and coaching for athletes of all levels. UKSCA certified coaching with evidence-based training methods.",
+  keywords: [
+    "sports performance",
+    "athlete training",
+    "strength and conditioning",
+    "sports coaching",
+    "fitness training",
+    "athlete development",
+    "performance testing",
+    "sports science",
+    "UKSCA certified",
+    "elite performance",
+    "sport performance training",
+    "athletic development",
+    "performance coaching"
+  ],
+  authors: [{ name: "DOMINATE Performance" }],
+  creator: "DOMINATE Performance",
+  publisher: "DOMINATE Performance",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://yourdomain.com'), // Replace with your actual domain
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://yourdomain.com', // Replace with your actual domain
+    siteName: 'DOMINATE Sport Performance',
+    title: 'DOMINATE — Built for Sport Performance',
+    description: 'Elite performance isn\'t a privilege — it\'s a process. Professional sports performance training and coaching for athletes of all levels.',
+    images: [
+      {
+        url: '/images/og-image.jpg', // You'll need to create this image
+        width: 1200,
+        height: 630,
+        alt: 'DOMINATE Sport Performance Training',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'DOMINATE — Built for Sport Performance',
+    description: 'Elite performance isn\'t a privilege — it\'s a process. Professional sports performance training and coaching.',
+    images: ['/images/twitter-image.jpg'], // You'll need to create this image
+    creator: '@dominateperformance', // Replace with your actual Twitter handle
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'your-google-verification-code', // Replace with your actual verification code
+    // yandex: 'your-yandex-verification-code',
+    // yahoo: 'your-yahoo-verification-code',
+  },
   icons: {
     icon: [
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
@@ -61,7 +130,8 @@ export const metadata: Metadata = {
       { rel: "android-chrome-512x512", url: "/android-chrome-512x512.png" }
     ]
   },
-  manifest: "/site.webmanifest"
+  manifest: "/site.webmanifest",
+  category: 'sports',
 };
 
 export default function RootLayout({
@@ -74,6 +144,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${oswald.variable} ${rajdhani.variable} ${caveat.variable} ${roboto.variable} antialiased`}
       >
+        <StructuredData type="Organization" />
         <ClientWrapper>
           {children}
         </ClientWrapper>
