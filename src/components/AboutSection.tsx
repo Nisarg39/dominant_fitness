@@ -1192,7 +1192,7 @@ export default function AboutSection() {
                         </li>
                         <li className="flex gap-3">
                           <span className="mt-3 w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0"></span>
-                          <span>Worked with Loughborough Women's Rugby 2s and the England Colleges U-17 Hockey Athletes.</span>
+                          <span>Worked with Loughborough Women&apos;s Rugby 2s and the England Colleges U-17 Hockey Athletes.</span>
                         </li>
                         <li className="flex gap-3">
                           <span className="mt-3 w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0"></span>

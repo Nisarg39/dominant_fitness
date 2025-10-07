@@ -4,10 +4,9 @@ import { useEffect } from 'react'
 
 interface StructuredDataProps {
   type?: 'Organization' | 'LocalBusiness' | 'SportsOrganization'
-  data?: any
 }
 
-const StructuredData = ({ type = 'Organization', data }: StructuredDataProps) => {
+const StructuredData = ({ type = 'Organization' }: StructuredDataProps) => {
   useEffect(() => {
     const structuredData = {
       "@context": "https://schema.org",
@@ -80,7 +79,7 @@ const StructuredData = ({ type = 'Organization', data }: StructuredDataProps) =>
         document.head.removeChild(script)
       }
     }
-  }, [type, data])
+  }, [type])
 
   return null
 }
