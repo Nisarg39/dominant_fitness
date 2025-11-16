@@ -8,7 +8,7 @@ interface AdminSidebarProps {
 export default function AdminSidebar({ activeTab, onTabChange }: AdminSidebarProps) {
   const menuItems = [
     { id: 'user-management', label: 'User Management', icon: '👥' },
-    { id: 'site-controls', label: 'Site Controls', icon: '⚙️' },
+    { id: 'blog-management', label: 'Blog Management', icon: '📝' },
   ];
 
   return (

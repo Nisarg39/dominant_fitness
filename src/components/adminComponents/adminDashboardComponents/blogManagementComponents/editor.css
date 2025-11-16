@@ -1,0 +1,298 @@
+/* Tiptap Editor Dark Theme */
+.ProseMirror {
+  outline: none;
+  padding: 1.5rem;
+  min-height: 400px;
+  background: #000000;
+  color: #ffffff;
+  border-radius: 0.5rem;
+  font-family: var(--font-montserrat), sans-serif;
+  line-height: 1.6;
+}
+
+.ProseMirror p {
+  margin: 0 0 1rem 0;
+}
+
+.ProseMirror h1,
+.ProseMirror h2,
+.ProseMirror h3,
+.ProseMirror h4 {
+  font-family: var(--font-oswald), sans-serif;
+  font-weight: 700;
+  margin: 1.5rem 0 1rem 0;
+  color: #ffffff;
+}
+
+.ProseMirror h1 {
+  font-size: 2.5rem;
+}
+
+.ProseMirror h2 {
+  font-size: 2rem;
+}
+
+.ProseMirror h3 {
+  font-size: 1.5rem;
+}
+
+.ProseMirror h4 {
+  font-size: 1.25rem;
+}
+
+.ProseMirror ul,
+.ProseMirror ol {
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+.ProseMirror li {
+  margin: 0.25rem 0;
+}
+
+.ProseMirror strong {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.ProseMirror em {
+  font-style: italic;
+  color: #e0e0e0;
+}
+
+.ProseMirror u {
+  text-decoration: underline;
+  color: #e0e0e0;
+}
+
+.ProseMirror a {
+  color: #ef4444;
+  text-decoration: underline;
+}
+
+.ProseMirror a:hover {
+  color: #dc2626;
+}
+
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+  display: block;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+/* Image hover effect - indicates double-click functionality */
+.ProseMirror img:hover {
+  border-color: #ef4444;
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);
+  transform: scale(1.01);
+}
+
+/* Image selection styling */
+.ProseMirror img.ProseMirror-selectednode {
+  outline: 3px solid #ef4444;
+  outline-offset: 2px;
+  border-color: #ef4444;
+}
+
+/* Visual hint for double-click */
+.ProseMirror img::before {
+  content: '↔';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(239, 68, 68, 0.9);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+.ProseMirror img:hover::before {
+  opacity: 1;
+}
+
+.ProseMirror blockquote {
+  border-left: 4px solid #ef4444;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+  color: #a0a0a0;
+}
+
+.ProseMirror code {
+  background: #1a1a1a;
+  color: #fbbf24;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.ProseMirror pre {
+  background: #1a1a1a;
+  color: #ffffff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.ProseMirror pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+
+/* Placeholder styling */
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #6b7280;
+  pointer-events: none;
+  height: 0;
+}
+
+/* Editor toolbar */
+.editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 0.5rem 0.5rem 0 0;
+  margin-bottom: 0;
+}
+
+.editor-toolbar button {
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 0.25rem;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.editor-toolbar button:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.editor-toolbar button.is-active {
+  background: #ef4444;
+  border-color: #ef4444;
+}
+
+.editor-toolbar button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.editor-toolbar .separator {
+  width: 1px;
+  background: rgba(239, 68, 68, 0.2);
+  margin: 0 0.25rem;
+}
+
+/* Preview styles */
+.blog-preview {
+  padding: 2rem;
+  background: #000000;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 0.5rem;
+  font-family: var(--font-montserrat), sans-serif;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+.blog-preview h1,
+.blog-preview h2,
+.blog-preview h3,
+.blog-preview h4 {
+  font-family: var(--font-oswald), sans-serif;
+  font-weight: 700;
+  margin: 1.5rem 0 1rem 0;
+  color: #ffffff;
+}
+
+.blog-preview h1 {
+  font-size: 2.5rem;
+}
+
+.blog-preview h2 {
+  font-size: 2rem;
+}
+
+.blog-preview h3 {
+  font-size: 1.5rem;
+}
+
+.blog-preview h4 {
+  font-size: 1.25rem;
+}
+
+.blog-preview p {
+  margin: 0 0 1rem 0;
+}
+
+.blog-preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.blog-preview a {
+  color: #ef4444;
+  text-decoration: underline;
+}
+
+.blog-preview a:hover {
+  color: #dc2626;
+}
+
+.blog-preview blockquote {
+  border-left: 4px solid #ef4444;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+  color: #a0a0a0;
+}
+
+.blog-preview code {
+  background: #1a1a1a;
+  color: #fbbf24;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.blog-preview pre {
+  background: #1a1a1a;
+  color: #ffffff;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.blog-preview pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}

@@ -73,14 +73,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://yourdomain.com'), // Replace with your actual domain
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://yourdomain.com'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://yourdomain.com', // Replace with your actual domain
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://yourdomain.com',
     siteName: 'DOMINATE Sport Performance',
     title: 'DOMINATE — Built for Sport Performance',
     description: 'Elite performance isn\'t a privilege — it\'s a process. Professional sports performance training and coaching for athletes of all levels.',

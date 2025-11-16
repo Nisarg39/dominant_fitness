@@ -4,6 +4,9 @@ const nextConfig: NextConfig = {
   // Enable experimental features for better SEO
   experimental: {
     optimizePackageImports: ['framer-motion', 'lucide-react'],
+    serverActions: {
+      bodySizeLimit: '10mb', // Increased limit for blog image uploads (base64 encoded)
+    },
   },
   
   // Image optimization for better performance and SEO

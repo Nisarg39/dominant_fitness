@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import AdminSidebar from './adminDashboardComponents/AdminSidebar';
 import UserManagement from './adminDashboardComponents/UserManagement';
+import BlogManagement from './adminDashboardComponents/BlogManagement';
 
 interface AdminDashboardProps {
   onSignOut: () => void;
@@ -20,6 +21,8 @@ export default function AdminDashboard({ onSignOut }: AdminDashboardProps) {
     switch (activeTab) {
       case 'user-management':
         return <UserManagement />;
+      case 'blog-management':
+        return <BlogManagement />;
       case 'site-controls':
         return (
           <div className="glassmorphism-enhanced rounded-lg p-6">
@@ -70,7 +73,8 @@ export default function AdminDashboard({ onSignOut }: AdminDashboardProps) {
         <div className="glassmorphism-enhanced border-b border-red-500/20 px-6 py-4">
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-semibold text-white animated-text">
-              {activeTab === 'user-management' ? 'User Management' : 'Site Controls'}
+              {activeTab === 'user-management' ? 'User Management' : 
+               activeTab === 'blog-management' ? 'Blog Management' : 'Site Controls'}
             </h1>
             <button
               onClick={handleSignOut}
