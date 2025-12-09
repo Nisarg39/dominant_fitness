@@ -362,7 +362,7 @@ const ContacUs = () => {
                     </div>
     <div>
                       <p className="text-white/70 text-sm uppercase tracking-wider">Location</p>
-                      <p className="text-white font-medium">New York, NY</p>
+                      <p className="text-white font-medium">Pune, Maharashtra</p>
                     </div>
                   </motion.div>
                 </div>
