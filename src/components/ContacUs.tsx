@@ -319,7 +319,10 @@ const ContacUs = () => {
                     </div>
                   </motion.div>
 
-                  <motion.div 
+                  <motion.a 
+                    href="https://wa.me/9309213649"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center space-x-4 group cursor-pointer"
                     whileHover={{ x: 10 }}
                     transition={{ type: 'spring', stiffness: 300 }}
@@ -337,9 +340,9 @@ const ContacUs = () => {
                     </div>
                     <div>
                       <p className="text-white/70 text-sm uppercase tracking-wider">Phone</p>
-                      <p className="text-white font-medium">+1 (555) 123-4567</p>
+                      <p className="text-white font-medium">9309213649</p>
                     </div>
-                  </motion.div>
+                  </motion.a>
 
                   <motion.div 
                     className="flex items-center space-x-4 group cursor-pointer"
