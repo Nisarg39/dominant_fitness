@@ -36,6 +36,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 // Revalidate every hour
 export const revalidate = 3600;
 
+// Allow dynamic params for blogs not generated at build time
+export const dynamicParams = true;
+
 export default async function BlogPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const result = await getBlogBySlug(slug);
