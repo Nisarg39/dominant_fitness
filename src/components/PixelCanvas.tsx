@@ -41,12 +41,12 @@ class Pixel {
     this.speed = this.getRandomValue(0.1, 0.6) * speed
     this.size = 0
     this.sizeStep = Math.random() * 0.4 + 0.2
-    this.minSize = 0.5
-    this.maxSizeInteger = 2.5
+    this.minSize = 0.5 // Smaller pixels
+    this.maxSizeInteger = 3 // Smaller max size
     this.maxSize = this.getRandomValue(this.minSize, this.maxSizeInteger)
-    this.delay = delay
+    this.delay = 0 // Removed delay for instant feedback
     this.counter = 0
-    this.counterStep = Math.random() * 4 + (this.width + this.height) * 0.01
+    this.counterStep = 1
     this.isIdle = false
     this.isReverse = false
     this.isShimmer = false
@@ -56,28 +56,17 @@ class Pixel {
     return Math.random() * (max - min) + min
   }
 
-  private getDistanceFromCenter(canvasWidth: number, canvasHeight: number): number {
-    const centerX = canvasWidth / 2
-    const centerY = canvasHeight / 2
-    const dx = this.x - centerX
-    const dy = this.y - centerY
-    return Math.sqrt(dx * dx + dy * dy)
-  }
-
-  private getIntensityMultiplier(canvasWidth: number, canvasHeight: number): number {
-    const maxDistance = Math.sqrt((canvasWidth / 2) ** 2 + (canvasHeight / 2) ** 2)
-    const distance = this.getDistanceFromCenter(canvasWidth, canvasHeight)
-    const normalizedDistance = distance / maxDistance
-    // More visible intensity: 0.25 to 1.0 for clear effect
-    return Math.max(0.25, normalizedDistance * 1.0)
+  private getIntensityMultiplier(): number {
+    // Subtler intensity for better text visibility
+    return 0.4
   }
 
   private draw(): void {
     const centerOffset = this.maxSizeInteger * 0.5 - this.size * 0.5
-    const intensityMultiplier = this.getIntensityMultiplier(this.width, this.height)
-    
-    // Apply intensity-based opacity - more visible
-    const baseOpacity = this.color.includes('rgba') ? 1 : 0.9
+    const intensityMultiplier = this.getIntensityMultiplier()
+
+    // Apply extra transparency for better readability
+    const baseOpacity = 0.3 // Significantly reduced
     const opacity = Math.min(1, baseOpacity * intensityMultiplier)
 
     // Extract RGB values and apply opacity
@@ -92,13 +81,13 @@ class Pixel {
     }
 
     this.ctx.fillStyle = finalColor
-    
+
     // Calculate position and size, ensuring pixels near edges can extend to cover them
     const drawX = Math.max(0, this.x + centerOffset)
     const drawY = Math.max(0, this.y + centerOffset)
     let drawWidth = this.size
     let drawHeight = this.size
-    
+
     // Extend size for edge pixels to ensure full coverage
     if (this.x + centerOffset + this.size > this.width - 1) {
       drawWidth = this.width - drawX
@@ -106,11 +95,11 @@ class Pixel {
     if (this.y + centerOffset + this.size > this.height - 1) {
       drawHeight = this.height - drawY
     }
-    
+
     // Ensure minimum size for visibility
     drawWidth = Math.max(1, drawWidth)
     drawHeight = Math.max(1, drawHeight)
-    
+
     this.ctx.fillRect(drawX, drawY, drawWidth, drawHeight)
   }
 
@@ -164,10 +153,10 @@ class Pixel {
   }
 }
 
-export default function PixelCanvas({ 
-  colors = "#fecdd3, #fda4af, #e11d48", 
-  gap = "6", 
-  speed = "80", 
+export default function PixelCanvas({
+  colors = "#fecdd3, #fda4af, #e11d48",
+  gap = "6",
+  speed = "80",
   noFocus = false,
   className = "",
   parentRef
@@ -179,132 +168,76 @@ export default function PixelCanvas({
   const timePreviousRef = useRef<number>(performance.now())
   const resizeObserverRef = useRef<ResizeObserver | null>(null)
 
-  const parsedColors = colors.split(',').map(color => color.trim())
-  const gapValue = Math.max(4, Math.min(50, parseInt(gap)))
-  const reducedMotion = typeof window !== 'undefined' ? 
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches : false
-  
-  const speedValue = reducedMotion ? 0 : Math.max(0, Math.min(100, parseInt(speed))) * 0.001
-
-  const getDistanceToCanvasCenter = (x: number, y: number, canvas: HTMLCanvasElement): number => {
-    const dx = x - canvas.width / 2
-    const dy = y - canvas.height / 2
-    return Math.sqrt(dx * dx + dy * dy)
-  }
-
-  const createPixels = (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): void => {
+  const createPixels = useCallback((canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): void => {
     pixelsRef.current = []
-    
-    // Main grid of pixels with extended bounds to reach edges
+
+    const parsedColors = colors.split(',').map(c => c.trim())
+    const gapValue = Math.max(4, Math.min(50, parseInt(gap)))
+    const reducedMotion = typeof window !== 'undefined' ?
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches : false
+    const speedValue = reducedMotion ? 0 : Math.max(0, Math.min(100, parseInt(speed))) * 0.001
+
+    const getDistance = (x: number, y: number): number => {
+      const dx = x - canvas.width / 2
+      const dy = y - canvas.height / 2
+      return Math.sqrt(dx * dx + dy * dy)
+    }
+
+    // Faster feedback: use a small multiplier for the distance-based delay
+    const delayMultiplier = 0.05
+
     for (let x = 0; x <= canvas.width; x += gapValue) {
       for (let y = 0; y <= canvas.height; y += gapValue) {
-        // Clamp x and y to canvas bounds to avoid drawing outside
-        const clampedX = Math.min(x, canvas.width - 1)
-        const clampedY = Math.min(y, canvas.height - 1)
-        
+        const cx = Math.min(x, canvas.width - 1)
+        const cy = Math.min(y, canvas.height - 1)
         const color = parsedColors[Math.floor(Math.random() * parsedColors.length)]
-        const delay = reducedMotion ? 0 : getDistanceToCanvasCenter(clampedX, clampedY, canvas)
+        const delay = reducedMotion ? 0 : getDistance(cx, cy) * delayMultiplier
 
-        pixelsRef.current.push(
-          new Pixel(canvas, ctx, clampedX, clampedY, color, speedValue, delay)
-        )
+        pixelsRef.current.push(new Pixel(canvas, ctx, cx, cy, color, speedValue, delay))
       }
     }
-    
-    // Add extra pixels along all edges for complete coverage
-    const edgeOffset = Math.floor(gapValue / 2)
-    
-    // Top edge pixels
-    for (let x = edgeOffset; x < canvas.width; x += gapValue) {
+
+    // Edges
+    for (let x = 0; x < canvas.width; x += gapValue) {
       const color = parsedColors[Math.floor(Math.random() * parsedColors.length)]
-      const delay = reducedMotion ? 0 : getDistanceToCanvasCenter(x, 0, canvas)
-      pixelsRef.current.push(
-        new Pixel(canvas, ctx, x, 0, color, speedValue, delay)
-      )
+      pixelsRef.current.push(new Pixel(canvas, ctx, x, 0, color, speedValue, getDistance(x, 0) * delayMultiplier))
+      pixelsRef.current.push(new Pixel(canvas, ctx, x, canvas.height - 1, color, speedValue, getDistance(x, canvas.height - 1) * delayMultiplier))
     }
-    
-    // Right edge pixels
-    for (let y = edgeOffset; y < canvas.height; y += gapValue) {
+    for (let y = 0; y < canvas.height; y += gapValue) {
       const color = parsedColors[Math.floor(Math.random() * parsedColors.length)]
-      const delay = reducedMotion ? 0 : getDistanceToCanvasCenter(canvas.width - 1, y, canvas)
-      pixelsRef.current.push(
-        new Pixel(canvas, ctx, canvas.width - 1, y, color, speedValue, delay)
-      )
+      pixelsRef.current.push(new Pixel(canvas, ctx, 0, y, color, speedValue, getDistance(0, y) * delayMultiplier))
+      pixelsRef.current.push(new Pixel(canvas, ctx, canvas.width - 1, y, color, speedValue, getDistance(canvas.width - 1, y) * delayMultiplier))
     }
-    
-    // Bottom edge pixels
-    for (let x = edgeOffset; x < canvas.width; x += gapValue) {
-      const color = parsedColors[Math.floor(Math.random() * parsedColors.length)]
-      const delay = reducedMotion ? 0 : getDistanceToCanvasCenter(x, canvas.height - 1, canvas)
-      pixelsRef.current.push(
-        new Pixel(canvas, ctx, x, canvas.height - 1, color, speedValue, delay)
-      )
-    }
-    
-    // Left edge pixels
-    for (let y = edgeOffset; y < canvas.height; y += gapValue) {
-      const color = parsedColors[Math.floor(Math.random() * parsedColors.length)]
-      const delay = reducedMotion ? 0 : getDistanceToCanvasCenter(0, y, canvas)
-      pixelsRef.current.push(
-        new Pixel(canvas, ctx, 0, y, color, speedValue, delay)
-      )
-    }
-    
-    // Corner pixels for complete coverage
-    const corners = [
-      { x: 0, y: 0 },
-      { x: canvas.width - 1, y: 0 },
-      { x: 0, y: canvas.height - 1 },
-      { x: canvas.width - 1, y: canvas.height - 1 }
-    ]
-    
-    corners.forEach(corner => {
-      const color = parsedColors[Math.floor(Math.random() * parsedColors.length)]
-      const delay = reducedMotion ? 0 : getDistanceToCanvasCenter(corner.x, corner.y, canvas)
-      pixelsRef.current.push(
-        new Pixel(canvas, ctx, corner.x, corner.y, color, speedValue, delay)
-      )
-    })
-  }
+  }, [colors, gap, speed])
 
   const init = useCallback((): void => {
     const canvas = canvasRef.current
     if (!canvas) return
 
-    // Use parent element for sizing - this should be the card element
-    const sizeSource = parentRef?.current
+    const sizeSource = parentRef?.current || canvasRef.current?.parentElement
     if (!sizeSource) return
 
-    // Get the computed style to get the actual rendered size
-    const computedStyle = window.getComputedStyle(sizeSource)
-    const width = Math.floor(parseFloat(computedStyle.width))
-    const height = Math.floor(parseFloat(computedStyle.height))
+    const rect = sizeSource.getBoundingClientRect()
+    // Use offsetWidth/Height as secondary check to ensure we get the full layout size
+    const width = Math.floor(rect.width || (sizeSource as HTMLElement).offsetWidth)
+    const height = Math.floor(rect.height || (sizeSource as HTMLElement).offsetHeight)
 
-    // Ensure we have valid dimensions
-    if (width <= 0 || height <= 0) {
-      console.warn('PixelCanvas: Invalid dimensions, retrying...')
-      setTimeout(() => init(), 100)
-      return
-    }
+    if (width <= 0 || height <= 0) return
 
-    // Set canvas dimensions to match parent exactly
     canvas.width = width
     canvas.height = height
-    canvas.style.width = `${width}px`
-    canvas.style.height = `${height}px`
-    
-    // Ensure canvas fills the entire parent including corners
+    canvas.style.width = '100%'
+    canvas.style.height = '100%'
     canvas.style.position = 'absolute'
     canvas.style.top = '0'
     canvas.style.left = '0'
     canvas.style.right = '0'
     canvas.style.bottom = '0'
-    canvas.style.zIndex = '1'
+    canvas.style.zIndex = '0'
+    canvas.style.pointerEvents = 'none'
 
     const ctx = canvas.getContext('2d')
     if (ctx) {
-      // Clear any existing pixels
-      pixelsRef.current = []
       createPixels(canvas, ctx)
     }
   }, [parentRef, createPixels])
@@ -336,12 +269,12 @@ export default function PixelCanvas({
     }
   }
 
-  const handleAnimation = (name: 'appear' | 'disappear'): void => {
+  const handleAnimation = useCallback((name: 'appear' | 'disappear'): void => {
     if (animationRef.current) {
       cancelAnimationFrame(animationRef.current)
     }
     animate(name)
-  }
+  }, []) // Removed animate from dependency to avoid recreation loops
 
   const handleMouseEnter = useCallback((): void => {
     handleAnimation('appear')
@@ -381,13 +314,13 @@ export default function PixelCanvas({
           clearTimeout(resizeTimeout)
           resizeTimeout = setTimeout(() => {
             init()
-          }, 100) // Debounce resize events
+          }, 100)
         }
       }
     })
-    
-    // Only observe the parent element (the card)
-    const observeTarget = parentRef?.current
+
+    // Attempt to observe parent element
+    const observeTarget = parentRef?.current || canvasRef.current?.parentElement
     if (observeTarget) {
       resizeObserverRef.current.observe(observeTarget)
     }
@@ -405,8 +338,8 @@ export default function PixelCanvas({
   }, [parentRef, init])
 
   useEffect(() => {
-    // Use parent element for event handling
-    const targetElement = parentRef?.current
+    // Use parent element for event handling, fallback to canvas's parent if ref not set
+    const targetElement = parentRef?.current || canvasRef.current?.parentElement
     if (!targetElement) return
 
     targetElement.addEventListener('mouseenter', handleMouseEnter)
@@ -420,16 +353,16 @@ export default function PixelCanvas({
     return () => {
       targetElement.removeEventListener('mouseenter', handleMouseEnter)
       targetElement.removeEventListener('mouseleave', handleMouseLeave)
-      
+
       if (!noFocus) {
         targetElement.removeEventListener('focusin', handleFocusIn as EventListener)
         targetElement.removeEventListener('focusout', handleFocusOut as EventListener)
       }
     }
-  }, [noFocus, parentRef, handleFocusIn, handleFocusOut, handleMouseEnter, handleMouseLeave])
+  }, [noFocus, handleFocusIn, handleFocusOut, handleMouseEnter, handleMouseLeave, parentRef])
 
   return (
-    <canvas 
+    <canvas
       ref={canvasRef}
       className={`absolute inset-0 block pointer-events-none ${className}`}
       style={{
@@ -441,7 +374,7 @@ export default function PixelCanvas({
         bottom: 0,
         position: 'absolute',
         display: 'block',
-        zIndex: 1,
+        zIndex: 10,
         borderRadius: 'inherit',
         transform: 'translateZ(0)', // Force hardware acceleration
         willChange: 'auto' // Optimize for performance
