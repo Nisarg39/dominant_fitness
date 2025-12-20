@@ -28,7 +28,7 @@ export default function BlogHeader({ blog }: BlogHeaderProps) {
           <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
             <div className="max-w-4xl mx-auto">
               {blog.category && (
-                <span className="inline-block px-3 py-1 bg-red-600 text-white text-sm font-semibold rounded-full mb-4">
+                <span className="inline-block px-3 py-1 bg-[#fff200] text-white text-sm font-semibold rounded-full mb-4">
                   {blog.category}
                 </span>
               )}
@@ -44,7 +44,7 @@ export default function BlogHeader({ blog }: BlogHeaderProps) {
       {!blog.featuredImage?.url && (
         <div className="max-w-4xl mx-auto px-4">
           {blog.category && (
-            <span className="inline-block px-3 py-1 bg-red-600 text-white text-sm font-semibold rounded-full mb-4">
+            <span className="inline-block px-3 py-1 bg-[#fff200] text-white text-sm font-semibold rounded-full mb-4">
               {blog.category}
             </span>
           )}

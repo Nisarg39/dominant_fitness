@@ -70,7 +70,7 @@ export default function AdminDashboard({ onSignOut }: AdminDashboardProps) {
       {/* Main Content Area */}
       <div className="flex-1 ml-64 overflow-auto relative z-10">
         {/* Header */}
-        <div className="glassmorphism-enhanced border-b border-red-500/20 px-6 py-4">
+        <div className="glassmorphism-enhanced border-b border-[#fff200]/20 px-6 py-4">
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-semibold text-white animated-text">
               {activeTab === 'user-management' ? 'User Management' : 
@@ -78,7 +78,7 @@ export default function AdminDashboard({ onSignOut }: AdminDashboardProps) {
             </h1>
             <button
               onClick={handleSignOut}
-              className="px-4 py-2 bg-gradient-to-r from-red-600 to-red-500 text-white rounded-lg hover:from-red-700 hover:to-red-600 transition-all duration-300 transform hover:scale-105 glow-on-hover"
+              className="px-4 py-2 bg-gradient-to-r from-[#fff200] to-[#fff200] text-black rounded-lg hover:from-[#e6db00] hover:to-[#fff200] transition-all duration-300 transform hover:scale-105 glow-on-hover"
             >
               Sign Out
             </button>

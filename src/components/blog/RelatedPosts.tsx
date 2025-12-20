@@ -37,7 +37,7 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
               <Link
                 key={post._id}
                 href={`/blogs/${post.slug}`}
-                className="group glassmorphism-enhanced border border-red-500/20 rounded-xl overflow-hidden hover:border-red-500/40 transition-all duration-300 hover:scale-105 flex flex-col"
+                className="group glassmorphism-enhanced border border-[#fff200]/20 rounded-xl overflow-hidden hover:border-[#fff200]/40 transition-all duration-300 hover:scale-105 flex flex-col"
               >
                 {/* Featured Image */}
                 {post.featuredImage?.url && (
@@ -55,13 +55,13 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
                 <div className="p-5 flex flex-col flex-grow">
                   {/* Category */}
                   {post.category && (
-                    <span className="inline-block px-2 py-1 bg-red-500/10 text-red-400 text-xs font-semibold rounded-full mb-2 w-fit">
+                    <span className="inline-block px-2 py-1 bg-[#fff200]/10 text-[#fff200] text-xs font-semibold rounded-full mb-2 w-fit">
                       {post.category}
                     </span>
                   )}
                   
                   {/* Title */}
-                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-red-400 transition-colors line-clamp-2">
+                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#fff200] transition-colors line-clamp-2">
                     {post.title}
                   </h3>
                   

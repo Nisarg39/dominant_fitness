@@ -41,7 +41,7 @@ const HowToDominate = () => {
           <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 8.57l1.43 1.43 2.14-2.14 1.43 1.43L3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43 2.14-2.14L20.57 14.86zM12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
         </svg>
       ),
-      color: "#ca2f2e",
+      color: "#fff200",
       category: "Physical",
       backgroundImage: "https://i.pinimg.com/736x/06/2f/d2/062fd2f3bd31e3439876d45e8cd80af0.jpg"
     },
@@ -54,7 +54,7 @@ const HowToDominate = () => {
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
         </svg>
       ),
-      color: "#ff5757",
+      color: "#fff200",
       category: "Skills",
       backgroundImage: "https://e1.pxfuel.com/desktop-wallpaper/584/690/desktop-wallpaper-cristiano-ronaldo-ronaldo-dark.jpg"
     },
@@ -67,7 +67,7 @@ const HowToDominate = () => {
           <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
         </svg>
       ),
-      color: "#ca2f2e",
+      color: "#fff200",
       category: "Analysis",
       backgroundImage: "https://mcdn.wallpapersafari.com/medium/3/11/4SJOpX.jpg"
     },
@@ -80,7 +80,7 @@ const HowToDominate = () => {
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
         </svg>
       ),
-      color: "#ff5757",
+      color: "#fff200",
       category: "Technology",
       backgroundImage: "https://gearlimits.com/app/uploads/2024/04/gearlimits-sport-wetenschap-de-kracht-van-de-mind-main.jpg"
     },
@@ -93,7 +93,7 @@ const HowToDominate = () => {
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
         </svg>
       ),
-      color: "#ca2f2e",
+      color: "#fff200",
       category: "Cognitive",
       backgroundImage: "https://as2.ftcdn.net/v2/jpg/15/44/83/39/1000_F_1544833918_VBzV3dZxp7MFCajnzomA5GPiYd0wKj3U.jpg"
     },
@@ -106,7 +106,7 @@ const HowToDominate = () => {
           <path d="M8.1 13.34l2.83-2.83L3.91 3.5c-1.56 1.56-1.56 4.09 0 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z"/>
         </svg>
       ),
-      color: "#ff5757",
+      color: "#fff200",
       category: "Nutrition",
       backgroundImage: "https://media.istockphoto.com/id/525363530/photo/football-player.jpg?s=612x612&w=0&k=20&c=9BP6Xun1t1t5rRuP7p5LGK27BnmK3GbhtYeIisiiHII="
     },
@@ -119,7 +119,7 @@ const HowToDominate = () => {
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
         </svg>
       ),
-      color: "#ca2f2e",
+      color: "#fff200",
       category: "Recovery",
       backgroundImage: "https://media.istockphoto.com/id/1192060388/photo/serious-attractive-muscular-caucasian-sportsman-in-hoodie-standing-in-underground-garage-with.jpg?s=612x612&w=0&k=20&c=QVUF_mwb9SbhU-cN1Pd8YHkro_Y_2penNDc5dZqR9pc="
     },
@@ -132,7 +132,7 @@ const HowToDominate = () => {
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
         </svg>
       ),
-      color: "#ff5757",
+      color: "#fff200",
       category: "Development",
       backgroundImage: "https://www.shutterstock.com/shutterstock/photos/2409935833/display_1500/stock-photo-confidence-and-strength-female-athlete-in-fencing-gear-showcasing-her-impeccable-form-sword-2409935833.jpg"
     },
@@ -145,7 +145,7 @@ const HowToDominate = () => {
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
         </svg>
       ),
-      color: "#ca2f2e",
+      color: "#fff200",
       category: "Mental",
       backgroundImage: "https://c1.wallpaperflare.com/preview/616/537/299/athlete-bike-black-and-white-cycle.jpg"
     }
@@ -156,12 +156,12 @@ const HowToDominate = () => {
       <style jsx>{`
         @keyframes borderBlink {
           0%, 100% {
-            border-color: #ca2f2e;
-            box-shadow: 0 0 0 rgba(202, 47, 46, 0);
+            border-color: #fff200;
+            box-shadow: 0 0 0 rgba(255, 242, 0, 0);
           }
           50% {
-            border-color: #ff5757;
-            box-shadow: 0 0 20px rgba(255, 87, 87, 0.6);
+            border-color: #fff200;
+            box-shadow: 0 0 20px rgba(255, 242, 0, 0.6);
           }
         }
       `}</style>
@@ -190,11 +190,11 @@ const HowToDominate = () => {
         ].map((particle, i) => (
           <motion.div
             key={i}
-            className={`absolute ${particle.size} bg-red-500 rounded-full`}
+            className={`absolute ${particle.size} bg-[#fff200] rounded-full`}
             style={{
               left: `${particle.left}%`,
               top: `${particle.top}%`,
-              boxShadow: '0 0 10px rgba(255, 87, 87, 0.6), 0 0 20px rgba(202, 47, 46, 0.4)',
+              boxShadow: '0 0 10px rgba(255, 242, 0, 0.6), 0 0 20px rgba(255, 242, 0, 0.4)',
               filter: 'brightness(1.2)'
             }}
             animate={{
@@ -232,7 +232,7 @@ const HowToDominate = () => {
               className="w-16 h-16 md:w-20 md:h-20"
                       style={{
                         opacity: 0.9,
-                        filter: 'brightness(0) invert(1) drop-shadow(0 0 8px rgba(202,47,46,0.5)) drop-shadow(0 0 15px rgba(255,87,87,0.2))',
+                        filter: 'brightness(0) invert(1) drop-shadow(0 0 8px rgba(255,242,0,0.5)) drop-shadow(0 0 15px rgba(255,242,0,0.2))',
                         objectFit: 'contain'
                       }}
                       priority
@@ -242,7 +242,7 @@ const HowToDominate = () => {
                     <h2 
             className="text-2xl md:text-3xl lg:text-4xl font-bold font-montserrat uppercase mb-4"
                       style={{
-                        color: '#ca2f2e',
+                        color: '#fff200',
                         textShadow: '0 2px 4px rgba(0,0,0,0.95)',
                         letterSpacing: '0.05em',
                         lineHeight: '1.1'
@@ -330,7 +330,7 @@ const HowToDominate = () => {
               >
                 {/* Icon */}
                 <div 
-                  className="flex justify-center items-center min-w-10 max-w-10 h-10 rounded-full bg-black border-2 border-red-500"
+                  className="flex justify-center items-center min-w-10 max-w-10 h-10 rounded-full bg-black border-2 border-[#fff200]"
                   style={{ color: 'white' }}
                 >
                   {component.icon}
@@ -412,7 +412,7 @@ const HowToDominate = () => {
                 {/* Content */}
                 <div className="relative z-10 flex items-center h-full p-4">
                   <div 
-                    className="flex justify-center items-center w-10 h-10 rounded-full bg-black border-2 border-red-500 mr-3"
+                    className="flex justify-center items-center w-10 h-10 rounded-full bg-black border-2 border-[#fff200] mr-3"
                     style={{ color: 'white' }}
                   >
                     {component.icon}

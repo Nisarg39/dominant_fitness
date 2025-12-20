@@ -23,8 +23,8 @@ export default function UserManagement() {
             onClick={() => setActiveTab('contact-us')}
             className={`px-4 py-2 rounded-lg transition-all duration-300 interactive-element ${
               activeTab === 'contact-us'
-                ? 'bg-gradient-to-r from-red-600 to-red-500 text-white shadow-lg glow-on-hover'
-                : 'text-gray-300 hover:bg-red-500/10 hover:text-white glow-on-hover'
+                ? 'bg-gradient-to-r from-[#fff200] to-[#fff200] text-black shadow-lg glow-on-hover'
+                : 'text-gray-300 hover:bg-[#fff200]/10 hover:text-white glow-on-hover'
             }`}
           >
             Contact Us

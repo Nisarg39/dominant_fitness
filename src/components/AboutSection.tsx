@@ -158,7 +158,7 @@ export default function AboutSection() {
                   }
                 },
                 "color": {
-                  "value": ["#ca2f2e", "#ff5757", "#dc2626", "#ffffff"]
+                  "value": ["#fff200", "#fff200", "#fff200", "#ffffff"]
                 },
                 "shape": {
                   "type": "circle",
@@ -371,7 +371,7 @@ export default function AboutSection() {
               className="text-4xl md:text-6xl font-bold text-white mb-6"
               style={{
                 fontFamily: "'Montserrat', sans-serif",
-                color: '#ca2f2e'
+                color: '#fff200'
               }}
             >
               ABOUT US
@@ -478,8 +478,8 @@ export default function AboutSection() {
               linear-gradient(90deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.8) 25%, rgba(0,0,0,0.7) 45%, rgba(0,0,0,0.6) 65%, rgba(0,0,0,0.75) 85%, rgba(0,0,0,0.9) 100%), 
               linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 30%, rgba(0,0,0,0.5) 70%, rgba(0,0,0,0.8) 100%), 
               linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 30%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0.9) 100%), 
-              radial-gradient(ellipse 60% 80% at 5% 50%, rgba(202,47,46,0.25) 0%, rgba(202,47,46,0.15) 25%, rgba(202,47,46,0.08) 50%, transparent 70%),
-              linear-gradient(225deg, rgba(202,47,46,0.1) 0%, transparent 40%)
+              radial-gradient(ellipse 60% 80% at 5% 50%, rgba(255,242,0,0.25) 0%, rgba(255,242,0,0.15) 25%, rgba(255,242,0,0.08) 50%, transparent 70%),
+              linear-gradient(225deg, rgba(255,242,0,0.1) 0%, transparent 40%)
             `,
             backgroundSize: '200% 200%',
             zIndex: 1
@@ -536,7 +536,7 @@ export default function AboutSection() {
             left: '5%', 
             width: '100px', 
             height: '2px', 
-            background: 'linear-gradient(90deg, transparent, rgba(202,47,46,0.3), transparent)'
+            background: 'linear-gradient(90deg, transparent, rgba(255,242,0,0.3), transparent)'
           }} 
         />
         <motion.div 
@@ -562,7 +562,7 @@ export default function AboutSection() {
             left: '15%', 
             width: '120px', 
             height: '2px', 
-            background: 'linear-gradient(90deg, rgba(202,47,46,0.25), transparent)'
+            background: 'linear-gradient(90deg, rgba(255,242,0,0.25), transparent)'
           }} 
         />
 
@@ -590,8 +590,8 @@ export default function AboutSection() {
             height: '12px',
             borderRadius: '50%',
             filter: 'blur(0.5px)', 
-            background: 'radial-gradient(circle, rgba(202,47,46,1) 0%, rgba(202,47,46,0.6) 70%, transparent 100%)',
-            boxShadow: '0 0 30px rgba(202,47,46,0.8), 0 0 60px rgba(202,47,46,0.4)'
+            background: 'radial-gradient(circle, rgba(255,242,0,1) 0%, rgba(255,242,0,0.6) 70%, transparent 100%)',
+            boxShadow: '0 0 30px rgba(255,242,0,0.8), 0 0 60px rgba(255,242,0,0.4)'
           }} 
         />
         <motion.div 
@@ -644,8 +644,8 @@ export default function AboutSection() {
             height: '10px',
             borderRadius: '50%',
             filter: 'blur(1px)', 
-            background: 'radial-gradient(circle, rgba(202,47,46,0.7) 0%, rgba(202,47,46,0.4) 70%, transparent 100%)',
-            boxShadow: '0 0 25px rgba(202,47,46,0.5)'
+            background: 'radial-gradient(circle, rgba(255,242,0,0.7) 0%, rgba(255,242,0,0.4) 70%, transparent 100%)',
+            boxShadow: '0 0 25px rgba(255,242,0,0.5)'
           }} 
         />
 
@@ -671,8 +671,8 @@ export default function AboutSection() {
             width: '4px',
             height: '4px',
             borderRadius: '50%',
-            background: 'rgba(202,47,46,0.4)',
-            boxShadow: '0 0 10px rgba(202,47,46,0.3)'
+            background: 'rgba(255,242,0,0.4)',
+            boxShadow: '0 0 10px rgba(255,242,0,0.3)'
           }} 
         />
         <motion.div 
@@ -768,7 +768,7 @@ export default function AboutSection() {
             >
               {/* PixelCanvas Effect - Must be first to be behind everything */}
               <PixelCanvas 
-                colors="#ca2f2e, #ff5757, #dc2626"
+                colors="#fff200, #fff200, #fff200"
                 gap="2"
                 speed="120"
                 parentRef={unifiedCardRef}
@@ -819,7 +819,7 @@ export default function AboutSection() {
                     className="text-3xl md:text-4xl font-bold mb-6 text-center"
                     style={{
                       fontFamily: "'Montserrat', sans-serif",
-                      color: '#ca2f2e',
+                      color: '#fff200',
                       textShadow: '0 2px 4px rgba(0,0,0,0.7)'
                     }}
                     variants={{
@@ -837,7 +837,7 @@ export default function AboutSection() {
                     }}
                     whileHover={{
                       scale: 1.05,
-                      textShadow: '0 4px 8px rgba(202, 47, 46, 0.4)',
+                      textShadow: '0 4px 8px rgba(255, 242, 0, 0.4)',
                       transition: { duration: 0.3 }
                     }}
                   >
@@ -881,7 +881,7 @@ export default function AboutSection() {
                       className="text-2xl md:text-3xl font-bold mb-6"
                       style={{
                         fontFamily: "'Montserrat', sans-serif",
-                        color: '#ca2f2e',
+                        color: '#fff200',
                         textShadow: '0 2px 4px rgba(0,0,0,0.7)'
                       }}
                       variants={{
@@ -924,7 +924,7 @@ export default function AboutSection() {
                       className="text-2xl md:text-3xl font-bold mb-6"
                       style={{
                         fontFamily: "'Montserrat', sans-serif",
-                        color: '#ca2f2e',
+                        color: '#fff200',
                         textShadow: '0 2px 4px rgba(0,0,0,0.7)'
                       }}
                       variants={{
@@ -964,8 +964,8 @@ export default function AboutSection() {
                           }
                         }}
                       >
-                        <div className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center flex-shrink-0">
-                          <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <div className="w-8 h-8 rounded-full bg-[#fff200] flex items-center justify-center flex-shrink-0">
+                          <svg className="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                           </svg>
                         </div>
@@ -989,12 +989,12 @@ export default function AboutSection() {
                           }
                         }}
                       >
-                        <div className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center flex-shrink-0">
-                          <img 
-                            src="/images/svg/004-percentage.svg" 
-                            alt="Access" 
+                        <div className="w-8 h-8 rounded-full bg-[#fff200] flex items-center justify-center flex-shrink-0">
+                          <img
+                            src="/images/svg/004-percentage.svg"
+                            alt="Access"
                             className="w-5 h-5"
-                            style={{ filter: 'brightness(0) invert(1)' }}
+                            style={{ filter: 'brightness(0)' }}
                           />
                         </div>
                         <div>
@@ -1017,12 +1017,12 @@ export default function AboutSection() {
                           }
                         }}
                       >
-                        <div className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center flex-shrink-0">
-                          <img 
-                            src="/images/svg/005-line-chart.svg" 
-                            alt="Growth" 
+                        <div className="w-8 h-8 rounded-full bg-[#fff200] flex items-center justify-center flex-shrink-0">
+                          <img
+                            src="/images/svg/005-line-chart.svg"
+                            alt="Growth"
                             className="w-5 h-5"
-                            style={{ filter: 'brightness(0) invert(1)' }}
+                            style={{ filter: 'brightness(0)' }}
                           />
                         </div>
                         <div>
@@ -1053,7 +1053,7 @@ export default function AboutSection() {
             className="text-3xl md:text-4xl font-bold mb-12 text-center"
             style={{
               fontFamily: "'Montserrat', sans-serif",
-              color: '#ca2f2e',
+              color: '#fff200',
               textShadow: '0 2px 4px rgba(0,0,0,0.7)'
             }}
           >
@@ -1078,16 +1078,16 @@ export default function AboutSection() {
                   : 'rgba(0, 0, 0, 0.7)',
                 backdropFilter: 'blur(20px)',
                 border: hoveredCard === 'founder' 
-                  ? '1px solid rgba(202, 47, 46, 0.5)' 
+                  ? '1px solid rgba(255, 242, 0, 0.5)' 
                   : '1px solid rgba(255, 255, 255, 0.15)',
                 boxShadow: hoveredCard === 'founder' 
-                  ? '0 8px 32px rgba(202, 47, 46, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1)' 
+                  ? '0 8px 32px rgba(255, 242, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1)' 
                   : '0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08)'
               }}
             >
               {/* PixelCanvas Effect */}
               <PixelCanvas 
-                colors="#ca2f2e, #ff5757, #dc2626"
+                colors="#fff200, #fff200, #fff200"
                 gap="8"
                 speed="60"
                 parentRef={founderCardRef}
@@ -1098,7 +1098,7 @@ export default function AboutSection() {
                 className="absolute inset-0 rounded-2xl"
                 style={{
                   background: hoveredCard === 'founder' 
-                    ? 'linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(202, 47, 46, 0.1) 50%, rgba(0, 0, 0, 0.25) 100%)'
+                    ? 'linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(255, 242, 0, 0.1) 50%, rgba(0, 0, 0, 0.25) 100%)'
                     : 'linear-gradient(135deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.15) 100%)',
                   opacity: hoveredCard === 'founder' ? 0.9 : 0.7
                 }}
@@ -1113,7 +1113,7 @@ export default function AboutSection() {
                       className="w-72 h-72 mx-auto lg:mx-0 mb-6 overflow-hidden"
                       style={{
                         background: '#000000',
-                        border: '3px solid rgba(202,47,46,0.3)'
+                        border: '3px solid rgba(255,242,0,0.3)'
                       }}
                     >
                       <img 
@@ -1143,7 +1143,7 @@ export default function AboutSection() {
                       </h4>
                     </div>
                     <p 
-                      className="text-red-400 mt-1 font-semibold"
+                      className="text-[#fff200] mt-1 font-semibold"
                       style={{
                         fontFamily: "'Montserrat', sans-serif"
                       }}
@@ -1175,7 +1175,7 @@ export default function AboutSection() {
                         className="text-xl md:text-2xl font-bold mb-4"
                         style={{
                           fontFamily: "'Montserrat', sans-serif",
-                          color: '#ca2f2e',
+                          color: '#fff200',
                           textShadow: '0 1px 2px rgba(0,0,0,0.6)'
                         }}
                       >
@@ -1183,19 +1183,19 @@ export default function AboutSection() {
                       </h5>
                       <ul className="space-y-3 text-white/90">
                         <li className="flex gap-3">
-                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0"></span>
+                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-[#fff200] flex-shrink-0"></span>
                           <span>Applied Sport Science and Strength & Conditioning support for athletes across Rugby, Football, Hockey, Tennis, and Badminton in the UK.</span>
                         </li>
                         <li className="flex gap-3">
-                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0"></span>
+                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-[#fff200] flex-shrink-0"></span>
                           <span>Strength & Conditioning Coach at the Derbyshire Institute of Sport, UK, supporting elite youth athletes.</span>
                         </li>
                         <li className="flex gap-3">
-                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0"></span>
+                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-[#fff200] flex-shrink-0"></span>
                           <span>Worked with Loughborough Women&apos;s Rugby 2s and the England Colleges U-17 Hockey Athletes.</span>
                         </li>
                         <li className="flex gap-3">
-                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0"></span>
+                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-[#fff200] flex-shrink-0"></span>
                           <span>Currently developing grassroots athlete programs in India, bringing global sport science standards to the local landscape.</span>
                         </li>
                       </ul>
@@ -1211,7 +1211,7 @@ export default function AboutSection() {
                         className="text-xl md:text-2xl font-bold mb-4"
                         style={{
                           fontFamily: "'Montserrat', sans-serif",
-                          color: '#ca2f2e',
+                          color: '#fff200',
                           textShadow: '0 1px 2px rgba(0,0,0,0.6)'
                         }}
                       >
@@ -1219,19 +1219,19 @@ export default function AboutSection() {
                       </h5>
                       <ul className="space-y-3 text-white/90">
                         <li className="flex gap-3">
-                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0"></span>
+                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-[#fff200] flex-shrink-0"></span>
                           <span>District- and University-level athlete in football and track & field.</span>
                         </li>
                         <li className="flex gap-3">
-                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0"></span>
+                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-[#fff200] flex-shrink-0"></span>
                           <span>Winner, Reliance Foundation Youth Sports football tournament, Pune 2017 (held at DSK Shivajians).</span>
                         </li>
                         <li className="flex gap-3">
-                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0"></span>
+                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-[#fff200] flex-shrink-0"></span>
                           <span>Competed in 100m, 200m, 4x100m relays, and long jump at the intercollegiate and university level.</span>
                         </li>
                         <li className="flex gap-3">
-                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-red-500 flex-shrink-0"></span>
+                          <span className="mt-3 w-1.5 h-1.5 rounded-full bg-[#fff200] flex-shrink-0"></span>
                           <span>10+ years immersed in competitive sport, now channelling that experience into athlete development.</span>
                         </li>
                       </ul>

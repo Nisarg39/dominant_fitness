@@ -32,7 +32,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
   return (
     <Link 
       href={`/blogs/${blog.slug}`}
-      className="group glassmorphism-enhanced border border-red-500/20 rounded-xl overflow-hidden hover:border-red-500/40 transition-all duration-300 hover:scale-105 flex flex-col"
+      className="group glassmorphism-enhanced border border-[#fff200]/20 rounded-xl overflow-hidden hover:border-[#fff200]/40 transition-all duration-300 hover:scale-105 flex flex-col"
     >
       {/* Featured Image */}
       {blog.featuredImage?.url && (
@@ -45,7 +45,7 @@ export default function BlogCard({ blog }: BlogCardProps) {
             className="object-cover group-hover:scale-110 transition-transform duration-300"
           />
           {blog.featured && (
-            <div className="absolute top-3 right-3 px-3 py-1 bg-red-600 text-white text-xs font-bold rounded-full">
+            <div className="absolute top-3 right-3 px-3 py-1 bg-[#fff200] text-black text-xs font-bold rounded-full">
               Featured
             </div>
           )}
@@ -55,13 +55,13 @@ export default function BlogCard({ blog }: BlogCardProps) {
       <div className="p-6 flex flex-col flex-grow">
         {/* Category */}
         {blog.category && (
-          <span className="inline-block px-3 py-1 bg-red-500/10 text-red-400 text-xs font-semibold rounded-full mb-3 w-fit">
+          <span className="inline-block px-3 py-1 bg-[#fff200]/10 text-[#fff200] text-xs font-semibold rounded-full mb-3 w-fit">
             {blog.category}
           </span>
         )}
         
         {/* Title */}
-        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-red-400 transition-colors line-clamp-2">
+        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#fff200] transition-colors line-clamp-2">
           {blog.title}
         </h3>
         

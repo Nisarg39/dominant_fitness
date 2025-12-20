@@ -168,7 +168,7 @@ export default function BlogEditor({
       tooltip.textContent = sizeName;
       tooltip.style.cssText = `
         position: absolute;
-        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        background: linear-gradient(135deg, #fff200 0%, #e6db00 100%);
         color: white;
         padding: 8px 16px;
         border-radius: 8px;
@@ -218,7 +218,7 @@ export default function BlogEditor({
   }, [editor]);
 
   return (
-    <div className="border border-red-500/20 rounded-lg overflow-hidden">
+    <div className="border border-[#fff200]/20 rounded-lg overflow-hidden">
       <BlogEditorToolbar editor={editor} />
       <EditorContent editor={editor} />
     </div>

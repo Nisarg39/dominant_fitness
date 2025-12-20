@@ -137,14 +137,14 @@ export default function AdminBlogList() {
         <div className="flex gap-2">
           <button
             onClick={fetchBlogs}
-            className="flex items-center gap-2 px-4 py-2 glassmorphism-enhanced border border-red-500/20 text-white rounded-lg hover:border-red-500/40 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 glassmorphism-enhanced border border-[#fff200]/20 text-white rounded-lg hover:border-[#fff200]/40 transition-colors"
             title="Refresh"
           >
             <RefreshCw size={18} />
           </button>
           <Link
             href="/admin/blog/new"
-            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-600 to-red-500 text-white rounded-lg hover:from-red-700 hover:to-red-600 transition-all duration-300 transform hover:scale-105"
+            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#fff200] to-[#fff200] text-black rounded-lg hover:from-[#e6db00] hover:to-[#fff200] transition-all duration-300 transform hover:scale-105"
           >
             <Plus size={20} />
             New Post
@@ -162,15 +162,15 @@ export default function AdminBlogList() {
               placeholder="Search blog posts by title..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 glassmorphism-enhanced border border-red-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500/50"
+              className="w-full pl-10 pr-4 py-2 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#fff200]/50"
             />
           </div>
           <button
             onClick={() => setShowFilters(!showFilters)}
             className={`flex items-center gap-2 px-4 py-2 glassmorphism-enhanced border rounded-lg transition-colors ${
               showFilters || hasActiveFilters
-                ? 'border-red-500/50 text-red-400'
-                : 'border-red-500/20 text-gray-400'
+                ? 'border-[#fff200]/50 text-[#fff200]'
+                : 'border-[#fff200]/20 text-gray-400'
             }`}
           >
             <Filter size={18} />
@@ -180,7 +180,7 @@ export default function AdminBlogList() {
 
         {/* Filter Controls */}
         {showFilters && (
-          <div className="glassmorphism-enhanced border border-red-500/20 rounded-lg p-4">
+          <div className="glassmorphism-enhanced border border-[#fff200]/20 rounded-lg p-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-400 mb-2">
@@ -189,7 +189,7 @@ export default function AdminBlogList() {
                 <select
                   value={filterStatus}
                   onChange={(e) => setFilterStatus(e.target.value)}
-                  className="w-full px-3 py-2 glassmorphism-enhanced border border-red-500/20 rounded-lg text-white focus:outline-none focus:border-red-500/50"
+                  className="w-full px-3 py-2 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg text-white focus:outline-none focus:border-[#fff200]/50"
                 >
                   <option value="">All Status</option>
                   <option value="published">Published</option>
@@ -205,7 +205,7 @@ export default function AdminBlogList() {
                 <select
                   value={filterCategory}
                   onChange={(e) => setFilterCategory(e.target.value)}
-                  className="w-full px-3 py-2 glassmorphism-enhanced border border-red-500/20 rounded-lg text-white focus:outline-none focus:border-red-500/50"
+                  className="w-full px-3 py-2 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg text-white focus:outline-none focus:border-[#fff200]/50"
                 >
                   <option value="">All Categories</option>
                   <option value="training">Training</option>
@@ -220,7 +220,7 @@ export default function AdminBlogList() {
                 {hasActiveFilters && (
                   <button
                     onClick={clearFilters}
-                    className="flex items-center gap-2 px-4 py-2 text-red-400 hover:bg-red-500/10 rounded-lg transition-colors w-full justify-center"
+                    className="flex items-center gap-2 px-4 py-2 text-[#fff200] hover:bg-[#fff200]/10 rounded-lg transition-colors w-full justify-center"
                   >
                     <X size={18} />
                     Clear Filters
@@ -235,18 +235,18 @@ export default function AdminBlogList() {
       {/* Loading State */}
       {loading && (
         <div className="text-center py-12">
-          <div className="inline-block w-8 h-8 border-4 border-red-500 border-t-transparent rounded-full animate-spin mb-4"></div>
+          <div className="inline-block w-8 h-8 border-4 border-[#fff200] border-t-transparent rounded-full animate-spin mb-4"></div>
           <p className="text-gray-400">Loading blogs...</p>
         </div>
       )}
 
       {/* Error State */}
       {error && !loading && (
-        <div className="glassmorphism-enhanced border border-red-500/50 rounded-lg p-6 text-center">
-          <p className="text-red-400 mb-4">{error}</p>
+        <div className="glassmorphism-enhanced border border-[#fff200]/50 rounded-lg p-6 text-center">
+          <p className="text-[#fff200] mb-4">{error}</p>
           <button
             onClick={fetchBlogs}
-            className="px-4 py-2 bg-gradient-to-r from-red-600 to-red-500 text-white rounded-lg hover:from-red-700 hover:to-red-600"
+            className="px-4 py-2 bg-gradient-to-r from-[#fff200] to-[#fff200] text-black rounded-lg hover:from-[#e6db00] hover:to-[#fff200]"
           >
             Try Again
           </button>
@@ -264,7 +264,7 @@ export default function AdminBlogList() {
                 {hasActiveFilters && (
                   <button
                     onClick={clearFilters}
-                    className="text-red-400 hover:text-red-300 text-sm"
+                    className="text-[#fff200] hover:text-[#e6db00] text-sm"
                   >
                     Clear filters to see all blogs
                   </button>
@@ -274,7 +274,7 @@ export default function AdminBlogList() {
               blogs.map((blog) => (
                 <div
                   key={blog._id}
-                  className="glassmorphism-enhanced border border-red-500/20 rounded-lg p-6 hover:border-red-500/40 transition-colors"
+                  className="glassmorphism-enhanced border border-[#fff200]/20 rounded-lg p-6 hover:border-[#fff200]/40 transition-colors"
                 >
                   <div className="flex items-start gap-4">
                     {/* Featured Image */}
@@ -330,7 +330,7 @@ export default function AdminBlogList() {
                             </span>
                             
                             {blog.featured && (
-                              <span className="px-2 py-1 rounded text-xs font-medium bg-red-900 text-red-300">
+                              <span className="px-2 py-1 rounded text-xs font-medium bg-[#333300] text-[#e6db00]">
                                 Featured
                               </span>
                             )}
@@ -358,19 +358,19 @@ export default function AdminBlogList() {
                           )}
                           <Link
                             href={`/admin/blog/${blog._id}/edit`}
-                            className="p-2 text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
+                            className="p-2 text-[#fff200] hover:bg-[#fff200]/10 rounded-lg transition-colors"
                             title="Edit"
                           >
                             <Edit size={18} />
                           </Link>
                           <button
-                            className="p-2 text-red-400 hover:bg-red-500/10 rounded-lg transition-colors disabled:opacity-50"
+                            className="p-2 text-[#fff200] hover:bg-[#fff200]/10 rounded-lg transition-colors disabled:opacity-50"
                             title="Delete"
                             onClick={() => handleDelete(blog._id, blog.title)}
                             disabled={deleting === blog._id}
                           >
                             {deleting === blog._id ? (
-                              <div className="w-[18px] h-[18px] border-2 border-red-400 border-t-transparent rounded-full animate-spin" />
+                              <div className="w-[18px] h-[18px] border-2 border-[#fff200] border-t-transparent rounded-full animate-spin" />
                             ) : (
                               <Trash2 size={18} />
                             )}
@@ -386,7 +386,7 @@ export default function AdminBlogList() {
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="flex items-center justify-between glassmorphism-enhanced border border-red-500/20 rounded-lg p-4">
+            <div className="flex items-center justify-between glassmorphism-enhanced border border-[#fff200]/20 rounded-lg p-4">
               <div className="text-gray-400 text-sm">
                 Showing {blogs.length} of {totalBlogs} blog{totalBlogs !== 1 ? 's' : ''}
               </div>
@@ -395,7 +395,7 @@ export default function AdminBlogList() {
                 <button
                   onClick={() => setCurrentPage(prev => prev - 1)}
                   disabled={currentPage === 1}
-                  className="px-4 py-2 glassmorphism-enhanced border border-red-500/20 text-white rounded-lg hover:border-red-500/40 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="px-4 py-2 glassmorphism-enhanced border border-[#fff200]/20 text-white rounded-lg hover:border-[#fff200]/40 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                   Previous
                 </button>
@@ -419,8 +419,8 @@ export default function AdminBlogList() {
                         onClick={() => setCurrentPage(pageNum)}
                         className={`px-3 py-2 rounded-lg transition-colors ${
                           currentPage === pageNum
-                            ? 'bg-gradient-to-r from-red-600 to-red-500 text-white'
-                            : 'glassmorphism-enhanced border border-red-500/20 text-gray-300 hover:border-red-500/40'
+                            ? 'bg-gradient-to-r from-[#fff200] to-[#fff200] text-black'
+                            : 'glassmorphism-enhanced border border-[#fff200]/20 text-gray-300 hover:border-[#fff200]/40'
                         }`}
                       >
                         {pageNum}
@@ -432,7 +432,7 @@ export default function AdminBlogList() {
                 <button
                   onClick={() => setCurrentPage(prev => prev + 1)}
                   disabled={currentPage === totalPages}
-                  className="px-4 py-2 glassmorphism-enhanced border border-red-500/20 text-white rounded-lg hover:border-red-500/40 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="px-4 py-2 glassmorphism-enhanced border border-[#fff200]/20 text-white rounded-lg hover:border-[#fff200]/40 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                   Next
                 </button>

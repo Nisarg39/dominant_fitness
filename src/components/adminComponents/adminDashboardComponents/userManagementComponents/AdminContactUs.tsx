@@ -148,7 +148,7 @@ export default function AdminContactUs() {
     return (
       <div className="glassmorphism-enhanced rounded-lg p-6">
         <div className="flex items-center justify-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-500"></div>
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#fff200]"></div>
           <span className="ml-2 text-white">Loading contact us data...</span>
         </div>
       </div>
@@ -159,11 +159,11 @@ export default function AdminContactUs() {
     return (
       <div className="glassmorphism-enhanced rounded-lg p-6">
         <div className="text-center">
-          <div className="text-red-400 mb-2">⚠️ Error</div>
+          <div className="text-[#fff200] mb-2">⚠️ Error</div>
           <p className="text-gray-300">{error}</p>
-          <button 
+          <button
             onClick={() => fetchContactUs(currentPage)}
-            className="mt-4 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200"
+            className="mt-4 px-4 py-2 bg-[#fff200] text-black rounded-lg hover:bg-[#ccc300] transition-colors duration-200"
           >
             Retry
           </button>
@@ -200,7 +200,7 @@ export default function AdminContactUs() {
           <>
             <div className="overflow-x-auto">
               <table className="min-w-full divide-y divide-red-500/20">
-                <thead className="bg-red-500/5">
+                <thead className="bg-[#fff200]/5">
                   <tr>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Name</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Email</th>
@@ -212,7 +212,7 @@ export default function AdminContactUs() {
                 </thead>
                 <tbody className="divide-y divide-red-500/20">
                   {contactData.map((contact, index) => (
-                    <tr key={contact._id} className="hover:bg-red-500/5 transition-colors duration-200">
+                    <tr key={contact._id} className="hover:bg-[#fff200]/5 transition-colors duration-200">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm font-medium text-white">{contact.name}</div>
                       </td>
@@ -253,7 +253,7 @@ export default function AdminContactUs() {
 
             {/* Pagination */}
             {totalPages > 1 && (
-              <div className="px-6 py-4 border-t border-red-500/20">
+              <div className="px-6 py-4 border-t border-[#fff200]/20">
                 <div className="flex items-center justify-between">
                   <div className="text-sm text-gray-300">
                     Showing page {currentPage} of {totalPages}
@@ -262,7 +262,7 @@ export default function AdminContactUs() {
                     <button
                       onClick={() => handlePageChange(currentPage - 1)}
                       disabled={currentPage === 1}
-                      className="px-3 py-1 text-sm bg-red-600/20 text-white rounded-lg hover:bg-red-600/30 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+                      className="px-3 py-1 text-sm bg-[#fff200]/20 text-white rounded-lg hover:bg-[#fff200]/30 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
                     >
                       Previous
                     </button>
@@ -274,8 +274,8 @@ export default function AdminContactUs() {
                         onClick={() => handlePageChange(page)}
                         className={`px-3 py-1 text-sm rounded-lg transition-colors duration-200 ${
                           page === currentPage
-                            ? 'bg-red-600 text-white'
-                            : 'bg-red-600/20 text-white hover:bg-red-600/30'
+                            ? 'bg-[#fff200] text-black'
+                            : 'bg-[#fff200]/20 text-white hover:bg-[#fff200]/30'
                         }`}
                       >
                         {page}
@@ -285,7 +285,7 @@ export default function AdminContactUs() {
                     <button
                       onClick={() => handlePageChange(currentPage + 1)}
                       disabled={currentPage === totalPages}
-                      className="px-3 py-1 text-sm bg-red-600/20 text-white rounded-lg hover:bg-red-600/30 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+                      className="px-3 py-1 text-sm bg-[#fff200]/20 text-white rounded-lg hover:bg-[#fff200]/30 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
                     >
                       Next
                     </button>
@@ -302,7 +302,7 @@ export default function AdminContactUs() {
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <div className="glassmorphism-enhanced rounded-lg max-w-2xl w-full max-h-[80vh] overflow-hidden">
             {/* Modal Header */}
-            <div className="px-6 py-4 border-b border-red-500/20 flex justify-between items-center">
+            <div className="px-6 py-4 border-b border-[#fff200]/20 flex justify-between items-center">
               <h3 className="text-lg font-semibold text-white">Message Details</h3>
               <button
                 onClick={closeModal}
@@ -339,7 +339,7 @@ export default function AdminContactUs() {
               {/* Message Content */}
               <div>
                 <label className="text-sm font-medium text-gray-300">Message</label>
-                <div className="mt-2 p-4 bg-black/20 rounded-lg border border-red-500/20">
+                <div className="mt-2 p-4 bg-black/20 rounded-lg border border-[#fff200]/20">
                   <p className="text-white whitespace-pre-wrap leading-relaxed">
                     {selectedMessage.message}
                   </p>
@@ -364,10 +364,10 @@ export default function AdminContactUs() {
             </div>
 
             {/* Modal Footer */}
-            <div className="px-6 py-4 border-t border-red-500/20 flex justify-end">
+            <div className="px-6 py-4 border-t border-[#fff200]/20 flex justify-end">
               <button
                 onClick={closeModal}
-                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200"
+                className="px-4 py-2 bg-[#fff200] text-black rounded-lg hover:bg-[#ccc300] transition-colors duration-200"
               >
                 Close
               </button>

@@ -182,7 +182,7 @@ export default function AdminSignIn() {
             variants={itemVariants}
             transition={{ duration: 0.4, ease: "easeOut" }}
           >
-            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-red-600 to-red-500 flex items-center justify-center">
+            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-[#fff200] to-[#fff200] flex items-center justify-center">
               <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
@@ -216,8 +216,8 @@ export default function AdminSignIn() {
                   onChange={handleInputChange}
                   className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all duration-300 ${
                     errors.username 
-                      ? 'border-red-500 focus:ring-red-500/50' 
-                      : 'border-white/20 focus:ring-red-500/50 focus:border-red-500/50'
+                      ? 'border-[#fff200] focus:ring-[#fff200]/50' 
+                      : 'border-white/20 focus:ring-[#fff200]/50 focus:border-[#fff200]/50'
                   }`}
                   placeholder="Enter your username"
                   disabled={isLoading}
@@ -230,7 +230,7 @@ export default function AdminSignIn() {
               </div>
               {errors.username && (
                 <motion.p 
-                  className="mt-1 text-sm text-red-400"
+                  className="mt-1 text-sm text-[#fff200]"
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.2 }}
@@ -254,8 +254,8 @@ export default function AdminSignIn() {
                   onChange={handleInputChange}
                   className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all duration-300 pr-12 ${
                     errors.password 
-                      ? 'border-red-500 focus:ring-red-500/50' 
-                      : 'border-white/20 focus:ring-red-500/50 focus:border-red-500/50'
+                      ? 'border-[#fff200] focus:ring-[#fff200]/50' 
+                      : 'border-white/20 focus:ring-[#fff200]/50 focus:border-[#fff200]/50'
                   }`}
                   placeholder="Enter your password"
                   disabled={isLoading}
@@ -280,7 +280,7 @@ export default function AdminSignIn() {
               </div>
               {errors.password && (
                 <motion.p 
-                  className="mt-1 text-sm text-red-400"
+                  className="mt-1 text-sm text-[#fff200]"
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.2 }}
@@ -293,16 +293,16 @@ export default function AdminSignIn() {
             {/* General Error Message */}
             {errors.general && (
               <motion.div 
-                className="bg-red-500/10 border border-red-500/20 rounded-lg p-3"
+                className="bg-[#fff200]/10 border border-[#fff200]/20 rounded-lg p-3"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.2 }}
               >
                 <div className="flex items-center">
-                  <svg className="w-5 h-5 text-red-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-[#fff200] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <p className="text-sm text-red-400">{errors.general}</p>
+                  <p className="text-sm text-[#fff200]">{errors.general}</p>
                 </div>
               </motion.div>
             )}
@@ -311,7 +311,7 @@ export default function AdminSignIn() {
             <motion.button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-red-600 to-red-500 hover:from-red-700 hover:to-red-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-red-500/50 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+              className="w-full bg-gradient-to-r from-[#fff200] to-[#fff200] hover:from-[#e6db00] hover:to-[#fff200] text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[#fff200]/50 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >

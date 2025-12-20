@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { createContactUs } from '@/server/actions/userActions'
 // Custom animation components to replace React Bits
@@ -203,31 +203,31 @@ const ContacUs = () => {
       name: 'Facebook',
       icon: 'M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z',
       color: '#1877F2',
-      url: 'https://facebook.com/yourpage'
+      url: 'https://www.facebook.com/profile.php?id=61584778690801&ref=waios.fb_links_xma_control'
     },
     {
       name: 'Instagram',
-      icon: 'M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987s11.987-5.367 11.987-11.987C24.014 5.367 18.647.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.198 14.895 3.708 13.744 3.708 12.447s.49-2.448 1.418-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.928.875 1.418 2.026 1.418 3.323s-.49 2.448-1.418 3.244c-.875.807-2.026 1.297-3.323 1.297zm7.83-9.781c-.49 0-.928-.175-1.297-.49-.368-.315-.49-.753-.49-1.243s.122-.928.49-1.243c.369-.315.807-.49 1.297-.49s.928.175 1.297.49c.368.315.49.753.49 1.243s-.122.928-.49 1.243c-.369.315-.807.49-1.297.49z',
+      icon: 'M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z',
       color: '#E4405F',
-      url: 'https://instagram.com/yourpage'
+      url: 'https://www.instagram.com/dominateperformance_?igsh=NmU1anp0NW5jZTN5'
     }
   ]
 
   const inputVariants = {
     focus: {
       scale: 1.02,
-      boxShadow: '0 0 20px rgba(202, 47, 46, 0.3)',
-      borderColor: '#ca2f2e'
+      boxShadow: '0 0 20px rgba(255, 242, 0, 0.3)',
+      borderColor: '#fff200'
     },
     blur: {
       scale: 1,
-      boxShadow: '0 0 0px rgba(202, 47, 46, 0)',
+      boxShadow: '0 0 0px rgba(255, 242, 0, 0)',
       borderColor: 'rgba(255, 255, 255, 0.2)'
     },
     error: {
       scale: 1,
       boxShadow: '0 0 20px rgba(239, 68, 68, 0.3)',
-      borderColor: '#ef4444'
+      borderColor: '#fff200'
     }
   }
 
@@ -245,7 +245,7 @@ const ContacUs = () => {
           style={{
             background: `
               linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.9) 50%, rgba(0,0,0,0.95) 100%),
-              radial-gradient(ellipse 80% 100% at 50% 50%, rgba(202,47,46,0.05) 0%, transparent 50%)
+              radial-gradient(ellipse 80% 100% at 50% 50%, rgba(255,242,0,0.05) 0%, transparent 50%)
             `
           }}
         />
@@ -267,8 +267,8 @@ const ContacUs = () => {
                 <h2 
                   className="text-6xl font-bold font-montserrat uppercase mb-4 whitespace-nowrap"
                   style={{
-                    color: '#ca2f2e',
-                    textShadow: '0 4px 8px rgba(0,0,0,0.8), 0 8px 16px rgba(0,0,0,0.6), 0 0 40px rgba(202,47,46,0.2)',
+                    color: '#fff200',
+                    textShadow: '0 4px 8px rgba(0,0,0,0.8), 0 8px 16px rgba(0,0,0,0.6), 0 0 40px rgba(255,242,0,0.2)',
                     letterSpacing: '0.05em',
                     lineHeight: 0.9
                   }}
@@ -277,9 +277,9 @@ const ContacUs = () => {
                 </h2>
                 
                 <div 
-                  className="w-24 h-1 bg-gradient-to-r from-red-600 to-red-400 mb-6"
+                  className="w-24 h-1 bg-gradient-to-r from-[#fff200] to-[#fff200] mb-6"
                   style={{
-                    boxShadow: '0 0 10px rgba(202,47,46,0.5)'
+                    boxShadow: '0 0 10px rgba(255,242,0,0.5)'
                   }}
                 />
                 
@@ -297,27 +297,28 @@ const ContacUs = () => {
               {/* Contact Details */}
               <StaggeredContent delay={200} stagger={100}>
                 <div className="space-y-6">
-                  <motion.div 
+                  <motion.a
+                    href="mailto:info@dominateperformance.com"
                     className="flex items-center space-x-4 group cursor-pointer"
                     whileHover={{ x: 10 }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    <div 
+                    <div
                       className="w-12 h-12 rounded-full flex items-center justify-center"
                       style={{
-                        background: 'linear-gradient(135deg, #ca2f2e, #ff5757)',
-                        boxShadow: '0 4px 15px rgba(202,47,46,0.4)'
+                        background: 'linear-gradient(135deg, #fff200, #fff200)',
+                        boxShadow: '0 4px 15px rgba(255,242,0,0.15)'
                       }}
                     >
-                      <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                       </svg>
                     </div>
                     <div>
                       <p className="text-white/70 text-sm uppercase tracking-wider">Email</p>
-                      <p className="text-white font-medium">contact@dominate.com</p>
+                      <p className="text-white font-medium">info@dominateperformance.com</p>
                     </div>
-                  </motion.div>
+                  </motion.a>
 
                   <motion.a 
                     href="https://wa.me/9309213649"
@@ -327,14 +328,14 @@ const ContacUs = () => {
                     whileHover={{ x: 10 }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    <div 
+                    <div
                       className="w-12 h-12 rounded-full flex items-center justify-center"
                       style={{
-                        background: 'linear-gradient(135deg, #ca2f2e, #ff5757)',
-                        boxShadow: '0 4px 15px rgba(202,47,46,0.4)'
+                        background: 'linear-gradient(135deg, #fff200, #fff200)',
+                        boxShadow: '0 4px 15px rgba(255,242,0,0.15)'
                       }}
                     >
-                      <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
                       </svg>
                     </div>
@@ -344,25 +345,25 @@ const ContacUs = () => {
                     </div>
                   </motion.a>
 
-                  <motion.div 
-                    className="flex items-center space-x-4 group cursor-pointer"
+                  <motion.div
+                    className="flex items-start space-x-4 group cursor-pointer"
                     whileHover={{ x: 10 }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    <div 
-                      className="w-12 h-12 rounded-full flex items-center justify-center"
+                    <div
+                      className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
                       style={{
-                        background: 'linear-gradient(135deg, #ca2f2e, #ff5757)',
-                        boxShadow: '0 4px 15px rgba(202,47,46,0.4)'
+                        background: 'linear-gradient(135deg, #fff200, #fff200)',
+                        boxShadow: '0 4px 15px rgba(255,242,0,0.15)'
                       }}
                     >
-                      <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                       </svg>
                     </div>
-    <div>
+                    <div>
                       <p className="text-white/70 text-sm uppercase tracking-wider">Location</p>
-                      <p className="text-white font-medium">Pune, Maharashtra</p>
+                      <p className="text-white font-medium">Beside Playshire Sports Club, near Jio-bp pulse, Ubale Nagar, Kharadi, Pune, Maharashtra 412207</p>
                     </div>
                   </motion.div>
                 </div>
@@ -376,31 +377,47 @@ const ContacUs = () => {
                 className="pt-8"
               >
                 <p className="text-white/70 text-sm uppercase tracking-wider mb-4">Follow Us</p>
-                <div className="flex space-x-4">
+                <div className="flex space-x-5">
                   {socialLinks.map((social, index) => (
                     <motion.a
                       key={social.name}
                       href={social.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-12 h-12 rounded-full flex items-center justify-center group"
+                      className="relative w-14 h-14 rounded-xl flex items-center justify-center group overflow-hidden"
                       style={{
-                        background: `linear-gradient(135deg, ${social.color}, ${social.color}dd)`,
-                        boxShadow: `0 4px 15px ${social.color}40`
+                        background: 'linear-gradient(145deg, #fff200, #fff200)',
+                        boxShadow: '0 4px 15px rgba(255,242,0,0.15), inset 0 1px 0 rgba(255,255,255,0.1)'
                       }}
-                      whileHover={{ 
-                        scale: 1.1, 
-                        boxShadow: `0 8px 25px ${social.color}60`,
-                        rotate: 5
+                      whileHover={{
+                        scale: 1.08,
+                        y: -3,
+                        boxShadow: '0 8px 20px rgba(255,242,0,0.25), inset 0 1px 0 rgba(255,255,255,0.2)',
+                        background: 'linear-gradient(145deg, #fff200, #e6db00)',
+                        transition: { duration: 0.3, ease: 'easeOut' }
                       }}
-                      whileTap={{ scale: 0.95 }}
+                      whileTap={{ scale: 0.96 }}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 1 + index * 0.1, duration: 0.4 }}
+                      transition={{ delay: 1 + index * 0.1, duration: 0.5, ease: 'easeOut' }}
                     >
-                      <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      {/* Subtle shine effect */}
+                      <div
+                        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        style={{
+                          background: 'linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%)'
+                        }}
+                      />
+
+                      <motion.svg
+                        className="w-7 h-7 text-black relative z-10"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.2 }}
+                      >
                         <path d={social.icon}/>
-                      </svg>
+                      </motion.svg>
                     </motion.a>
                   ))}
                 </div>
@@ -427,7 +444,7 @@ const ContacUs = () => {
                   transition={{ delay: 0.2, duration: 0.4 }}
                 >
                   <label className="block text-white/80 text-sm font-medium mb-2 uppercase tracking-wider">
-                    Full Name <span className="text-red-500">*</span>
+                    Full Name <span className="text-[#fff200]">*</span>
                   </label>
                   <motion.input
                     type="text"
@@ -441,9 +458,9 @@ const ContacUs = () => {
                       isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
                     } ${
                       errors.name && touched.name 
-                        ? 'border-red-500' 
+                        ? 'border-[#fff200]' 
                         : focusedField === 'name' 
-                          ? 'border-red-600' 
+                          ? 'border-[#fff200]' 
                           : 'border-white/20'
                     }`}
                     placeholder="Enter your full name"
@@ -461,7 +478,7 @@ const ContacUs = () => {
                     <motion.p
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="text-red-400 text-sm mt-1"
+                      className="text-[#fff200] text-sm mt-1"
                     >
                       {errors.name}
                     </motion.p>
@@ -475,7 +492,7 @@ const ContacUs = () => {
                   transition={{ delay: 0.3, duration: 0.4 }}
                 >
                   <label className="block text-white/80 text-sm font-medium mb-2 uppercase tracking-wider">
-                    Email Address <span className="text-red-500">*</span>
+                    Email Address <span className="text-[#fff200]">*</span>
                   </label>
                   <motion.input
                     type="email"
@@ -489,9 +506,9 @@ const ContacUs = () => {
                       isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
                     } ${
                       errors.email && touched.email 
-                        ? 'border-red-500' 
+                        ? 'border-[#fff200]' 
                         : focusedField === 'email' 
-                          ? 'border-red-600' 
+                          ? 'border-[#fff200]' 
                           : 'border-white/20'
                     }`}
                     placeholder="Enter your email address"
@@ -509,7 +526,7 @@ const ContacUs = () => {
                     <motion.p
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="text-red-400 text-sm mt-1"
+                      className="text-[#fff200] text-sm mt-1"
                     >
                       {errors.email}
                     </motion.p>
@@ -537,9 +554,9 @@ const ContacUs = () => {
                       isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
                     } ${
                       errors.phone && touched.phone 
-                        ? 'border-red-500' 
+                        ? 'border-[#fff200]' 
                         : focusedField === 'phone' 
-                          ? 'border-red-600' 
+                          ? 'border-[#fff200]' 
                           : 'border-white/20'
                     }`}
                     placeholder="Enter 10-digit phone number (optional)"
@@ -557,7 +574,7 @@ const ContacUs = () => {
                     <motion.p
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="text-red-400 text-sm mt-1"
+                      className="text-[#fff200] text-sm mt-1"
                     >
                       {errors.phone}
                     </motion.p>
@@ -571,7 +588,7 @@ const ContacUs = () => {
                   transition={{ delay: 0.5, duration: 0.4 }}
                 >
                   <label className="block text-white/80 text-sm font-medium mb-2 uppercase tracking-wider">
-                    Message <span className="text-red-500">*</span>
+                    Message <span className="text-[#fff200]">*</span>
                   </label>
                   <motion.textarea
                     name="message"
@@ -585,9 +602,9 @@ const ContacUs = () => {
                       isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
                     } ${
                       errors.message && touched.message 
-                        ? 'border-red-500' 
+                        ? 'border-[#fff200]' 
                         : focusedField === 'message' 
-                          ? 'border-red-600' 
+                          ? 'border-[#fff200]' 
                           : 'border-white/20'
                     }`}
                     placeholder="Tell us about your goals and how we can help you dominate..."
@@ -605,7 +622,7 @@ const ContacUs = () => {
                     <motion.p
                       initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="text-red-400 text-sm mt-1"
+                      className="text-[#fff200] text-sm mt-1"
                     >
                       {errors.message}
                     </motion.p>
@@ -622,21 +639,21 @@ const ContacUs = () => {
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full py-4 px-8 rounded-lg font-bold text-white uppercase tracking-wider transition-all duration-300 relative overflow-hidden group text-base ${
-                      isSubmitting ? 'cursor-not-allowed opacity-75' : 'cursor-pointer'
+                    className={`w-full py-4 px-8 rounded-lg font-bold uppercase tracking-wider transition-all duration-300 relative overflow-hidden group text-base ${
+                      isSubmitting ? 'cursor-not-allowed opacity-75 text-white' : 'cursor-pointer text-black'
                     }`}
                     style={{
-                      background: isSubmitting 
-                        ? 'linear-gradient(135deg, #666, #888)' 
-                        : '#ca2f2e',
-                      boxShadow: isSubmitting 
-                        ? '0 4px 15px rgba(0,0,0,0.3)' 
-                        : '0 8px 25px rgba(202,47,46,0.4)',
-                      border: '2px solid #ca2f2e'
+                      background: isSubmitting
+                        ? 'linear-gradient(135deg, #666, #888)'
+                        : '#fff200',
+                      boxShadow: isSubmitting
+                        ? '0 4px 15px rgba(0,0,0,0.3)'
+                        : '0 8px 25px rgba(255,242,0,0.2)',
+                      border: '2px solid #fff200'
                     }}
-                    whileHover={!isSubmitting ? { 
-                      scale: 1.02, 
-                      boxShadow: '0 12px 35px rgba(202,47,46,0.6)' 
+                    whileHover={!isSubmitting ? {
+                      scale: 1.02,
+                      boxShadow: '0 12px 35px rgba(255,242,0,0.3)'
                     } : {}}
                     whileTap={!isSubmitting ? { scale: 0.98 } : {}}
                     animate={isSubmitting ? { 

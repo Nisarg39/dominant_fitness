@@ -66,12 +66,12 @@
 }
 
 .ProseMirror a {
-  color: #ef4444;
+  color: #fff200;
   text-decoration: underline;
 }
 
 .ProseMirror a:hover {
-  color: #dc2626;
+  color: #fff200;
 }
 
 .ProseMirror img {
@@ -87,16 +87,16 @@
 
 /* Image hover effect - indicates double-click functionality */
 .ProseMirror img:hover {
-  border-color: #ef4444;
+  border-color: #fff200;
   box-shadow: 0 4px 20px rgba(239, 68, 68, 0.3);
   transform: scale(1.01);
 }
 
 /* Image selection styling */
 .ProseMirror img.ProseMirror-selectednode {
-  outline: 3px solid #ef4444;
+  outline: 3px solid #fff200;
   outline-offset: 2px;
-  border-color: #ef4444;
+  border-color: #fff200;
 }
 
 /* Visual hint for double-click */
@@ -121,7 +121,7 @@
 }
 
 .ProseMirror blockquote {
-  border-left: 4px solid #ef4444;
+  border-left: 4px solid #fff200;
   padding-left: 1rem;
   margin: 1rem 0;
   font-style: italic;
@@ -194,8 +194,8 @@
 }
 
 .editor-toolbar button.is-active {
-  background: #ef4444;
-  border-color: #ef4444;
+  background: #fff200;
+  border-color: #fff200;
 }
 
 .editor-toolbar button:disabled {
@@ -258,16 +258,16 @@
 }
 
 .blog-preview a {
-  color: #ef4444;
+  color: #fff200;
   text-decoration: underline;
 }
 
 .blog-preview a:hover {
-  color: #dc2626;
+  color: #fff200;
 }
 
 .blog-preview blockquote {
-  border-left: 4px solid #ef4444;
+  border-left: 4px solid #fff200;
   padding-left: 1rem;
   margin: 1rem 0;
   font-style: italic;

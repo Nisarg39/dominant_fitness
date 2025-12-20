@@ -92,7 +92,7 @@ export default function BlogPagination({ currentPage, totalPages, category, sear
               href={buildUrl(pageNum)}
               className={`px-4 py-2 rounded-lg transition-colors ${
                 isActive
-                  ? 'bg-red-600 text-white'
+                  ? 'bg-[#fff200] text-black'
                   : 'bg-white/5 text-gray-400 hover:bg-white/10'
               }`}
             >

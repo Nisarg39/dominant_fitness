@@ -13,7 +13,7 @@ interface AnimatedBackgroundProps {
 
 const AnimatedBackground = ({ 
   variant = 'particles', 
-  color = '#ca2f2e', 
+  color = '#fff200', 
   intensity = 'medium',
   speed = 'medium',
   className = ''

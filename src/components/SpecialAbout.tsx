@@ -30,13 +30,13 @@ const SpecialAbout = () => {
       icon: (
         <div className="flex items-center justify-center w-12 h-12">
           <div className="relative">
-            <div className="w-8 h-2 bg-red-500 rounded-full animate-pulse" />
-            <div className="absolute -left-2 -top-1 w-4 h-4 bg-red-400 rounded rotate-45" />
-            <div className="absolute -right-2 -top-1 w-4 h-4 bg-red-400 rounded rotate-45" />
+            <div className="w-8 h-2 bg-[#fff200] rounded-full animate-pulse" />
+            <div className="absolute -left-2 -top-1 w-4 h-4 bg-[#fff200] rounded rotate-45" />
+            <div className="absolute -right-2 -top-1 w-4 h-4 bg-[#fff200] rounded rotate-45" />
           </div>
         </div>
       ),
-      color: "#ca2f2e",
+      color: "#fff200",
       stats: { power: 95, speed: 85, endurance: 90 }
     },
     {
@@ -49,7 +49,7 @@ const SpecialAbout = () => {
           {[...Array(3)].map((_, i) => (
             <div
               key={i}
-              className="absolute border-2 border-red-500 rounded-full animate-ping"
+              className="absolute border-2 border-[#fff200] rounded-full animate-ping"
               style={{
                 width: `${20 + i * 10}px`,
                 height: `${20 + i * 10}px`,
@@ -57,10 +57,10 @@ const SpecialAbout = () => {
               }}
             />
           ))}
-          <div className="absolute w-3 h-3 bg-red-500 rounded-full" />
+          <div className="absolute w-3 h-3 bg-[#fff200] rounded-full" />
         </div>
       ),
-      color: "#ff5757",
+      color: "#fff200",
       stats: { precision: 98, control: 92, technique: 95 }
     },
     {
@@ -73,7 +73,7 @@ const SpecialAbout = () => {
           {[3, 5, 8, 6, 9].map((height, i) => (
             <div
               key={i}
-              className="bg-red-500 rounded-t animate-pulse"
+              className="bg-[#fff200] rounded-t animate-pulse"
               style={{ 
                 width: '6px', 
                 height: `${height * 3}px`,
@@ -83,7 +83,7 @@ const SpecialAbout = () => {
           ))}
         </div>
       ),
-      color: "#ca2f2e",
+      color: "#fff200",
       stats: { accuracy: 96, insights: 88, tracking: 94 }
     },
     {
@@ -93,16 +93,16 @@ const SpecialAbout = () => {
       description: "Data-Driven Coaching, force-velocity profiling, progress reports, feedback loops",
       icon: (
         <div className="relative w-12 h-12 flex items-center justify-center">
-          <div className="w-10 h-10 border-2 border-red-500 rounded-full">
+          <div className="w-10 h-10 border-2 border-[#fff200] rounded-full">
             <div className="w-full h-full relative">
-              <div className="absolute inset-2 bg-red-500 rounded-full animate-pulse" />
+              <div className="absolute inset-2 bg-[#fff200] rounded-full animate-pulse" />
               <div className="absolute inset-3 bg-black rounded-full" />
-              <div className="absolute inset-4 bg-red-400 rounded-full animate-ping" />
+              <div className="absolute inset-4 bg-[#fff200] rounded-full animate-ping" />
             </div>
           </div>
         </div>
       ),
-      color: "#ff5757",
+      color: "#fff200",
       stats: { focus: 93, reaction: 89, mindset: 97 }
     },
     {
@@ -113,18 +113,18 @@ const SpecialAbout = () => {
       icon: (
         <div className="relative w-12 h-12 flex items-center justify-center">
           <motion.div
-            className="w-10 h-10 border-2 border-red-500 rounded-full"
+            className="w-10 h-10 border-2 border-[#fff200] rounded-full"
             animate={{ rotate: 360 }}
             transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
           >
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <div className="w-8 h-0.5 bg-red-500" />
-              <div className="w-0.5 h-8 bg-red-500 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+              <div className="w-8 h-0.5 bg-[#fff200]" />
+              <div className="w-0.5 h-8 bg-[#fff200] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
             </div>
           </motion.div>
         </div>
       ),
-      color: "#ca2f2e",
+      color: "#fff200",
       stats: { recovery: 91, flexibility: 86, resilience: 94 }
     },
     {
@@ -134,16 +134,16 @@ const SpecialAbout = () => {
       description: "Sport-specific fuelling, hydration, supplementation, recovery planning",
       icon: (
         <div className="relative w-12 h-12 flex items-center justify-center">
-          <div className="w-8 h-10 border-2 border-red-500 rounded-lg relative overflow-hidden">
+          <div className="w-8 h-10 border-2 border-[#fff200] rounded-lg relative overflow-hidden">
             <motion.div
-              className="absolute bottom-0 left-0 right-0 bg-red-500 opacity-60"
+              className="absolute bottom-0 left-0 right-0 bg-[#fff200] opacity-60"
               animate={{ height: ['20%', '80%', '20%'] }}
               transition={{ duration: 2, repeat: Infinity }}
             />
           </div>
         </div>
       ),
-      color: "#ff5757",
+      color: "#fff200",
       stats: { energy: 92, hydration: 95, timing: 88 }
     },
     {
@@ -154,18 +154,18 @@ const SpecialAbout = () => {
       icon: (
         <div className="relative w-12 h-12 flex items-center justify-center">
           <motion.div
-            className="w-10 h-10 border-2 border-red-500 rounded-full"
+            className="w-10 h-10 border-2 border-[#fff200] rounded-full"
             animate={{ rotate: 360 }}
             transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
           >
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <div className="w-6 h-0.5 bg-red-500 rounded" />
-              <div className="w-0.5 h-6 bg-red-500 rounded absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+              <div className="w-6 h-0.5 bg-[#fff200] rounded" />
+              <div className="w-0.5 h-6 bg-[#fff200] rounded absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
             </div>
           </motion.div>
         </div>
       ),
-      color: "#ca2f2e",
+      color: "#fff200",
       stats: { recovery: 91, flexibility: 86, resilience: 94 }
     },
     {
@@ -176,7 +176,7 @@ const SpecialAbout = () => {
       icon: (
         <div className="relative w-12 h-12 flex items-center justify-center">
           <motion.div
-            className="w-6 h-6 bg-red-500 rounded-full"
+            className="w-6 h-6 bg-[#fff200] rounded-full"
             animate={{
               scale: [1, 1.2, 1],
               opacity: [0.8, 1, 0.8]
@@ -185,7 +185,7 @@ const SpecialAbout = () => {
           />
         </div>
       ),
-      color: "#ff5757",
+      color: "#fff200",
       stats: { development: 88, safety: 95, potential: 92 }
     },
     {
@@ -195,17 +195,17 @@ const SpecialAbout = () => {
       description: "Confidence, mindset, psychology, visualization, competition readiness",
       icon: (
         <div className="relative w-12 h-12 flex items-center justify-center">
-          <div className="w-8 h-8 border-2 border-red-500 rounded-full">
+          <div className="w-8 h-8 border-2 border-[#fff200] rounded-full">
             <div className="w-full h-full relative">
-              <div className="absolute inset-2 bg-red-500 rounded-full animate-pulse" />
+              <div className="absolute inset-2 bg-[#fff200] rounded-full animate-pulse" />
               <div className="absolute inset-3 bg-black rounded-full" />
-              <div className="absolute inset-4 bg-red-400 rounded-full animate-ping" />
+              <div className="absolute inset-4 bg-[#fff200] rounded-full animate-ping" />
             </div>
           </div>
           {[...Array(8)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-0.5 h-3 bg-red-500 origin-bottom"
+              className="absolute w-0.5 h-3 bg-[#fff200] origin-bottom"
               style={{
                 transformOrigin: 'center 16px',
                 transform: `rotate(${i * 45}deg) translateY(-12px)`
@@ -224,7 +224,7 @@ const SpecialAbout = () => {
           ))}
         </div>
       ),
-      color: "#ca2f2e",
+      color: "#fff200",
       stats: { focus: 93, confidence: 89, mindset: 97 }
     },
     {
@@ -237,7 +237,7 @@ const SpecialAbout = () => {
           {[0, 1].map((_, i) => (
             <div key={i} className="relative" style={{ marginLeft: i * 8 }}>
               <motion.div
-                className="w-3 h-3 bg-red-500 rounded-full"
+                className="w-3 h-3 bg-[#fff200] rounded-full"
                 animate={{
                   scale: [1, 1.2, 1],
                   y: [0, -2, 0]
@@ -249,11 +249,11 @@ const SpecialAbout = () => {
                   ease: "easeInOut"
                 }}
               />
-              <div className="w-4 h-5 bg-red-500 rounded-b-lg mt-1" />
+              <div className="w-4 h-5 bg-[#fff200] rounded-b-lg mt-1" />
             </div>
           ))}
           <motion.div
-            className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-6 h-1 bg-red-500 rounded opacity-60"
+            className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-6 h-1 bg-[#fff200] rounded opacity-60"
             animate={{
               scaleX: [0.5, 1.5, 0.5],
               opacity: [0.3, 0.8, 0.3]
@@ -262,7 +262,7 @@ const SpecialAbout = () => {
           />
         </div>
       ),
-      color: "#ff5757",
+      color: "#fff200",
       stats: { education: 90, communication: 87, support: 94 }
     }
   ]
@@ -284,7 +284,7 @@ const SpecialAbout = () => {
         return (
           <motion.div
             key={`particle-${i}`}
-            className="absolute w-1 h-1 bg-red-500 rounded-full opacity-20"
+            className="absolute w-1 h-1 bg-[#fff200] rounded-full opacity-20"
             initial={{
               x: initialX,
               y: initialY,
@@ -342,19 +342,19 @@ const SpecialAbout = () => {
           >
             {shape === 'circle' && (
               <div
-                className="border-2 border-red-500 rounded-full"
+                className="border-2 border-[#fff200] rounded-full"
                 style={{ width: size, height: size }}
               />
             )}
             {shape === 'triangle' && (
               <div
-                className="border-2 border-red-500"
+                className="border-2 border-[#fff200]"
                 style={{
                   width: 0,
                   height: 0,
                   borderLeft: `${size/2}px solid transparent`,
                   borderRight: `${size/2}px solid transparent`,
-                  borderBottom: `${size}px solid #ca2f2e`,
+                  borderBottom: `${size}px solid #fff200`,
                   borderTop: 'none',
                 }}
               />
@@ -390,9 +390,9 @@ const SpecialAbout = () => {
         className="absolute inset-0 opacity-10 pointer-events-none"
         style={{
           backgroundImage: `
-            radial-gradient(circle at 1px 1px, rgba(202,47,46,0.3) 1px, transparent 0),
-            linear-gradient(0deg, rgba(202,47,46,0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(202,47,46,0.1) 1px, transparent 1px)
+            radial-gradient(circle at 1px 1px, rgba(255,242,0,0.3) 1px, transparent 0),
+            linear-gradient(0deg, rgba(255,242,0,0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,242,0,0.1) 1px, transparent 1px)
           `,
           backgroundSize: '40px 40px, 40px 40px, 40px 40px',
         }}
@@ -402,7 +402,7 @@ const SpecialAbout = () => {
       <motion.div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: `radial-gradient(circle at center, rgba(202,47,46,${backgroundGlow}) 0%, transparent 60%)`,
+          background: `radial-gradient(circle at center, rgba(255,242,0,${backgroundGlow}) 0%, transparent 60%)`,
           opacity: backgroundGlow
         }}
       />
@@ -419,10 +419,10 @@ const SpecialAbout = () => {
           <div className="inline-block">
             <h2 className="text-base md:text-lg lg:text-xl xl:text-2xl font-black italic tracking-wider mb-2">
               <span className="text-white">How Does One </span>
-              <span className="text-red-500">Dominate</span>
+              <span className="text-[#fff200]">Dominate</span>
               <span className="text-white"> Sport Performance?</span>
             </h2>
-            <div className="h-1 bg-gradient-to-r from-transparent via-red-500 to-transparent" />
+            <div className="h-1 bg-gradient-to-r from-transparent via-[#fff200] to-transparent" />
           </div>
         </motion.div>
 
@@ -694,11 +694,11 @@ const SpecialAbout = () => {
           transition={{ duration: 0.6, delay: 0.8 }}
         >
           <div className="inline-block">
-            <button className="group relative px-8 py-3 bg-black border-2 border-red-500 overflow-hidden transition-all duration-300 hover:border-red-400">
+            <button className="group relative px-8 py-3 bg-black border-2 border-[#fff200] overflow-hidden transition-all duration-300 hover:border-[#fff200]">
               <span className="relative z-10 text-white font-bold uppercase tracking-widest text-sm">
                 INITIATE TRAINING
               </span>
-              <div className="absolute inset-0 bg-red-500 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
+              <div className="absolute inset-0 bg-[#fff200] transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300" />
             </button>
             <div className="mt-2 text-xs text-gray-600 font-mono">
               [ PRESS TO ACTIVATE ]
@@ -731,7 +731,7 @@ const SpecialAbout = () => {
       </motion.div>
 
       {/* Floating Tech Elements with Data Streams */}
-      <div className="absolute top-20 left-10 text-red-500 opacity-20 font-mono text-xs hidden lg:block">
+      <div className="absolute top-20 left-10 text-[#fff200] opacity-20 font-mono text-xs hidden lg:block">
         <motion.div
           animate={{ opacity: [0.2, 0.6, 0.2] }}
           transition={{ duration: 3, repeat: Infinity }}
@@ -742,7 +742,7 @@ const SpecialAbout = () => {
           {[...Array(3)].map((_, i) => (
             <motion.div
               key={i}
-              className="h-px bg-red-500 opacity-30"
+              className="h-px bg-[#fff200] opacity-30"
               animate={{ width: ['0%', '100%', '0%'] }}
               transition={{ 
                 duration: 2,
@@ -754,7 +754,7 @@ const SpecialAbout = () => {
         </div>
       </div>
       
-      <div className="absolute bottom-20 right-10 text-red-500 opacity-20 font-mono text-xs hidden lg:block">
+      <div className="absolute bottom-20 right-10 text-[#fff200] opacity-20 font-mono text-xs hidden lg:block">
         <motion.div
           animate={{ opacity: [0.2, 0.6, 0.2] }}
           transition={{ duration: 3, repeat: Infinity, delay: 1.5 }}
@@ -765,7 +765,7 @@ const SpecialAbout = () => {
           {[...Array(4)].map((_, i) => (
             <motion.div
               key={i}
-              className="h-px bg-red-500 opacity-30"
+              className="h-px bg-[#fff200] opacity-30"
               animate={{ width: ['0%', '100%', '0%'] }}
               transition={{ 
                 duration: 1.5,
@@ -778,7 +778,7 @@ const SpecialAbout = () => {
       </div>
 
       {/* Minimal Tech Elements */}
-      <div className="absolute top-40 right-20 text-red-500 opacity-08 font-mono text-xs hidden lg:block">
+      <div className="absolute top-40 right-20 text-[#fff200] opacity-08 font-mono text-xs hidden lg:block">
         <motion.div
           animate={{ 
             opacity: [0.05, 0.15, 0.05]
@@ -793,7 +793,7 @@ const SpecialAbout = () => {
       {[...Array(3)].map((_, i) => (
         <motion.div
           key={`node-${i}`}
-          className="absolute w-2 h-2 border border-red-500 opacity-20"
+          className="absolute w-2 h-2 border border-[#fff200] opacity-20"
           style={{
             left: `${20 + (i % 3) * 30}%`,
             top: `${30 + Math.floor(i / 3) * 40}%`,
@@ -810,11 +810,11 @@ const SpecialAbout = () => {
             ease: "linear"
           }}
         >
-          <div className="w-full h-full bg-red-500 opacity-50" />
+          <div className="w-full h-full bg-[#fff200] opacity-50" />
           {/* Connection lines */}
           {i < 5 && (
             <motion.div
-              className="absolute top-1 left-2 h-px bg-red-500 opacity-30"
+              className="absolute top-1 left-2 h-px bg-[#fff200] opacity-30"
               animate={{ width: ['0px', '50px', '0px'] }}
               transition={{
                 duration: 3,

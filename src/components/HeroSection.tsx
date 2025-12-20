@@ -18,8 +18,8 @@ const HeroSection = () => {
   const subtitleLetters = fullSubtitle.split('')
 
   const lightningConfig = useMemo(() => ({
-    color: '#ca2f2e',
-    shadowColor: '#ff5757',
+    color: '#fff200',
+    shadowColor: '#fff200',
     thickness: 3,
     branchChance: 0.25,
     branchFactor: 0.6,
@@ -91,7 +91,7 @@ const HeroSection = () => {
         // Background flash effect
         ctx.fillStyle = 'rgba(255, 255, 255, 0.03)'
         ctx.fillRect(0, 0, canvas.width, canvas.height)
-        ctx.fillStyle = 'rgba(202, 47, 46, 0.08)'
+        ctx.fillStyle = 'rgba(255, 242, 0, 0.08)'
         ctx.fillRect(0, 0, canvas.width, canvas.height)
 
         const endX = x + (Math.random() - 0.5) * 150
@@ -107,7 +107,7 @@ const HeroSection = () => {
           } else {
             ctx.globalAlpha = opacity
             ctx.clearRect(0, 0, canvas.width, canvas.height)
-            ctx.fillStyle = `rgba(202, 47, 46, ${opacity * 0.08})`
+            ctx.fillStyle = `rgba(255, 242, 0, ${opacity * 0.08})`
             ctx.fillRect(0, 0, canvas.width, canvas.height)
           }
         }, lightningConfig.fadeDuration / 12)
@@ -128,7 +128,7 @@ const HeroSection = () => {
     const targetY = yInicio + maxLength
     let zigzag = `M${xInicio},${yActual}`
     const grosor = Math.random() * 2 + 1
-    const color = Math.random() > 0.5 ? 'rgba(202,47,46,0.8)' : 'rgba(255,87,86,0.7)'
+    const color = Math.random() > 0.5 ? 'rgba(255,242,0,0.8)' : 'rgba(255,242,0,0.7)'
     
     // Continue until we reach half viewport height
     while (yActual < targetY && yActual < altura) {
@@ -285,8 +285,8 @@ const HeroSection = () => {
               linear-gradient(90deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.3) 25%, rgba(0,0,0,0.18) 45%, rgba(0,0,0,0.08) 65%, transparent 85%, transparent 100%), 
               linear-gradient(0deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.18) 30%, rgba(0,0,0,0.08) 70%, transparent 100%), 
               linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.18) 30%, rgba(0,0,0,0.08) 70%, transparent 100%), 
-              radial-gradient(ellipse 60% 80% at 95% 50%, rgba(202,47,46,0.25) 0%, rgba(202,47,46,0.12) 25%, rgba(202,47,46,0.06) 50%, transparent 70%),
-              linear-gradient(135deg, rgba(202,47,46,0.08) 0%, transparent 40%)
+              radial-gradient(ellipse 60% 80% at 95% 50%, rgba(255,242,0,0.25) 0%, rgba(255,242,0,0.12) 25%, rgba(255,242,0,0.06) 50%, transparent 70%),
+              linear-gradient(135deg, rgba(255,242,0,0.08) 0%, transparent 40%)
             `,
             zIndex: 2
           }}
@@ -329,31 +329,31 @@ const HeroSection = () => {
       {/* Background Animation Elements */}
       <div className="absolute inset-0 z-10 pointer-events-none">
         {/* Additional Interactive Background Lines */}
-        <div className="bg-interactive-element" style={{ top: '25%', left: '10%', width: '120px', height: '3px', background: 'linear-gradient(90deg, transparent, rgba(202,47,46,0.4), transparent)', opacity: 0.2 }} />
+        <div className="bg-interactive-element" style={{ top: '25%', left: '10%', width: '120px', height: '3px', background: 'linear-gradient(90deg, transparent, rgba(255,242,0,0.4), transparent)', opacity: 0.2 }} />
         <div className="bg-interactive-element" style={{ top: '45%', right: '15%', width: '80px', height: '2px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)', opacity: 0.15 }} />
-        <div className="bg-interactive-element" style={{ bottom: '30%', left: '20%', width: '100px', height: '2px', background: 'linear-gradient(90deg, rgba(202,47,46,0.3), transparent)', opacity: 0.25 }} />
+        <div className="bg-interactive-element" style={{ bottom: '30%', left: '20%', width: '100px', height: '2px', background: 'linear-gradient(90deg, rgba(255,242,0,0.3), transparent)', opacity: 0.25 }} />
 
         {/* Dynamic Data Flow Lines */}
-        <div style={{ position: 'absolute', top: '20%', left: '0', width: '200px', height: '2px', background: 'linear-gradient(90deg, transparent, rgba(202,47,46,0.6), transparent)', animation: 'dataFlow 4s ease-in-out infinite', opacity: 0.7 }} />
+        <div style={{ position: 'absolute', top: '20%', left: '0', width: '200px', height: '2px', background: 'linear-gradient(90deg, transparent, rgba(255,242,0,0.6), transparent)', animation: 'dataFlow 4s ease-in-out infinite', opacity: 0.7 }} />
         <div style={{ position: 'absolute', top: '60%', left: '0', width: '150px', height: '1px', background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)', animation: 'dataFlow 6s ease-in-out infinite 2s', opacity: 0.5 }} />
-        <div style={{ position: 'absolute', top: '80%', left: '0', width: '180px', height: '2px', background: 'linear-gradient(90deg, transparent, rgba(202,47,46,0.5), transparent)', animation: 'dataFlow 5s ease-in-out infinite 3s', opacity: 0.6 }} />
+        <div style={{ position: 'absolute', top: '80%', left: '0', width: '180px', height: '2px', background: 'linear-gradient(90deg, transparent, rgba(255,242,0,0.5), transparent)', animation: 'dataFlow 5s ease-in-out infinite 3s', opacity: 0.6 }} />
 
         {/* Refined Floating Particles - fewer, more subtle */}
-        <div className="floating-particle" style={{ top: '15%', left: '20%', opacity: 0.1, filter: 'blur(2px)', animation: 'float 12s ease-in-out infinite', background: 'rgba(202,47,46,0.4)' }} />
+        <div className="floating-particle" style={{ top: '15%', left: '20%', opacity: 0.1, filter: 'blur(2px)', animation: 'float 12s ease-in-out infinite', background: 'rgba(255,242,0,0.4)' }} />
         <div className="floating-particle" style={{ top: '40%', left: '70%', opacity: 0.08, filter: 'blur(3px)', animation: 'float 15s ease-in-out infinite 2s', background: 'rgba(255,255,255,0.3)' }} />
-        <div className="floating-particle" style={{ top: '65%', left: '35%', opacity: 0.1, filter: 'blur(2px)', animation: 'float 18s ease-in-out infinite 4s', background: 'rgba(202,47,46,0.3)' }} />
+        <div className="floating-particle" style={{ top: '65%', left: '35%', opacity: 0.1, filter: 'blur(2px)', animation: 'float 18s ease-in-out infinite 4s', background: 'rgba(255,242,0,0.3)' }} />
         <div className="floating-particle" style={{ top: '80%', left: '85%', opacity: 0.08, filter: 'blur(3px)', animation: 'float 14s ease-in-out infinite 1s', background: 'rgba(255,255,255,0.2)' }} />
 
         {/* Subtle Geometric Elements */}
-        <div className="geometric-accent" style={{ top: '25%', right: '15%', width: '40px', height: '40px', opacity: 0.06, filter: 'blur(1px)', animation: 'rotateGlow 20s linear infinite', border: '1px solid rgba(202,47,46,0.2)' }} />
-        <div className="geometric-accent" style={{ top: '60%', right: '30%', width: '30px', height: '30px', transform: 'rotate(45deg)', opacity: 0.08, filter: 'blur(1px)', animation: 'rotateGlow 25s linear infinite 3s', border: '1px solid rgba(202,47,46,0.3)' }} />
+        <div className="geometric-accent" style={{ top: '25%', right: '15%', width: '40px', height: '40px', opacity: 0.06, filter: 'blur(1px)', animation: 'rotateGlow 20s linear infinite', border: '1px solid rgba(255,242,0,0.2)' }} />
+        <div className="geometric-accent" style={{ top: '60%', right: '30%', width: '30px', height: '30px', transform: 'rotate(45deg)', opacity: 0.08, filter: 'blur(1px)', animation: 'rotateGlow 25s linear infinite 3s', border: '1px solid rgba(255,242,0,0.3)' }} />
 
 
         {/* Interactive Corner Elements - moved further to corners */}
-        <div style={{ position: 'absolute', top: '1%', left: '1%', width: '30px', height: '30px', borderLeft: '3px solid rgba(202,47,46,0.6)', borderTop: '3px solid rgba(202,47,46,0.6)', animation: 'fadeInUp 1s ease-out, pulse 4s ease-in-out infinite 1s', opacity: 0.4 }} />
-        <div style={{ position: 'absolute', top: '1%', right: '1%', width: '30px', height: '30px', borderRight: '3px solid rgba(202,47,46,0.6)', borderTop: '3px solid rgba(202,47,46,0.6)', animation: 'fadeInUp 1s ease-out 0.5s, pulse 4s ease-in-out infinite 1.5s', opacity: 0.4 }} />
-        <div style={{ position: 'absolute', bottom: '1%', left: '1%', width: '30px', height: '30px', borderLeft: '3px solid rgba(202,47,46,0.6)', borderBottom: '3px solid rgba(202,47,46,0.6)', animation: 'fadeInUp 1s ease-out 1s, pulse 4s ease-in-out infinite 2s', opacity: 0.4 }} />
-        <div style={{ position: 'absolute', bottom: '1%', right: '1%', width: '30px', height: '30px', borderRight: '3px solid rgba(202,47,46,0.6)', borderBottom: '3px solid rgba(202,47,46,0.6)', animation: 'fadeInUp 1s ease-out 1.5s, pulse 4s ease-in-out infinite 2.5s', opacity: 0.4 }} />
+        <div style={{ position: 'absolute', top: '1%', left: '1%', width: '30px', height: '30px', borderLeft: '3px solid rgba(255,242,0,0.6)', borderTop: '3px solid rgba(255,242,0,0.6)', animation: 'fadeInUp 1s ease-out, pulse 4s ease-in-out infinite 1s', opacity: 0.4 }} />
+        <div style={{ position: 'absolute', top: '1%', right: '1%', width: '30px', height: '30px', borderRight: '3px solid rgba(255,242,0,0.6)', borderTop: '3px solid rgba(255,242,0,0.6)', animation: 'fadeInUp 1s ease-out 0.5s, pulse 4s ease-in-out infinite 1.5s', opacity: 0.4 }} />
+        <div style={{ position: 'absolute', bottom: '1%', left: '1%', width: '30px', height: '30px', borderLeft: '3px solid rgba(255,242,0,0.6)', borderBottom: '3px solid rgba(255,242,0,0.6)', animation: 'fadeInUp 1s ease-out 1s, pulse 4s ease-in-out infinite 2s', opacity: 0.4 }} />
+        <div style={{ position: 'absolute', bottom: '1%', right: '1%', width: '30px', height: '30px', borderRight: '3px solid rgba(255,242,0,0.6)', borderBottom: '3px solid rgba(255,242,0,0.6)', animation: 'fadeInUp 1s ease-out 1.5s, pulse 4s ease-in-out infinite 2.5s', opacity: 0.4 }} />
       </div>
 
       {/* Main Content */}
@@ -372,12 +372,12 @@ const HeroSection = () => {
                 id="hero-title"
                 className="heading font-montserrat uppercase relative overflow-visible text-left"
                 style={{
-                  color: '#ca2f2e',
+                  color: '#fff200',
                   fontFamily: "'Montserrat', sans-serif",
                   fontWeight: 700,
                   letterSpacing: '0.1em',
                   fontSize: 'clamp(1.5rem, 4vw, 2.2rem)',
-                  textShadow: '0 2px 4px rgba(0,0,0,0.95), 0 8px 16px rgba(0,0,0,0.8), 0 16px 32px rgba(0,0,0,0.6), 0 0 40px rgba(202,47,46,0.15)',
+                  textShadow: '0 2px 4px rgba(0,0,0,0.95), 0 8px 16px rgba(0,0,0,0.8), 0 16px 32px rgba(0,0,0,0.6), 0 0 40px rgba(255,242,0,0.15)',
                   marginBottom: '0.2em',
                   position: 'relative',
                   overflow: 'visible',
@@ -416,7 +416,7 @@ const HeroSection = () => {
                     top: 0,
                     width: maskWidth,
                     height: '100%',
-                    background: '#ca2f2e',
+                    background: '#fff200',
                     zIndex: 3,
                     opacity: maskOpacity,
                     transition: 'left 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.1s ease 0.4s',
@@ -476,10 +476,10 @@ const HeroSection = () => {
                     left: 0,
                     width: underlineWidth,
                     height: '4px',
-                    background: 'linear-gradient(90deg, rgb(202, 47, 46) 0%, rgba(255, 87, 86, 0.9) 30%, rgba(202, 47, 46, 0.8) 60%, rgba(202, 47, 46, 0.4) 85%, transparent 100%)',
+                    background: 'linear-gradient(90deg, rgb(255, 242, 0) 0%, rgba(255, 87, 86, 0.9) 30%, rgba(255, 242, 0, 0.8) 60%, rgba(255, 242, 0, 0.4) 85%, transparent 100%)',
                     transition: 'width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                     borderRadius: '2px',
-                    boxShadow: 'rgba(202, 47, 46, 0.6) 0px 3px 12px, rgba(202, 47, 46, 0.3) 0px 6px 24px, inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+                    boxShadow: 'rgba(255, 242, 0, 0.6) 0px 3px 12px, rgba(255, 242, 0, 0.3) 0px 6px 24px, inset 0 1px 0 rgba(255, 255, 255, 0.1)'
                   }}
                 />
                 <div
@@ -489,7 +489,7 @@ const HeroSection = () => {
                     left: 0,
                     width: underlineWidth,
                     height: '6px',
-                    background: 'linear-gradient(90deg, rgba(202, 47, 46, 0.2) 0%, rgba(202, 47, 46, 0.1) 50%, transparent 100%)',
+                    background: 'linear-gradient(90deg, rgba(255, 242, 0, 0.2) 0%, rgba(255, 242, 0, 0.1) 50%, transparent 100%)',
                     filter: 'blur(2px)',
                     borderRadius: '3px'
                   }}
@@ -509,27 +509,27 @@ const HeroSection = () => {
               transition={{ duration: 0.4, ease: 'easeOut' }}
             >
               <p 
-                className="text-white/95 text-xs sm:text-lg lg:text-xl font-medium leading-relaxed pl-6 border-l-4 border-red-600/70 relative"
+                className="text-white/95 text-xs sm:text-lg lg:text-xl font-medium leading-relaxed pl-6 border-l-4 border-[#fff200]/70 relative"
                 style={{
                   fontStyle: 'italic',
                   transform: 'skewX(-8deg)',
                   letterSpacing: '0.02em',
                   textShadow: '0 2px 8px rgba(0,0,0,0.8), 0 4px 16px rgba(0,0,0,0.6)',
-                  filter: 'drop-shadow(0 0 4px rgba(202,47,46,0.1))'
+                  filter: 'drop-shadow(0 0 4px rgba(255,242,0,0.1))'
                 }}
               >
                 Elite performance isn&apos;t a privilege — it&apos;s a process.
                 <span 
                   className="absolute left-0 top-0 w-1 h-full shadow-lg shadow-red-600/50" 
                   style={{
-                    background: 'linear-gradient(180deg, #ca2f2e 0%, rgba(255, 87, 86, 0.8) 30%, rgba(202, 47, 46, 0.6) 70%, rgba(202, 47, 46, 0.3) 100%)',
-                    boxShadow: '0 0 8px rgba(202,47,46,0.4), inset 1px 0 0 rgba(255,255,255,0.1)'
+                    background: 'linear-gradient(180deg, #fff200 0%, rgba(255, 87, 86, 0.8) 30%, rgba(255, 242, 0, 0.6) 70%, rgba(255, 242, 0, 0.3) 100%)',
+                    boxShadow: '0 0 8px rgba(255,242,0,0.4), inset 1px 0 0 rgba(255,255,255,0.1)'
                   }}
                 />
                 <span 
                   className="absolute left-1 top-0 w-0.5 h-full"
                   style={{
-                    background: 'linear-gradient(180deg, rgba(202, 47, 46, 0.3) 0%, transparent 100%)',
+                    background: 'linear-gradient(180deg, rgba(255, 242, 0, 0.3) 0%, transparent 100%)',
                     filter: 'blur(1px)'
                   }}
                 />

@@ -247,7 +247,7 @@ export default function EditBlogPage() {
         <div className="flex items-center gap-4">
           <Link
             href="/admin"
-            className="p-2 text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
+            className="p-2 text-[#fff200] hover:bg-[#fff200]/10 rounded-lg transition-colors"
           >
             <ArrowLeft size={20} />
           </Link>
@@ -259,7 +259,7 @@ export default function EditBlogPage() {
         <div className="flex items-center gap-3">
           <button
             onClick={() => setShowPreview(!showPreview)}
-            className="flex items-center gap-2 px-4 py-2 glassmorphism-enhanced border border-red-500/20 text-white rounded-lg hover:border-red-500/40 transition-colors"
+            className="flex items-center gap-2 px-4 py-2 glassmorphism-enhanced border border-[#fff200]/20 text-white rounded-lg hover:border-[#fff200]/40 transition-colors"
           >
             {showPreview ? <EyeOff size={18} /> : <Eye size={18} />}
             {showPreview ? 'Edit' : 'Preview'}
@@ -268,7 +268,7 @@ export default function EditBlogPage() {
           <button
             onClick={handleSave}
             disabled={saving}
-            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-600 to-red-500 text-white rounded-lg hover:from-red-700 hover:to-red-600 transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#fff200] to-[#fff200] text-black rounded-lg hover:from-[#e6db00] hover:to-[#fff200] transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Save size={18} />
             {saving ? 'Updating...' : 'Update Post'}
@@ -290,8 +290,8 @@ export default function EditBlogPage() {
               onClick={() => setActiveTab(tab.id as 'content' | 'seo' | 'social' | 'settings')}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ${
                 activeTab === tab.id
-                  ? 'bg-gradient-to-r from-red-600 to-red-500 text-white shadow-lg'
-                  : 'text-gray-300 hover:bg-red-500/10 hover:text-white'
+                  ? 'bg-gradient-to-r from-[#fff200] to-[#fff200] text-black shadow-lg'
+                  : 'text-gray-300 hover:bg-[#fff200]/10 hover:text-white'
               }`}
             >
               <span>{tab.icon}</span>
@@ -314,7 +314,7 @@ export default function EditBlogPage() {
               value={formData.title}
               onChange={(e) => handleTitleChange(e.target.value)}
               placeholder="Enter blog title..."
-              className="w-full px-4 py-3 glassmorphism-enhanced border border-red-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500/50 font-oswald text-xl"
+              className="w-full px-4 py-3 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#fff200]/50 font-oswald text-xl"
             />
           </div>
 
@@ -324,7 +324,7 @@ export default function EditBlogPage() {
             </label>
             <div className="space-y-3">
               {formData.featuredImage ? (
-                <div className="relative glassmorphism-enhanced border border-red-500/20 rounded-lg p-4">
+                <div className="relative glassmorphism-enhanced border border-[#fff200]/20 rounded-lg p-4">
                   <img 
                     src={formData.featuredImage} 
                     alt="Featured" 
@@ -332,13 +332,13 @@ export default function EditBlogPage() {
                   />
                   <button
                     onClick={() => setFormData({ ...formData, featuredImage: '' })}
-                    className="absolute top-2 right-2 p-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+                    className="absolute top-2 right-2 p-2 bg-[#fff200] text-black rounded-lg hover:bg-[#ccc300]"
                   >
                     <X size={16} />
                   </button>
                 </div>
               ) : (
-                <label className="flex flex-col items-center justify-center h-48 glassmorphism-enhanced border-2 border-dashed border-red-500/20 rounded-lg cursor-pointer hover:border-red-500/40 transition-colors">
+                <label className="flex flex-col items-center justify-center h-48 glassmorphism-enhanced border-2 border-dashed border-[#fff200]/20 rounded-lg cursor-pointer hover:border-[#fff200]/40 transition-colors">
                   <Upload className="text-gray-400 mb-2" size={32} />
                   <span className="text-sm text-gray-400">Click to upload featured image</span>
                   <input 
@@ -354,7 +354,7 @@ export default function EditBlogPage() {
                 value={formData.featuredImageAlt}
                 onChange={(e) => setFormData({ ...formData, featuredImageAlt: e.target.value })}
                 placeholder="Image alt text (for SEO and accessibility)"
-                className="w-full px-4 py-2 glassmorphism-enhanced border border-red-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500/50"
+                className="w-full px-4 py-2 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#fff200]/50"
               />
             </div>
           </div>
@@ -369,7 +369,7 @@ export default function EditBlogPage() {
               onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
               placeholder="Write a brief summary..."
               rows={3}
-              className="w-full px-4 py-3 glassmorphism-enhanced border border-red-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500/50 resize-none"
+              className="w-full px-4 py-3 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#fff200]/50 resize-none"
             />
           </div>
 
@@ -411,7 +411,7 @@ export default function EditBlogPage() {
                 value={formData.slug}
                 onChange={(e) => setFormData({ ...formData, slug: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '-') })}
                 placeholder="url-friendly-slug"
-                className="flex-1 px-4 py-2 glassmorphism-enhanced border border-red-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500/50"
+                className="flex-1 px-4 py-2 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#fff200]/50"
               />
             </div>
           </div>
@@ -427,7 +427,7 @@ export default function EditBlogPage() {
               placeholder="Brief description for search engines..."
               rows={3}
               maxLength={160}
-              className="w-full px-4 py-3 glassmorphism-enhanced border border-red-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500/50 resize-none"
+              className="w-full px-4 py-3 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#fff200]/50 resize-none"
             />
             <div className="text-sm text-gray-400 mt-1">
               {formData.metaDescription.length}/160 characters
@@ -444,7 +444,7 @@ export default function EditBlogPage() {
               value={formData.focusKeyword}
               onChange={(e) => setFormData({ ...formData, focusKeyword: e.target.value })}
               placeholder="Main keyword for this post"
-              className="w-full px-4 py-2 glassmorphism-enhanced border border-red-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500/50"
+              className="w-full px-4 py-2 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#fff200]/50"
             />
           </div>
 
@@ -459,11 +459,11 @@ export default function EditBlogPage() {
                 onChange={(e) => setKeywordInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addKeyword())}
                 placeholder="Add keyword and press Enter"
-                className="flex-1 px-4 py-2 glassmorphism-enhanced border border-red-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500/50"
+                className="flex-1 px-4 py-2 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#fff200]/50"
               />
               <button
                 onClick={addKeyword}
-                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+                className="px-4 py-2 bg-[#fff200] text-black rounded-lg hover:bg-[#ccc300] transition-colors"
               >
                 Add
               </button>
@@ -472,10 +472,10 @@ export default function EditBlogPage() {
               {formData.metaKeywords.map((keyword) => (
                 <span
                   key={keyword}
-                  className="inline-flex items-center gap-1 px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-sm"
+                  className="inline-flex items-center gap-1 px-3 py-1 bg-[#fff200]/20 text-[#fff200] rounded-full text-sm"
                 >
                   {keyword}
-                  <button onClick={() => removeKeyword(keyword)} className="hover:text-red-300">
+                  <button onClick={() => removeKeyword(keyword)} className="hover:text-[#fff200]">
                     <X size={14} />
                   </button>
                 </span>
@@ -493,7 +493,7 @@ export default function EditBlogPage() {
               value={formData.canonicalUrl}
               onChange={(e) => setFormData({ ...formData, canonicalUrl: e.target.value })}
               placeholder="https://example.com/original-post"
-              className="w-full px-4 py-2 glassmorphism-enhanced border border-red-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500/50"
+              className="w-full px-4 py-2 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#fff200]/50"
             />
           </div>
         </div>
@@ -514,7 +514,7 @@ export default function EditBlogPage() {
               value={formData.ogTitle}
               onChange={(e) => setFormData({ ...formData, ogTitle: e.target.value })}
               placeholder={formData.title || "Title for social media shares"}
-              className="w-full px-4 py-2 glassmorphism-enhanced border border-red-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500/50"
+              className="w-full px-4 py-2 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#fff200]/50"
             />
           </div>
 
@@ -528,7 +528,7 @@ export default function EditBlogPage() {
               onChange={(e) => setFormData({ ...formData, ogDescription: e.target.value })}
               placeholder={formData.metaDescription || "Description for social media shares"}
               rows={2}
-              className="w-full px-4 py-3 glassmorphism-enhanced border border-red-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500/50 resize-none"
+              className="w-full px-4 py-3 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#fff200]/50 resize-none"
             />
           </div>
 
@@ -542,11 +542,11 @@ export default function EditBlogPage() {
               value={formData.ogImage}
               onChange={(e) => setFormData({ ...formData, ogImage: e.target.value })}
               placeholder="https://example.com/image.jpg"
-              className="w-full px-4 py-2 glassmorphism-enhanced border border-red-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500/50"
+              className="w-full px-4 py-2 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#fff200]/50"
             />
           </div>
 
-          <hr className="border-red-500/20 my-6" />
+          <hr className="border-[#fff200]/20 my-6" />
 
           <h3 className="text-xl font-bold text-white mb-4">Twitter Card</h3>
 
@@ -560,7 +560,7 @@ export default function EditBlogPage() {
               value={formData.twitterTitle}
               onChange={(e) => setFormData({ ...formData, twitterTitle: e.target.value })}
               placeholder={formData.ogTitle || formData.title || "Title for Twitter"}
-              className="w-full px-4 py-2 glassmorphism-enhanced border border-red-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500/50"
+              className="w-full px-4 py-2 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#fff200]/50"
             />
           </div>
 
@@ -574,7 +574,7 @@ export default function EditBlogPage() {
               onChange={(e) => setFormData({ ...formData, twitterDescription: e.target.value })}
               placeholder={formData.ogDescription || formData.metaDescription || "Description for Twitter"}
               rows={2}
-              className="w-full px-4 py-3 glassmorphism-enhanced border border-red-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500/50 resize-none"
+              className="w-full px-4 py-3 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#fff200]/50 resize-none"
             />
           </div>
 
@@ -588,7 +588,7 @@ export default function EditBlogPage() {
               value={formData.twitterImage}
               onChange={(e) => setFormData({ ...formData, twitterImage: e.target.value })}
               placeholder="https://example.com/image.jpg"
-              className="w-full px-4 py-2 glassmorphism-enhanced border border-red-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500/50"
+              className="w-full px-4 py-2 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#fff200]/50"
             />
           </div>
         </div>
@@ -605,7 +605,7 @@ export default function EditBlogPage() {
               id="category"
               value={formData.category}
               onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-              className="w-full px-4 py-2 glassmorphism-enhanced border border-red-500/20 rounded-lg text-white focus:outline-none focus:border-red-500/50"
+              className="w-full px-4 py-2 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg text-white focus:outline-none focus:border-[#fff200]/50"
             >
               <option value="">Select a category</option>
               <option value="training">Training</option>
@@ -627,11 +627,11 @@ export default function EditBlogPage() {
                 onChange={(e) => setTagInput(e.target.value)}
                 onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())}
                 placeholder="Add tag and press Enter"
-                className="flex-1 px-4 py-2 glassmorphism-enhanced border border-red-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500/50"
+                className="flex-1 px-4 py-2 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#fff200]/50"
               />
               <button
                 onClick={addTag}
-                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors flex items-center gap-2"
+                className="px-4 py-2 bg-[#fff200] text-black rounded-lg hover:bg-[#ccc300] transition-colors flex items-center gap-2"
               >
                 <Tag size={16} />
                 Add
@@ -641,10 +641,10 @@ export default function EditBlogPage() {
               {formData.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="inline-flex items-center gap-1 px-3 py-1 bg-red-500/20 text-red-400 rounded-full text-sm"
+                  className="inline-flex items-center gap-1 px-3 py-1 bg-[#fff200]/20 text-[#fff200] rounded-full text-sm"
                 >
                   #{tag}
-                  <button onClick={() => removeTag(tag)} className="hover:text-red-300">
+                  <button onClick={() => removeTag(tag)} className="hover:text-[#fff200]">
                     <X size={14} />
                   </button>
                 </span>
@@ -662,7 +662,7 @@ export default function EditBlogPage() {
               value={formData.author}
               onChange={(e) => setFormData({ ...formData, author: e.target.value })}
               placeholder="Author name"
-              className="w-full px-4 py-2 glassmorphism-enhanced border border-red-500/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-red-500/50"
+              className="w-full px-4 py-2 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-[#fff200]/50"
             />
           </div>
 
@@ -674,7 +674,7 @@ export default function EditBlogPage() {
               id="status"
               value={formData.status}
               onChange={(e) => setFormData({ ...formData, status: e.target.value as 'draft' | 'published' | 'scheduled' })}
-              className="w-full px-4 py-2 glassmorphism-enhanced border border-red-500/20 rounded-lg text-white focus:outline-none focus:border-red-500/50"
+              className="w-full px-4 py-2 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg text-white focus:outline-none focus:border-[#fff200]/50"
             >
               <option value="draft">Draft</option>
               <option value="published">Published</option>
@@ -691,28 +691,28 @@ export default function EditBlogPage() {
               type="date"
               value={formData.publishDate}
               onChange={(e) => setFormData({ ...formData, publishDate: e.target.value })}
-              className="w-full px-4 py-2 glassmorphism-enhanced border border-red-500/20 rounded-lg text-white focus:outline-none focus:border-red-500/50"
+              className="w-full px-4 py-2 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg text-white focus:outline-none focus:border-[#fff200]/50"
             />
           </div>
 
           <div className="space-y-3">
-            <label className="flex items-center justify-between p-4 glassmorphism-enhanced border border-red-500/20 rounded-lg cursor-pointer hover:border-red-500/40 transition-colors">
+            <label className="flex items-center justify-between p-4 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg cursor-pointer hover:border-[#fff200]/40 transition-colors">
               <span className="text-gray-300">Featured Post</span>
               <input
                 type="checkbox"
                 checked={formData.featured}
                 onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
-                className="w-5 h-5 text-red-600 bg-gray-700 border-gray-600 rounded focus:ring-red-500"
+                className="w-5 h-5 text-[#fff200] bg-gray-700 border-gray-600 rounded focus:ring-[#fff200]"
               />
             </label>
 
-            <label className="flex items-center justify-between p-4 glassmorphism-enhanced border border-red-500/20 rounded-lg cursor-pointer hover:border-red-500/40 transition-colors">
+            <label className="flex items-center justify-between p-4 glassmorphism-enhanced border border-[#fff200]/20 rounded-lg cursor-pointer hover:border-[#fff200]/40 transition-colors">
               <span className="text-gray-300">Allow Comments</span>
               <input
                 type="checkbox"
                 checked={formData.allowComments}
                 onChange={(e) => setFormData({ ...formData, allowComments: e.target.checked })}
-                className="w-5 h-5 text-red-600 bg-gray-700 border-gray-600 rounded focus:ring-red-500"
+                className="w-5 h-5 text-[#fff200] bg-gray-700 border-gray-600 rounded focus:ring-[#fff200]"
               />
             </label>
           </div>

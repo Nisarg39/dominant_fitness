@@ -85,7 +85,7 @@ export default async function BlogsPage({ searchParams }: BlogPageProps) {
         <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-red-500 to-orange-500 bg-clip-text text-transparent">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6" style={{ color: '#fff200' }}>
             Performance Blog
           </h1>
           <p className="text-xl text-gray-400 max-w-2xl mx-auto">
@@ -97,9 +97,9 @@ export default async function BlogsPage({ searchParams }: BlogPageProps) {
         <div className="flex flex-wrap justify-center gap-3 mb-12">
           <Link
             href="/blogs"
-            className={`px-4 py-2 rounded-lg transition-colors ${
+            className={`px-4 py-2 rounded-lg transition-colors font-semibold ${
               !params.category
-                ? 'bg-red-600 text-white'
+                ? 'bg-[#fff200] text-black'
                 : 'bg-white/5 text-gray-400 hover:bg-white/10'
             }`}
           >
@@ -109,9 +109,9 @@ export default async function BlogsPage({ searchParams }: BlogPageProps) {
             <Link
               key={cat.value}
               href={`/blogs?category=${cat.value}`}
-              className={`px-4 py-2 rounded-lg transition-colors ${
+              className={`px-4 py-2 rounded-lg transition-colors font-semibold ${
                 params.category === cat.value
-                  ? 'bg-red-600 text-white'
+                  ? 'bg-[#fff200] text-black'
                   : 'bg-white/5 text-gray-400 hover:bg-white/10'
               }`}
             >
@@ -151,7 +151,7 @@ export default async function BlogsPage({ searchParams }: BlogPageProps) {
         ) : (
           <div className="text-center py-20">
             <p className="text-gray-400 text-lg">No blogs found matching your criteria.</p>
-            <Link href="/blogs" className="inline-block mt-4 text-red-500 hover:text-red-400">
+            <Link href="/blogs" className="inline-block mt-4 text-[#fff200] hover:text-[#e6db00] transition-colors">
               Clear filters
             </Link>
           </div>

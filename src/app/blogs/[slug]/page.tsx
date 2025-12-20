@@ -116,7 +116,7 @@ export default async function BlogPage({ params }: { params: Promise<{ slug: str
                 {blog.tags.map((tag: string) => (
                   <span 
                     key={tag}
-                    className="px-3 py-1 bg-red-500/10 text-red-400 rounded-full text-sm hover:bg-red-500/20 transition-colors"
+                    className="px-3 py-1 bg-[#fff200]/10 text-[#fff200] rounded-full text-sm hover:bg-[#fff200]/20 transition-colors"
                   >
                     #{tag}
                   </span>

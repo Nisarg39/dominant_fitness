@@ -35,11 +35,11 @@ const Services = () => {
     scrollYProgress,
     [0.2, 0.5, 0.6, 0.7, 1],
     [
-      "radial-gradient(circle at center, rgba(202,47,46,0.02) 0%, rgba(255,87,87,0.01) 15%, transparent 30%)",
-      "radial-gradient(circle at center, rgba(202,47,46,0.08) 0%, rgba(255,87,87,0.05) 20%, rgba(220,38,38,0.03) 35%, transparent 50%)",
-      "radial-gradient(circle at center, rgba(202,47,46,0.08) 0%, rgba(255,87,87,0.05) 20%, rgba(220,38,38,0.03) 35%, transparent 50%)",
-      "radial-gradient(circle at center, rgba(202,47,46,0.08) 0%, rgba(255,87,87,0.05) 20%, rgba(220,38,38,0.03) 35%, transparent 50%)",
-      "radial-gradient(circle at center, rgba(202,47,46,0.02) 0%, rgba(255,87,87,0.01) 15%, transparent 30%)"
+      "radial-gradient(circle at center, rgba(255,242,0,0.02) 0%, rgba(255,242,0,0.01) 15%, transparent 30%)",
+      "radial-gradient(circle at center, rgba(255,242,0,0.08) 0%, rgba(255,242,0,0.05) 20%, rgba(255,242,0,0.03) 35%, transparent 50%)",
+      "radial-gradient(circle at center, rgba(255,242,0,0.08) 0%, rgba(255,242,0,0.05) 20%, rgba(255,242,0,0.03) 35%, transparent 50%)",
+      "radial-gradient(circle at center, rgba(255,242,0,0.08) 0%, rgba(255,242,0,0.05) 20%, rgba(255,242,0,0.03) 35%, transparent 50%)",
+      "radial-gradient(circle at center, rgba(255,242,0,0.02) 0%, rgba(255,242,0,0.01) 15%, transparent 30%)"
     ]
   )
   
@@ -54,11 +54,11 @@ const Services = () => {
     scrollYProgress, 
     [0, 0.3, 0.6, 0.8, 1], 
     [
-      "drop-shadow(0 0 5px rgba(202,47,46,0.2)) drop-shadow(0 0 10px rgba(255,87,87,0.1))",
-      "drop-shadow(0 0 12px rgba(202,47,46,0.4)) drop-shadow(0 0 25px rgba(255,87,87,0.2))", 
-      "drop-shadow(0 0 20px rgba(202,47,46,0.6)) drop-shadow(0 0 40px rgba(255,87,87,0.3))",
-      "drop-shadow(0 0 20px rgba(202,47,46,0.6)) drop-shadow(0 0 40px rgba(255,87,87,0.3))",
-      "drop-shadow(0 0 12px rgba(202,47,46,0.4)) drop-shadow(0 0 25px rgba(255,87,46,0.2))"
+      "drop-shadow(0 0 5px rgba(255,242,0,0.2)) drop-shadow(0 0 10px rgba(255,242,0,0.1))",
+      "drop-shadow(0 0 12px rgba(255,242,0,0.4)) drop-shadow(0 0 25px rgba(255,242,0,0.2))", 
+      "drop-shadow(0 0 20px rgba(255,242,0,0.6)) drop-shadow(0 0 40px rgba(255,242,0,0.3))",
+      "drop-shadow(0 0 20px rgba(255,242,0,0.6)) drop-shadow(0 0 40px rgba(255,242,0,0.3))",
+      "drop-shadow(0 0 12px rgba(255,242,0,0.4)) drop-shadow(0 0 25px rgba(255,87,46,0.2))"
     ]
   )
   
@@ -90,7 +90,7 @@ const Services = () => {
           <ClipboardCheck className="w-8 h-8 text-white" />
         </motion.div>
       ),
-      color: "#ca2f2e",
+      color: "#fff200",
       category: "Analysis"
     },
     {
@@ -105,7 +105,7 @@ const Services = () => {
           <Dumbbell className="w-8 h-8 text-white" />
         </motion.div>
       ),
-      color: "#ff5757",
+      color: "#fff200",
       category: "Physical"
     },
     {
@@ -120,7 +120,7 @@ const Services = () => {
           <Heart className="w-8 h-8 text-white" />
         </motion.div>
       ),
-      color: "#ca2f2e",
+      color: "#fff200",
       category: "Recovery"
     },
     {
@@ -135,7 +135,7 @@ const Services = () => {
           <Activity className="w-8 h-8 text-white" />
         </motion.div>
       ),
-      color: "#ff5757",
+      color: "#fff200",
       category: "Fitness"
     },
     {
@@ -150,7 +150,7 @@ const Services = () => {
           <Apple className="w-8 h-8 text-white" />
         </motion.div>
       ),
-      color: "#ca2f2e",
+      color: "#fff200",
       category: "Nutrition"
     },
     {
@@ -165,7 +165,7 @@ const Services = () => {
           <Users className="w-8 h-8 text-white" />
         </motion.div>
       ),
-      color: "#ff5757",
+      color: "#fff200",
       category: "Support"
     },
     {
@@ -180,7 +180,7 @@ const Services = () => {
           <Presentation className="w-8 h-8 text-white" />
         </motion.div>
       ),
-      color: "#ca2f2e",
+      color: "#fff200",
       category: "Education"
     },
     {
@@ -195,7 +195,7 @@ const Services = () => {
           <Laptop className="w-8 h-8 text-white" />
         </motion.div>
       ),
-      color: "#ff5757",
+      color: "#fff200",
       category: "Technology"
     }
   ]
@@ -324,11 +324,11 @@ const Services = () => {
         ].map((particle, i) => (
           <motion.div
             key={i}
-            className={`absolute ${particle.size} bg-red-500 rounded-full`}
+            className={`absolute ${particle.size} bg-[#fff200] rounded-full`}
             style={{
               left: `${particle.left}%`,
               top: `${particle.top}%`,
-              boxShadow: '0 0 10px rgba(255, 87, 87, 0.6), 0 0 20px rgba(202, 47, 46, 0.4)',
+              boxShadow: '0 0 10px rgba(255, 242, 0, 0.6), 0 0 20px rgba(255, 242, 0, 0.4)',
               filter: 'brightness(1.2)'
             }}
             animate={{
@@ -349,9 +349,9 @@ const Services = () => {
         <div className="absolute inset-0 pointer-events-none opacity-60">
           {/* Enhanced grid connection lines with glow effects */}
           <motion.div 
-            className="absolute top-1/2 left-1/4 w-1/2 h-0.5 bg-gradient-to-r from-transparent via-red-500/60 to-transparent"
+            className="absolute top-1/2 left-1/4 w-1/2 h-0.5 bg-gradient-to-r from-transparent via-[#fff200]/60 to-transparent"
             style={{
-              boxShadow: '0 0 15px rgba(255, 87, 87, 0.5)',
+              boxShadow: '0 0 15px rgba(255, 242, 0, 0.5)',
               filter: 'brightness(1.3)'
             }}
             animate={{
@@ -361,9 +361,9 @@ const Services = () => {
             transition={{ duration: 4, repeat: Infinity }}
           />
           <motion.div 
-            className="absolute top-1/3 left-1/3 w-1/3 h-0.5 bg-gradient-to-r from-transparent via-red-400/50 to-transparent"
+            className="absolute top-1/3 left-1/3 w-1/3 h-0.5 bg-gradient-to-r from-transparent via-[#fff200]/50 to-transparent"
             style={{
-              boxShadow: '0 0 10px rgba(255, 87, 87, 0.4)',
+              boxShadow: '0 0 10px rgba(255, 242, 0, 0.4)',
               filter: 'brightness(1.2)'
             }}
             animate={{
@@ -373,9 +373,9 @@ const Services = () => {
             transition={{ duration: 5, repeat: Infinity, delay: 1 }}
           />
           <motion.div 
-            className="absolute top-2/3 left-1/3 w-1/3 h-0.5 bg-gradient-to-r from-transparent via-red-500/50 to-transparent"
+            className="absolute top-2/3 left-1/3 w-1/3 h-0.5 bg-gradient-to-r from-transparent via-[#fff200]/50 to-transparent"
             style={{
-              boxShadow: '0 0 12px rgba(255, 87, 87, 0.4)',
+              boxShadow: '0 0 12px rgba(255, 242, 0, 0.4)',
               filter: 'brightness(1.25)'
             }}
             animate={{
@@ -387,9 +387,9 @@ const Services = () => {
           
           {/* Additional vertical connecting elements */}
           <motion.div 
-            className="absolute left-1/2 top-1/4 w-0.5 h-1/2 bg-gradient-to-b from-transparent via-red-500/40 to-transparent"
+            className="absolute left-1/2 top-1/4 w-0.5 h-1/2 bg-gradient-to-b from-transparent via-[#fff200]/40 to-transparent"
             style={{
-              boxShadow: '0 0 10px rgba(255, 87, 87, 0.3)',
+              boxShadow: '0 0 10px rgba(255, 242, 0, 0.3)',
             }}
             animate={{
               opacity: [0.3, 0.6, 0.3],
@@ -400,11 +400,11 @@ const Services = () => {
           
           {/* Diagonal connection lines */}
           <motion.div 
-            className="absolute top-1/4 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-red-400/30 to-transparent"
+            className="absolute top-1/4 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-[#fff200]/30 to-transparent"
             style={{
               transform: 'rotate(30deg)',
               transformOrigin: 'left center',
-              boxShadow: '0 0 8px rgba(255, 87, 87, 0.3)',
+              boxShadow: '0 0 8px rgba(255, 242, 0, 0.3)',
             }}
             animate={{
               opacity: [0.2, 0.5, 0.2]
@@ -412,11 +412,11 @@ const Services = () => {
             transition={{ duration: 7, repeat: Infinity, delay: 3 }}
           />
           <motion.div 
-            className="absolute top-3/4 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-red-400/30 to-transparent"
+            className="absolute top-3/4 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-[#fff200]/30 to-transparent"
             style={{
               transform: 'rotate(-30deg)',
               transformOrigin: 'left center',
-              boxShadow: '0 0 8px rgba(255, 87, 87, 0.3)',
+              boxShadow: '0 0 8px rgba(255, 242, 0, 0.3)',
             }}
             animate={{
               opacity: [0.2, 0.5, 0.2]
@@ -514,7 +514,7 @@ const Services = () => {
                       className="w-full h-full"
                       style={{
                         opacity: 0.9,
-                        filter: 'brightness(0) invert(1) drop-shadow(0 0 8px rgba(202,47,46,0.5)) drop-shadow(0 0 15px rgba(255,87,87,0.2))',
+                        filter: 'brightness(0) invert(1) drop-shadow(0 0 8px rgba(255,242,0,0.5)) drop-shadow(0 0 15px rgba(255,242,0,0.2))',
                         objectFit: 'contain'
                       }}
                       priority
@@ -523,16 +523,16 @@ const Services = () => {
                   
                   {/* Title text */}
                   <div className="text-center">
-                    <h2 
+                    <h2
                       className="text-xl md:text-2xl lg:text-3xl font-bold font-montserrat uppercase"
                       style={{
-                        color: '#ca2f2e',
+                        color: '#fff200',
                         textShadow: '0 2px 4px rgba(0,0,0,0.95)',
                         letterSpacing: '0.05em',
                         lineHeight: '1.1'
                       }}
                     >
-                      Services
+                      Our<br />Ecosystem
                     </h2>
                   </div>
                 </motion.div>
@@ -557,7 +557,7 @@ const Services = () => {
                 ].map((pos, i) => (
                   <motion.div
                     key={i}
-                    className="absolute w-1 h-1 bg-red-400 rounded-full"
+                    className="absolute w-1 h-1 bg-[#fff200] rounded-full"
                     style={{
                       left: '50%',
                       top: '50%',
@@ -595,7 +595,7 @@ const Services = () => {
           {Array.from({ length: 20 }, (_, i) => (
             <motion.div
               key={`diagonal-1-${i}`}
-              className="absolute bg-red-500/5"
+              className="absolute bg-[#fff200]/5"
               style={{
                 width: '1px',
                 height: '200%',
@@ -620,7 +620,7 @@ const Services = () => {
           {Array.from({ length: 20 }, (_, i) => (
             <motion.div
               key={`diagonal-2-${i}`}
-              className="absolute bg-red-400/4"
+              className="absolute bg-[#fff200]/4"
               style={{
                 width: '1px',
                 height: '200%',
@@ -645,7 +645,7 @@ const Services = () => {
           {Array.from({ length: 15 }, (_, i) => (
             <motion.div
               key={`horizontal-${i}`}
-              className="absolute bg-red-500/3"
+              className="absolute bg-[#fff200]/3"
               style={{
                 width: '100%',
                 height: '1px',
@@ -668,7 +668,7 @@ const Services = () => {
           {Array.from({ length: 15 }, (_, i) => (
             <motion.div
               key={`vertical-${i}`}
-              className="absolute bg-red-400/3"
+              className="absolute bg-[#fff200]/3"
               style={{
                 width: '1px',
                 height: '100%',

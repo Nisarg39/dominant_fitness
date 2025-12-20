@@ -39,7 +39,7 @@ const BlogNavigation = () => {
               <motion.div key={item.label}>
                 <Link
                   href={item.href}
-                  className="text-white/90 hover:text-red-500 transition-all duration-300 font-roboto uppercase tracking-wider"
+                  className="text-white/90 hover:text-[#fff200] transition-all duration-300 font-roboto uppercase tracking-wider"
                   style={{
                     padding: '8px 12px',
                     fontSize: '13px',
@@ -73,7 +73,7 @@ const BlogNavigation = () => {
               <motion.div key={item.label}>
                 <Link
                   href={item.href}
-                  className="text-white/90 hover:text-red-500 transition-all duration-300 font-roboto uppercase tracking-wider"
+                  className="text-white/90 hover:text-[#fff200] transition-all duration-300 font-roboto uppercase tracking-wider"
                   style={{
                     padding: '8px 12px',
                     fontSize: '13px',
@@ -107,7 +107,7 @@ const BlogNavigation = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-white/90 hover:text-red-500 transition-all duration-300 p-2"
+            className="text-white/90 hover:text-[#fff200] transition-all duration-300 p-2"
             aria-label="Toggle menu"
           >
             <div className="w-6 h-5 flex flex-col justify-between">
@@ -135,7 +135,7 @@ const BlogNavigation = () => {
                 key={item.label}
                 href={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-white/90 hover:text-red-500 transition-colors duration-300 text-sm font-medium py-2 text-left"
+                className="text-white/90 hover:text-[#fff200] transition-colors duration-300 text-sm font-medium py-2 text-left"
               >
                 {item.label}
               </Link>
