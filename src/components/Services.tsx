@@ -5,31 +5,31 @@
 import { useState, useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Image from 'next/image'
-import { 
-  ClipboardCheck, 
-  Dumbbell, 
-  Heart, 
-  Activity, 
-  Apple, 
-  Users, 
-  Presentation, 
-  Laptop 
+import {
+  ClipboardCheck,
+  Dumbbell,
+  Heart,
+  Activity,
+  Apple,
+  Users,
+  Presentation,
+  Laptop
 } from 'lucide-react'
 
 const Services = () => {
   const [activeComponent, setActiveComponent] = useState<number | null>(null)
   const [hoveredComponent, setHoveredComponent] = useState<number | null>(null)
   const sectionRef = useRef<HTMLDivElement>(null)
-  
+
   // Scroll-based animation setup - tracks core hexagon position relative to viewport center
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["center end", "center start"]
   })
-  
+
   // Pre-compute all transforms to avoid conditional hook calls
   const energySparksOpacity = useTransform(scrollYProgress, [0, 0.2, 0.6, 0.9, 1], [0, 0.7, 1, 0.5, 0])
-  
+
   // Pre-compute enhanced gradient background transform
   const gradientBackground = useTransform(
     scrollYProgress,
@@ -42,36 +42,36 @@ const Services = () => {
       "radial-gradient(circle at center, rgba(255,242,0,0.02) 0%, rgba(255,242,0,0.01) 15%, transparent 30%)"
     ]
   )
-  
+
   // Pre-compute enhanced gradient opacity transform
   const gradientOpacity = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.8, 1], [0, 0.3, 0.4, 0.4, 0])
-  
+
   // Pre-compute core transforms
   const coreY = useTransform(scrollYProgress, [0, 0.3, 0.6, 1], ['-200px', '-50%', '-50%', '-50%'])
   const coreScale = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.8, 1], [0.8, 1, 1.2, 1.2, 1])
   const coreOpacity = useTransform(scrollYProgress, [0, 0.2, 0.4, 1], [0.3, 0.7, 1, 1])
   const coreFilter = useTransform(
-    scrollYProgress, 
-    [0, 0.3, 0.6, 0.8, 1], 
+    scrollYProgress,
+    [0, 0.3, 0.6, 0.8, 1],
     [
       "drop-shadow(0 0 5px rgba(255,242,0,0.2)) drop-shadow(0 0 10px rgba(255,242,0,0.1))",
-      "drop-shadow(0 0 12px rgba(255,242,0,0.4)) drop-shadow(0 0 25px rgba(255,242,0,0.2))", 
+      "drop-shadow(0 0 12px rgba(255,242,0,0.4)) drop-shadow(0 0 25px rgba(255,242,0,0.2))",
       "drop-shadow(0 0 20px rgba(255,242,0,0.6)) drop-shadow(0 0 40px rgba(255,242,0,0.3))",
       "drop-shadow(0 0 20px rgba(255,242,0,0.6)) drop-shadow(0 0 40px rgba(255,242,0,0.3))",
       "drop-shadow(0 0 12px rgba(255,242,0,0.4)) drop-shadow(0 0 25px rgba(255,87,46,0.2))"
     ]
   )
-  
+
   // Pre-compute header text transforms
   const headerOpacity = useTransform(scrollYProgress, [0, 0.1, 0.3, 0.5], [0, 0.3, 0.8, 1])
   const headerY = useTransform(scrollYProgress, [0, 0.1, 0.3, 0.5], [40, 25, 10, 0])
   const headerScale = useTransform(scrollYProgress, [0, 0.1, 0.3, 0.5], [0.9, 0.95, 1, 1])
-  
+
   // Pre-compute orbital ring transforms
   const orbitalOpacity = useTransform(scrollYProgress, [0, 0.3, 0.5, 0.8, 1], [0, 0.3, 0.6, 0.6, 0])
   const orbitalScale = useTransform(scrollYProgress, [0, 0.3, 0.5, 0.8, 1], [0.8, 1, 1.1, 1.1, 0.8])
-  
-  
+
+
   // Animation phases based on core hexagon position relative to viewport center:
   // 0.2 to 0.5: Hexagons expand as core approaches viewport center
   // 0.5 to 0.7: Hexagons stay expanded while core is centered in viewport
@@ -204,51 +204,51 @@ const Services = () => {
   const componentPositions = performanceComponents.map((_, index) => {
     // Calculate symmetrical positions in a perfect circle around center
     const angle = (index * 45) - 90; // 360/8 = 45 degrees between each, -90 to start from top
-    
+
     // Use consistent radius values (no client-side checks during render)
     const radiusX = 45; // Horizontal radius
     const radiusY = 40; // Vertical radius (slightly less to compensate for aspect ratio)
     const centerX = 50; // Center at 50% of container
     const centerY = 50; // Center at 50% of container
-    
+
     // Convert polar to cartesian coordinates for perfect circle with aspect ratio compensation
     const finalX = centerX + (Math.cos(angle * Math.PI / 180) * radiusX);
     const finalY = centerY + (Math.sin(angle * Math.PI / 180) * radiusY);
-    
-    return { 
-      left: `${finalX}%`, 
-      top: `${finalY}%` 
+
+    return {
+      left: `${finalX}%`,
+      top: `${finalY}%`
     }
   })
 
   // Create individual transforms for each component to avoid hooks in callbacks
-  const componentTransforms: Array<{left: any, top: any, scale: any, opacity: any}> = []
-  const trailTransforms: Array<{scale: any, opacity: any}> = []
-  const labelTransforms: Array<{opacity: any, y: any}> = []
-  
+  const componentTransforms: Array<{ left: any, top: any, scale: any, opacity: any }> = []
+  const trailTransforms: Array<{ scale: any, opacity: any }> = []
+  const labelTransforms: Array<{ opacity: any, y: any }> = []
+
   for (let i = 0; i < performanceComponents.length; i++) {
     const position = componentPositions[i];
-    
+
     // Component transforms
     componentTransforms.push({
       left: useTransform(
-        scrollYProgress, 
-        [0, 0.3, 0.5, 0.8, 1], 
+        scrollYProgress,
+        [0, 0.3, 0.5, 0.8, 1],
         ['50%', '50%', position.left, position.left, '50%']
       ),
       top: useTransform(
-        scrollYProgress, 
-        [0, 0.3, 0.5, 0.8, 1], 
+        scrollYProgress,
+        [0, 0.3, 0.5, 0.8, 1],
         ['50%', '50%', position.top, position.top, '50%']
       ),
       scale: useTransform(
-        scrollYProgress, 
-        [0, 0.3, 0.5, 0.8, 1], 
+        scrollYProgress,
+        [0, 0.3, 0.5, 0.8, 1],
         [0, 0, 1, 1, 0]
       ),
       opacity: useTransform(
-        scrollYProgress, 
-        [0, 0.3, 0.4, 0.8, 1], 
+        scrollYProgress,
+        [0, 0.3, 0.4, 0.8, 1],
         [0, 0, 1, 1, 0]
       )
     });
@@ -256,13 +256,13 @@ const Services = () => {
     // Trail transforms
     trailTransforms.push({
       scale: useTransform(
-        scrollYProgress, 
-        [0, 0.3, 0.4, 0.5, 0.8, 1], 
+        scrollYProgress,
+        [0, 0.3, 0.4, 0.5, 0.8, 1],
         [0, 1.5, 0, 0, 1.5, 0]
       ),
       opacity: useTransform(
-        scrollYProgress, 
-        [0, 0.3, 0.4, 0.5, 0.8, 1], 
+        scrollYProgress,
+        [0, 0.3, 0.4, 0.5, 0.8, 1],
         [0, 0.6, 0, 0, 0.6, 0]
       )
     });
@@ -270,20 +270,20 @@ const Services = () => {
     // Label transforms
     labelTransforms.push({
       opacity: useTransform(
-        scrollYProgress, 
-        [0.2, 0.5, 0.7, 1], 
+        scrollYProgress,
+        [0.2, 0.5, 0.7, 1],
         [0, 1, 1, 0]
       ),
       y: useTransform(
-        scrollYProgress, 
-        [0.2, 0.5, 0.7, 1], 
+        scrollYProgress,
+        [0.2, 0.5, 0.7, 1],
         [20, 0, 0, 20]
       )
     });
   }
 
   return (
-    <section 
+    <section
       id="services-section"
       ref={sectionRef}
       className="relative bg-black overflow-hidden py-8 md:py-12 lg:py-16 special-about-section flex items-center"
@@ -296,7 +296,7 @@ const Services = () => {
       {/* Background Effects */}
       <div className="absolute inset-0">
         {/* Dynamic sunrise glow effect */}
-        <motion.div 
+        <motion.div
           className="absolute inset-0"
           style={{
             background: gradientBackground,
@@ -348,7 +348,7 @@ const Services = () => {
         {/* Enhanced Decorative connecting elements for visual flow */}
         <div className="absolute inset-0 pointer-events-none opacity-60">
           {/* Enhanced grid connection lines with glow effects */}
-          <motion.div 
+          <motion.div
             className="absolute top-1/2 left-1/4 w-1/2 h-0.5 bg-gradient-to-r from-transparent via-[#fff200]/60 to-transparent"
             style={{
               boxShadow: '0 0 15px rgba(255, 242, 0, 0.5)',
@@ -360,7 +360,7 @@ const Services = () => {
             }}
             transition={{ duration: 4, repeat: Infinity }}
           />
-          <motion.div 
+          <motion.div
             className="absolute top-1/3 left-1/3 w-1/3 h-0.5 bg-gradient-to-r from-transparent via-[#fff200]/50 to-transparent"
             style={{
               boxShadow: '0 0 10px rgba(255, 242, 0, 0.4)',
@@ -372,7 +372,7 @@ const Services = () => {
             }}
             transition={{ duration: 5, repeat: Infinity, delay: 1 }}
           />
-          <motion.div 
+          <motion.div
             className="absolute top-2/3 left-1/3 w-1/3 h-0.5 bg-gradient-to-r from-transparent via-[#fff200]/50 to-transparent"
             style={{
               boxShadow: '0 0 12px rgba(255, 242, 0, 0.4)',
@@ -384,9 +384,9 @@ const Services = () => {
             }}
             transition={{ duration: 4.5, repeat: Infinity, delay: 2 }}
           />
-          
+
           {/* Additional vertical connecting elements */}
-          <motion.div 
+          <motion.div
             className="absolute left-1/2 top-1/4 w-0.5 h-1/2 bg-gradient-to-b from-transparent via-[#fff200]/40 to-transparent"
             style={{
               boxShadow: '0 0 10px rgba(255, 242, 0, 0.3)',
@@ -397,9 +397,9 @@ const Services = () => {
             }}
             transition={{ duration: 6, repeat: Infinity, delay: 0.5 }}
           />
-          
+
           {/* Diagonal connection lines */}
-          <motion.div 
+          <motion.div
             className="absolute top-1/4 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-[#fff200]/30 to-transparent"
             style={{
               transform: 'rotate(30deg)',
@@ -411,7 +411,7 @@ const Services = () => {
             }}
             transition={{ duration: 7, repeat: Infinity, delay: 3 }}
           />
-          <motion.div 
+          <motion.div
             className="absolute top-3/4 left-1/4 w-1/2 h-px bg-gradient-to-r from-transparent via-[#fff200]/30 to-transparent"
             style={{
               transform: 'rotate(-30deg)',
@@ -429,9 +429,9 @@ const Services = () => {
 
       {/* DOMINATE Performance Matrix */}
       <div className="relative z-10 container mx-auto px-4 lg:px-8 w-full">
-        
+
         {/* Energy Core - Central Command Hub */}
-        <motion.div 
+        <motion.div
           className="absolute left-1/2 top-1/2 z-30"
           style={{
             x: '-50%',
@@ -443,7 +443,7 @@ const Services = () => {
         >
           {/* Core Container */}
           <div className="relative inline-block">
-            
+
             {/* Central Power Core with Header Text / Component Details */}
             <div className="relative z-10 flex flex-col items-center justify-center h-[120px] md:h-[250px] lg:h-[300px]">
               {(activeComponent || hoveredComponent) ? (
@@ -451,12 +451,12 @@ const Services = () => {
                 <div className="flex flex-col items-center justify-center text-center h-full">
                   {(() => {
                     const component = performanceComponents.find(c => c.id === (activeComponent || hoveredComponent));
-                    
+
                     return component ? (
                       <div className="flex flex-col items-center justify-center space-y-1 md:space-y-3">
                         {/* Component Icon - Moved to top */}
                         <div className="flex justify-center">
-                          <div 
+                          <div
                             className="w-6 h-6 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-lg flex items-center justify-center"
                             style={{
                               background: `linear-gradient(135deg, ${component.color}30, ${component.color}10)`,
@@ -466,10 +466,10 @@ const Services = () => {
                             <div className="text-white scale-50 md:scale-90">{component.icon}</div>
                           </div>
                         </div>
-                        
+
                         {/* Component Title */}
                         <div className="flex flex-col items-center">
-                          <h2 
+                          <h2
                             className="text-[10px] md:text-lg lg:text-xl font-bold font-montserrat uppercase leading-tight"
                             style={{
                               color: component.color,
@@ -480,9 +480,9 @@ const Services = () => {
                             {component.title}
                           </h2>
                         </div>
-                        
+
                         {/* Description */}
-                        <p 
+                        <p
                           className="text-[8px] md:text-base text-white/80 font-medium leading-relaxed text-center px-1 md:px-4 max-w-[120px] md:max-w-md mx-auto"
                           style={{
                             textShadow: '0 2px 8px rgba(0,0,0,0.8)'
@@ -496,7 +496,7 @@ const Services = () => {
                 </div>
               ) : (
                 /* Show Default Header Text */
-                <motion.div 
+                <motion.div
                   className="flex flex-col items-center justify-center h-full space-y-3"
                   style={{
                     opacity: headerOpacity,
@@ -520,7 +520,7 @@ const Services = () => {
                       priority
                     />
                   </div>
-                  
+
                   {/* Title text */}
                   <div className="text-center">
                     <h2
@@ -537,7 +537,7 @@ const Services = () => {
                   </div>
                 </motion.div>
               )}
-              
+
               {/* Floating Energy Sparks around Text - Conditionally visible */}
               <motion.div
                 className="absolute inset-0 pointer-events-none"
@@ -584,7 +584,7 @@ const Services = () => {
         </motion.div>
 
         {/* Crisscross Texture Pattern - Low opacity background texture */}
-        <motion.div 
+        <motion.div
           className="absolute inset-0 pointer-events-none"
           style={{
             opacity: orbitalOpacity,
@@ -615,7 +615,7 @@ const Services = () => {
               }}
             />
           ))}
-          
+
           {/* Counter-diagonal lines */}
           {Array.from({ length: 20 }, (_, i) => (
             <motion.div
@@ -640,7 +640,7 @@ const Services = () => {
               }}
             />
           ))}
-          
+
           {/* Fine horizontal grid lines */}
           {Array.from({ length: 15 }, (_, i) => (
             <motion.div
@@ -663,7 +663,7 @@ const Services = () => {
               }}
             />
           ))}
-          
+
           {/* Fine vertical grid lines */}
           {Array.from({ length: 15 }, (_, i) => (
             <motion.div
@@ -690,7 +690,7 @@ const Services = () => {
 
         {/* Symmetrical Performance Matrix Layout */}
         <div className="relative max-w-7xl mx-auto">
-          
+
 
           {/* Performance Components - Radial Reveal Layout */}
           <div className="relative z-10 w-full aspect-square md:aspect-auto md:h-[650px] lg:h-[750px] max-w-6xl mx-auto">
@@ -698,7 +698,7 @@ const Services = () => {
               const transforms = componentTransforms[index];
               const trailEffectTransforms = trailTransforms[index];
               const labelTransformData = labelTransforms[index];
-              
+
               return (
                 <motion.div
                   key={component.id}
@@ -710,7 +710,7 @@ const Services = () => {
                     opacity: transforms.opacity,
                     zIndex: 20
                   }}
-                  whileHover={{ 
+                  whileHover={{
                     y: -15,
                     transition: { y: { duration: 0.3 } }
                   }}
@@ -747,7 +747,7 @@ const Services = () => {
                       }
                     }}
                   />
-                  
+
                   {/* Launch Trail Effect */}
                   <motion.div
                     className="absolute inset-0 rounded-full"
@@ -761,28 +761,26 @@ const Services = () => {
                   />
 
                   {/* Hexagonal Performance Pod - Optimized sizes for mobile */}
-                  <motion.div 
+                  <motion.div
                     className="relative w-16 h-16 md:w-18 md:h-18 lg:w-20 lg:h-20 transition-all duration-300"
                     style={{
                       background: `conic-gradient(from 0deg, ${component.color}40, ${component.color}20, ${component.color}60, ${component.color}30)`,
                       clipPath: 'polygon(50% 0%, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%)',
-                      filter: `drop-shadow(0 0 15px ${component.color}) brightness(${
-                        (activeComponent === component.id || hoveredComponent === component.id) ? 1.6 : 1
-                      }) ${
-                        (activeComponent === component.id || hoveredComponent === component.id) 
-                          ? `drop-shadow(0 0 35px ${component.color}) drop-shadow(0 0 60px ${component.color}80) drop-shadow(0 0 80px ${component.color}60)` 
+                      filter: `drop-shadow(0 0 15px ${component.color}) brightness(${(activeComponent === component.id || hoveredComponent === component.id) ? 1.6 : 1
+                        }) ${(activeComponent === component.id || hoveredComponent === component.id)
+                          ? `drop-shadow(0 0 35px ${component.color}) drop-shadow(0 0 60px ${component.color}80) drop-shadow(0 0 80px ${component.color}60)`
                           : ''
-                      }`,
+                        }`,
                       transform: hoveredComponent === component.id ? 'scale(1.08)' : 'scale(1)',
                       pointerEvents: 'none'
                     }}
                     animate={{
-                      boxShadow: (activeComponent === component.id || hoveredComponent === component.id) 
+                      boxShadow: (activeComponent === component.id || hoveredComponent === component.id)
                         ? [
-                            `0 0 40px ${component.color}, 0 0 80px ${component.color}70, 0 0 120px ${component.color}40, 0 0 160px ${component.color}25`,
-                            `0 0 50px ${component.color}, 0 0 100px ${component.color}80, 0 0 150px ${component.color}50, 0 0 200px ${component.color}30`,
-                            `0 0 40px ${component.color}, 0 0 80px ${component.color}70, 0 0 120px ${component.color}40, 0 0 160px ${component.color}25`
-                          ]
+                          `0 0 40px ${component.color}, 0 0 80px ${component.color}70, 0 0 120px ${component.color}40, 0 0 160px ${component.color}25`,
+                          `0 0 50px ${component.color}, 0 0 100px ${component.color}80, 0 0 150px ${component.color}50, 0 0 200px ${component.color}30`,
+                          `0 0 40px ${component.color}, 0 0 80px ${component.color}70, 0 0 120px ${component.color}40, 0 0 160px ${component.color}25`
+                        ]
                         : 'none'
                     }}
                     transition={{
@@ -793,108 +791,108 @@ const Services = () => {
                       }
                     }}
                   >
-                  {/* Inner Performance Ring */}
-                  <div 
-                    className="absolute inset-2 flex items-center justify-center"
+                    {/* Inner Performance Ring */}
+                    <div
+                      className="absolute inset-2 flex items-center justify-center"
+                      style={{
+                        background: 'linear-gradient(135deg, rgba(0,0,0,0.9), rgba(0,0,0,0.7))',
+                        clipPath: 'polygon(50% 0%, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%)',
+                        border: `2px solid ${component.color}80`,
+                        pointerEvents: 'none'
+                      }}
+                    >
+                      <div className="text-white filter drop-shadow-lg scale-75 md:scale-90 lg:scale-100" style={{ pointerEvents: 'none' }}>{component.icon}</div>
+                    </div>
+
+                    {/* Performance Meter Lines */}
+                    {[...Array(6)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute w-px bg-white/30"
+                        style={{
+                          height: '12px',
+                          left: '50%',
+                          top: '8px',
+                          transformOrigin: '0 60px',
+                          transform: `rotate(${i * 60}deg)`,
+                          pointerEvents: 'none'
+                        }}
+                        animate={{
+                          backgroundColor: (activeComponent === component.id || hoveredComponent === component.id)
+                            ? [component.color, '#ffffff', component.color]
+                            : 'rgba(255,255,255,0.3)',
+                          height: (activeComponent === component.id || hoveredComponent === component.id) ? ['12px', '18px', '12px'] : '12px'
+                        }}
+                        transition={{
+                          duration: 1.5,
+                          repeat: (activeComponent === component.id || hoveredComponent === component.id) ? Infinity : 0,
+                          delay: i * 0.1
+                        }}
+                      />
+                    ))}
+
+                    {/* Energy Pulse Ring */}
+                    {(hoveredComponent === component.id || activeComponent === component.id) && (
+                      <motion.div
+                        className="absolute inset-0"
+                        style={{
+                          border: `2px solid ${component.color}`,
+                          clipPath: 'polygon(50% 0%, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%)',
+                          pointerEvents: 'none'
+                        }}
+                        animate={{
+                          scale: [1, 1.2, 1],
+                          opacity: [0.8, 0, 0.8]
+                        }}
+                        transition={{
+                          duration: 1.5,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                      />
+                    )}
+                  </motion.div>
+
+                  {/* Component Data Label - Floating Style - Desktop Only */}
+                  <motion.div
+                    className="hidden md:block absolute -bottom-12 md:-bottom-14 lg:-bottom-16 left-1/2 transform -translate-x-1/2 text-center min-w-max"
                     style={{
-                      background: 'linear-gradient(135deg, rgba(0,0,0,0.9), rgba(0,0,0,0.7))',
-                      clipPath: 'polygon(50% 0%, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%)',
-                      border: `2px solid ${component.color}80`,
+                      opacity: labelTransformData.opacity,
+                      y: labelTransformData.y,
                       pointerEvents: 'none'
                     }}
                   >
-                    <div className="text-white filter drop-shadow-lg scale-75 md:scale-90 lg:scale-100" style={{ pointerEvents: 'none' }}>{component.icon}</div>
-                  </div>
-
-                  {/* Performance Meter Lines */}
-                  {[...Array(6)].map((_, i) => (
-                    <motion.div
-                      key={i}
-                      className="absolute w-px bg-white/30"
+                    <div
+                      className="hidden md:inline-block px-3 py-1 mb-2 rounded-full text-sm font-bold uppercase tracking-wider border whitespace-nowrap"
                       style={{
-                        height: '12px',
-                        left: '50%',
-                        top: '8px',
-                        transformOrigin: '0 60px',
-                        transform: `rotate(${i * 60}deg)`,
-                        pointerEvents: 'none'
+                        backgroundColor: `${component.color}30`,
+                        color: '#ffffff',
+                        borderColor: `${component.color}70`,
+                        backdropFilter: 'blur(8px)'
                       }}
-                      animate={{
-                        backgroundColor: (activeComponent === component.id || hoveredComponent === component.id)
-                          ? [component.color, '#ffffff', component.color]
-                          : 'rgba(255,255,255,0.3)',
-                        height: (activeComponent === component.id || hoveredComponent === component.id) ? ['12px', '18px', '12px'] : '12px'
-                      }}
-                      transition={{
-                        duration: 1.5,
-                        repeat: (activeComponent === component.id || hoveredComponent === component.id) ? Infinity : 0,
-                        delay: i * 0.1
-                      }}
-                    />
-                  ))}
+                    >
+                      {component.title}
+                    </div>
 
-                  {/* Energy Pulse Ring */}
-                  {(hoveredComponent === component.id || activeComponent === component.id) && (
+                    {/* Performance Indicator Bar */}
                     <motion.div
-                      className="absolute inset-0"
-                      style={{
-                        border: `2px solid ${component.color}`,
-                        clipPath: 'polygon(50% 0%, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%)',
-                        pointerEvents: 'none'
-                      }}
-                      animate={{
-                        scale: [1, 1.2, 1],
-                        opacity: [0.8, 0, 0.8]
-                      }}
-                      transition={{
-                        duration: 1.5,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                    />
-                  )}
+                      className="w-12 h-0.5 mx-auto mt-1 rounded-full overflow-hidden"
+                      style={{ backgroundColor: `${component.color}30` }}
+                    >
+                      <motion.div
+                        className="h-full rounded-full"
+                        style={{ backgroundColor: component.color }}
+                        initial={{ width: '0%' }}
+                        animate={{
+                          width: hoveredComponent === component.id ? '100%' : '60%',
+                          boxShadow: hoveredComponent === component.id
+                            ? `0 0 8px ${component.color}`
+                            : 'none'
+                        }}
+                        transition={{ duration: 0.8, delay: 1.4 + index * 0.1 }}
+                      />
+                    </motion.div>
                   </motion.div>
-
-                {/* Component Data Label - Floating Style - Desktop Only */}
-                <motion.div 
-                  className="hidden md:block absolute -bottom-12 md:-bottom-14 lg:-bottom-16 left-1/2 transform -translate-x-1/2 text-center min-w-max"
-                  style={{
-                    opacity: labelTransformData.opacity,
-                    y: labelTransformData.y,
-                    pointerEvents: 'none'
-                  }}
-                >
-                  <div 
-                    className="hidden md:inline-block px-3 py-1 mb-2 rounded-full text-sm font-bold uppercase tracking-wider border whitespace-nowrap"
-                    style={{
-                      backgroundColor: `${component.color}30`,
-                      color: '#ffffff',
-                      borderColor: `${component.color}70`,
-                      backdropFilter: 'blur(8px)'
-                    }}
-                  >
-                    {component.title}
-                  </div>
-
-                  {/* Performance Indicator Bar */}
-                  <motion.div
-                    className="w-12 h-0.5 mx-auto mt-1 rounded-full overflow-hidden"
-                    style={{ backgroundColor: `${component.color}30` }}
-                  >
-                    <motion.div
-                      className="h-full rounded-full"
-                      style={{ backgroundColor: component.color }}
-                      initial={{ width: '0%' }}
-                      animate={{ 
-                        width: hoveredComponent === component.id ? '100%' : '60%',
-                        boxShadow: hoveredComponent === component.id 
-                          ? `0 0 8px ${component.color}` 
-                          : 'none'
-                      }}
-                      transition={{ duration: 0.8, delay: 1.4 + index * 0.1 }}
-                    />
-                  </motion.div>
-                </motion.div>
 
                 </motion.div>
               )

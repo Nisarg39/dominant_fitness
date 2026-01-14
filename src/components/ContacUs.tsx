@@ -4,10 +4,10 @@ import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { createContactUs } from '@/server/actions/userActions'
 // Custom animation components to replace React Bits
-const FadeContent = ({ children, duration = 1000, direction = 'up' }: { 
-  children: React.ReactNode, 
-  duration?: number, 
-  direction?: 'up' | 'down' | 'left' | 'right' 
+const FadeContent = ({ children, duration = 1000, direction = 'up' }: {
+  children: React.ReactNode,
+  duration?: number,
+  direction?: 'up' | 'down' | 'left' | 'right'
 }) => {
   const getInitialPosition = () => {
     switch (direction) {
@@ -29,10 +29,10 @@ const FadeContent = ({ children, duration = 1000, direction = 'up' }: {
   )
 }
 
-const SlideInContent = ({ children, duration = 1000, direction = 'right' }: { 
-  children: React.ReactNode, 
-  duration?: number, 
-  direction?: 'up' | 'down' | 'left' | 'right' 
+const SlideInContent = ({ children, duration = 1000, direction = 'right' }: {
+  children: React.ReactNode,
+  duration?: number,
+  direction?: 'up' | 'down' | 'left' | 'right'
 }) => {
   const getInitialPosition = () => {
     switch (direction) {
@@ -55,18 +55,18 @@ const SlideInContent = ({ children, duration = 1000, direction = 'right' }: {
   )
 }
 
-const StaggeredContent = ({ children, delay = 0, stagger = 100 }: { 
-  children: React.ReactNode, 
-  delay?: number, 
-  stagger?: number 
+const StaggeredContent = ({ children, delay = 0, stagger = 100 }: {
+  children: React.ReactNode,
+  delay?: number,
+  stagger?: number
 }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ 
+      transition={{
         delay: delay / 1000,
-        staggerChildren: stagger / 1000 
+        staggerChildren: stagger / 1000
       }}
     >
       {children}
@@ -84,8 +84,8 @@ const ContacUs = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [focusedField, setFocusedField] = useState<string | null>(null)
-  const [errors, setErrors] = useState<{[key: string]: string}>({})
-  const [touched, setTouched] = useState<{[key: string]: boolean}>({})
+  const [errors, setErrors] = useState<{ [key: string]: string }>({})
+  const [touched, setTouched] = useState<{ [key: string]: boolean }>({})
   const sectionRef = useRef<HTMLElement>(null)
 
   const validateField = (name: string, value: string): string => {
@@ -109,25 +109,25 @@ const ContacUs = () => {
   }
 
   const validateForm = (): boolean => {
-    const newErrors: {[key: string]: string} = {}
-    
+    const newErrors: { [key: string]: string } = {}
+
     // Validate required fields only
     newErrors.name = validateField('name', formData.name)
     newErrors.email = validateField('email', formData.email)
     newErrors.message = validateField('message', formData.message)
-    
+
     // Phone is optional, but validate if provided
     if (formData.phone.trim() !== '') {
       newErrors.phone = validateField('phone', formData.phone)
     }
-    
+
     setErrors(newErrors)
     return Object.values(newErrors).every(error => error === '')
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    
+
     // Special handling for phone number - only allow digits and limit to 10
     if (name === 'phone') {
       const numericValue = value.replace(/\D/g, '') // Remove all non-digits
@@ -137,7 +137,7 @@ const ContacUs = () => {
     } else {
       setFormData(prev => ({ ...prev, [name]: value }))
     }
-    
+
     // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }))
@@ -148,7 +148,7 @@ const ContacUs = () => {
     const { name, value } = e.target
     setFocusedField(null)
     setTouched(prev => ({ ...prev, [name]: true }))
-    
+
     // Validate field on blur
     const error = validateField(name, value)
     setErrors(prev => ({ ...prev, [name]: error }))
@@ -156,23 +156,23 @@ const ContacUs = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     // Validate form before submission
     if (!validateForm()) {
       setSubmitStatus('error')
       return
     }
-    
+
     setIsSubmitting(true)
     setSubmitStatus('idle')
-    
+
     try {
       // Call server action to save contact data
       const result = await createContactUs(formData)
-      
+
       if (result.success) {
         setSubmitStatus('success')
-        
+
         // Reset form after success
         setTimeout(() => {
           setFormData({ name: '', email: '', phone: '', message: '' })
@@ -197,7 +197,7 @@ const ContacUs = () => {
       name: 'WhatsApp',
       icon: 'M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.214-.361a9.86 9.86 0 01-1.378-5.031c0-5.449 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488',
       color: '#25D366',
-      url: 'https://wa.me/1234567890'
+      url: 'https://wa.me/9309213649'
     },
     {
       name: 'Facebook',
@@ -232,15 +232,15 @@ const ContacUs = () => {
   }
 
   return (
-    <section 
-      id="contact-section" 
+    <section
+      id="contact-section"
       ref={sectionRef}
       className="relative min-h-screen flex items-center overflow-hidden bg-black"
     >
       {/* Simple Dark Background */}
       <div className="absolute inset-0 z-0 bg-black">
         {/* Subtle gradient for depth */}
-        <div 
+        <div
           className="absolute inset-0"
           style={{
             background: `
@@ -254,7 +254,7 @@ const ContacUs = () => {
       {/* Main Content */}
       <div className="relative z-20 container mx-auto px-4 lg:px-8 ">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-screen">
-          
+
           {/* Left Side - Contact Info */}
           <FadeContent duration={1000} direction="left">
             <div className="space-y-8">
@@ -264,7 +264,7 @@ const ContacUs = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
               >
-                <h2 
+                <h2
                   className="text-6xl font-bold font-montserrat uppercase mb-4 whitespace-nowrap"
                   style={{
                     color: '#fff200',
@@ -275,15 +275,15 @@ const ContacUs = () => {
                 >
                   GET IN TOUCH
                 </h2>
-                
-                <div 
+
+                <div
                   className="w-24 h-1 bg-gradient-to-r from-[#fff200] to-[#fff200] mb-6"
                   style={{
                     boxShadow: '0 0 10px rgba(255,242,0,0.5)'
                   }}
                 />
-                
-                <p 
+
+                <p
                   className="text-white/90 text-lg lg:text-xl font-medium leading-relaxed"
                   style={{
                     textShadow: '0 2px 4px rgba(0,0,0,0.8)',
@@ -311,7 +311,7 @@ const ContacUs = () => {
                       }}
                     >
                       <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
                       </svg>
                     </div>
                     <div>
@@ -320,7 +320,7 @@ const ContacUs = () => {
                     </div>
                   </motion.a>
 
-                  <motion.a 
+                  <motion.a
                     href="https://wa.me/9309213649"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -336,7 +336,7 @@ const ContacUs = () => {
                       }}
                     >
                       <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
                       </svg>
                     </div>
                     <div>
@@ -358,7 +358,7 @@ const ContacUs = () => {
                       }}
                     >
                       <svg className="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
                       </svg>
                     </div>
                     <div>
@@ -416,7 +416,7 @@ const ContacUs = () => {
                         whileHover={{ scale: 1.05 }}
                         transition={{ duration: 0.2 }}
                       >
-                        <path d={social.icon}/>
+                        <path d={social.icon} />
                       </motion.svg>
                     </motion.a>
                   ))}
@@ -454,22 +454,20 @@ const ContacUs = () => {
                     onFocus={() => setFocusedField('name')}
                     onBlur={handleInputBlur}
                     disabled={isSubmitting}
-                    className={`w-full px-4 py-3 bg-black/30 border rounded-lg text-white placeholder-white/50 focus:outline-none transition-all duration-300 text-base ${
-                      isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-                    } ${
-                      errors.name && touched.name 
-                        ? 'border-[#fff200]' 
-                        : focusedField === 'name' 
-                          ? 'border-[#fff200]' 
+                    className={`w-full px-4 py-3 bg-black/30 border rounded-lg text-white placeholder-white/50 focus:outline-none transition-all duration-300 text-base ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                      } ${errors.name && touched.name
+                        ? 'border-[#fff200]'
+                        : focusedField === 'name'
+                          ? 'border-[#fff200]'
                           : 'border-white/20'
-                    }`}
+                      }`}
                     placeholder="Enter your full name"
                     variants={inputVariants}
                     animate={
-                      errors.name && touched.name 
-                        ? 'error' 
-                        : focusedField === 'name' 
-                          ? 'focus' 
+                      errors.name && touched.name
+                        ? 'error'
+                        : focusedField === 'name'
+                          ? 'focus'
                           : 'blur'
                     }
                     required
@@ -502,22 +500,20 @@ const ContacUs = () => {
                     onFocus={() => setFocusedField('email')}
                     onBlur={handleInputBlur}
                     disabled={isSubmitting}
-                    className={`w-full px-4 py-3 bg-black/30 border rounded-lg text-white placeholder-white/50 focus:outline-none transition-all duration-300 text-base ${
-                      isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-                    } ${
-                      errors.email && touched.email 
-                        ? 'border-[#fff200]' 
-                        : focusedField === 'email' 
-                          ? 'border-[#fff200]' 
+                    className={`w-full px-4 py-3 bg-black/30 border rounded-lg text-white placeholder-white/50 focus:outline-none transition-all duration-300 text-base ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                      } ${errors.email && touched.email
+                        ? 'border-[#fff200]'
+                        : focusedField === 'email'
+                          ? 'border-[#fff200]'
                           : 'border-white/20'
-                    }`}
+                      }`}
                     placeholder="Enter your email address"
                     variants={inputVariants}
                     animate={
-                      errors.email && touched.email 
-                        ? 'error' 
-                        : focusedField === 'email' 
-                          ? 'focus' 
+                      errors.email && touched.email
+                        ? 'error'
+                        : focusedField === 'email'
+                          ? 'focus'
                           : 'blur'
                     }
                     required
@@ -550,22 +546,20 @@ const ContacUs = () => {
                     onFocus={() => setFocusedField('phone')}
                     onBlur={handleInputBlur}
                     disabled={isSubmitting}
-                    className={`w-full px-4 py-3 bg-black/30 border rounded-lg text-white placeholder-white/50 focus:outline-none transition-all duration-300 text-base ${
-                      isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-                    } ${
-                      errors.phone && touched.phone 
-                        ? 'border-[#fff200]' 
-                        : focusedField === 'phone' 
-                          ? 'border-[#fff200]' 
+                    className={`w-full px-4 py-3 bg-black/30 border rounded-lg text-white placeholder-white/50 focus:outline-none transition-all duration-300 text-base ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                      } ${errors.phone && touched.phone
+                        ? 'border-[#fff200]'
+                        : focusedField === 'phone'
+                          ? 'border-[#fff200]'
                           : 'border-white/20'
-                    }`}
+                      }`}
                     placeholder="Enter 10-digit phone number (optional)"
                     variants={inputVariants}
                     animate={
-                      errors.phone && touched.phone 
-                        ? 'error' 
-                        : focusedField === 'phone' 
-                          ? 'focus' 
+                      errors.phone && touched.phone
+                        ? 'error'
+                        : focusedField === 'phone'
+                          ? 'focus'
                           : 'blur'
                     }
                     maxLength={10}
@@ -598,22 +592,20 @@ const ContacUs = () => {
                     onBlur={handleInputBlur}
                     disabled={isSubmitting}
                     rows={4}
-                    className={`w-full px-4 py-3 bg-black/30 border rounded-lg text-white placeholder-white/50 focus:outline-none transition-all duration-300 resize-none text-base ${
-                      isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-                    } ${
-                      errors.message && touched.message 
-                        ? 'border-[#fff200]' 
-                        : focusedField === 'message' 
-                          ? 'border-[#fff200]' 
+                    className={`w-full px-4 py-3 bg-black/30 border rounded-lg text-white placeholder-white/50 focus:outline-none transition-all duration-300 resize-none text-base ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                      } ${errors.message && touched.message
+                        ? 'border-[#fff200]'
+                        : focusedField === 'message'
+                          ? 'border-[#fff200]'
                           : 'border-white/20'
-                    }`}
+                      }`}
                     placeholder="Tell us about your goals and how we can help you dominate..."
                     variants={inputVariants}
                     animate={
-                      errors.message && touched.message 
-                        ? 'error' 
-                        : focusedField === 'message' 
-                          ? 'focus' 
+                      errors.message && touched.message
+                        ? 'error'
+                        : focusedField === 'message'
+                          ? 'focus'
                           : 'blur'
                     }
                     required
@@ -639,9 +631,8 @@ const ContacUs = () => {
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full py-4 px-8 rounded-lg font-bold uppercase tracking-wider transition-all duration-300 relative overflow-hidden group text-base ${
-                      isSubmitting ? 'cursor-not-allowed opacity-75 text-white' : 'cursor-pointer text-black'
-                    }`}
+                    className={`w-full py-4 px-8 rounded-lg font-bold uppercase tracking-wider transition-all duration-300 relative overflow-hidden group text-base ${isSubmitting ? 'cursor-not-allowed opacity-75 text-white' : 'cursor-pointer text-black'
+                      }`}
                     style={{
                       background: isSubmitting
                         ? 'linear-gradient(135deg, #666, #888)'
@@ -656,7 +647,7 @@ const ContacUs = () => {
                       boxShadow: '0 12px 35px rgba(255,242,0,0.3)'
                     } : {}}
                     whileTap={!isSubmitting ? { scale: 0.98 } : {}}
-                    animate={isSubmitting ? { 
+                    animate={isSubmitting ? {
                       scale: 0.98,
                       transition: { repeat: Infinity, repeatType: "reverse", duration: 1 }
                     } : {}}
@@ -678,7 +669,7 @@ const ContacUs = () => {
                         }}
                       />
                     )}
-                    
+
                     <AnimatePresence mode="wait">
                       {isSubmitting ? (
                         <motion.div
@@ -708,7 +699,7 @@ const ContacUs = () => {
                           className="flex items-center justify-center space-x-2 relative z-10"
                         >
                           <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                            <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
                           </svg>
                           <span>MESSAGE SENT!</span>
                         </motion.div>
@@ -721,7 +712,7 @@ const ContacUs = () => {
                           className="flex items-center justify-center space-x-2 relative z-10"
                         >
                           <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z"/>
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z" />
                           </svg>
                           <span>ERROR - TRY AGAIN</span>
                         </motion.div>
@@ -734,14 +725,14 @@ const ContacUs = () => {
                           className="flex items-center justify-center space-x-2 relative z-10"
                         >
                           <span>SEND MESSAGE</span>
-                          <motion.svg 
-                            className="w-5 h-5" 
-                            fill="currentColor" 
+                          <motion.svg
+                            className="w-5 h-5"
+                            fill="currentColor"
                             viewBox="0 0 24 24"
                             animate={{ x: [0, 5, 0] }}
                             transition={{ repeat: Infinity, duration: 1.5 }}
                           >
-                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
                           </motion.svg>
                         </motion.div>
                       )}
@@ -752,7 +743,7 @@ const ContacUs = () => {
             </motion.div>
           </SlideInContent>
         </div>
-    </div>
+      </div>
     </section>
   )
 }

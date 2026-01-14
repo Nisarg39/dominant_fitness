@@ -1,708 +1,224 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
 interface Testimonial {
   id: number;
-  title: string;
+  author: string;
+  position: string;
   description: string;
-  backgroundImage: string;
-  author?: string;
-  position?: string;
+  stars: number;
+  date: string;
+  avatar?: string;
+  initials: string;
 }
 
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    title: "Championship Mindset",
-    description: "This program transformed my mental game completely. I went from doubting my abilities to dominating every competition. The performance strategies taught here are game-changing for any serious athlete.",
-    backgroundImage: "https://c4.wallpaperflare.com/wallpaper/303/734/476/kobe-bryant-nba-sports-wallpaper-preview.jpg",
     author: "Marcus Thompson",
-    position: "Professional Basketball Player, NBA"
+    position: "Professional Basketball Player, NBA",
+    description: "This program transformed my mental game completely. I went from doubting my abilities to dominating every competition. The performance strategies taught here are game-changing for any serious athlete.",
+    stars: 5,
+    date: "2023-11-15",
+    initials: "MT"
   },
   {
     id: 2,
-    title: "Elite Performance",
-    description: "The training methodology here is unlike anything I've experienced. My speed, agility, and overall athletic performance have reached levels I never thought possible. This is what domination looks like.",
-    backgroundImage: "https://static.vecteezy.com/system/resources/thumbnails/066/315/783/small/dynamic-athlete-sprinting-on-an-illuminated-field-during-a-high-stakes-match-in-early-evening-hours-photo.jpeg",
     author: "Sarah Chen",
-    position: "Olympic Track & Field Athlete"
+    position: "Olympic Track & Field Athlete",
+    description: "The training methodology here is unlike anything I've experienced. My speed, agility, and overall athletic performance have reached levels I never thought possible. This is what domination looks like.",
+    stars: 5,
+    date: "2023-12-02",
+    initials: "SC"
   },
   {
     id: 3,
-    title: "Victory Redefined",
-    description: "From average to exceptional - that's the transformation I experienced. The systematic approach to performance enhancement gave me the edge I needed to dominate my sport at the highest level.",
-    backgroundImage: "https://wallpaperbat.com/img/583009-wallpaper.jpg",
     author: "James Rodriguez",
-    position: "Professional Soccer Player"
+    position: "Professional Soccer Player",
+    description: "From average to exceptional - that's the transformation I experienced. The systematic approach to performance enhancement gave me the edge I needed to dominate my sport at the highest level.",
+    stars: 5,
+    date: "2024-01-10",
+    initials: "JR"
   },
   {
     id: 4,
-    title: "Peak Performance",
-    description: "The mental and physical training protocols here are revolutionary. I've achieved personal bests in every metric since implementing these strategies. This is what separates champions from the rest.",
-    backgroundImage: "https://4kwallpapers.com/images/walls/thumbs_2t/16371.jpeg",
     author: "Alexandra Williams",
-    position: "Professional Tennis Player"
+    position: "Professional Tennis Player",
+    description: "The mental and physical training protocols here are revolutionary. I've achieved personal bests in every metric since implementing these strategies. This is what separates champions from the rest.",
+    stars: 5,
+    date: "2024-01-25",
+    initials: "AW"
   },
   {
     id: 5,
-    title: "Dominate The Field",
-    description: "Every aspect of my game improved dramatically. The comprehensive approach to athletic development gave me the tools to consistently outperform my competition and achieve championship-level results.",
-    backgroundImage: "https://st4.depositphotos.com/1000689/29008/i/450/depositphotos_290088852-stock-photo-american-football-sportsman-player-in.jpg",
     author: "Michael Davis",
-    position: "Professional Football Player"
+    position: "Professional Football Player",
+    description: "Every aspect of my game improved dramatically. The comprehensive approach to athletic development gave me the tools to consistently outperform my competition and achieve championship-level results.",
+    stars: 5,
+    date: "2024-02-12",
+    initials: "MD"
   },
   {
     id: 6,
-    title: "Champion's Journey",
-    description: "This program doesn't just train athletes - it creates champions. The transformation in my performance has been remarkable. I've learned what it truly means to dominate in competitive sports.",
-    backgroundImage: "https://img.freepik.com/premium-photo/athlete-man-throwing-discus-against-black-background_1134-3574.jpg",
     author: "Elena Petrov",
-    position: "Professional Track & Field Athlete"
+    position: "Professional Track & Field Athlete",
+    description: "This program doesn't just train athletes - it creates champions. The transformation in my performance has been remarkable. I've learned what it truly means to dominate in competitive sports.",
+    stars: 5,
+    date: "2024-02-28",
+    initials: "EP"
   }
 ];
 
+const GoogleIcon = () => (
+  <svg viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
+    <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853" />
+    <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05" />
+    <path d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
+  </svg>
+);
+
+const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => {
+  return (
+    <div className="bg-[#111111] border border-white/10 p-8 rounded-2xl flex flex-col h-full transition-all duration-300 hover:border-[#fff200]/30 hover:shadow-[0_0_30px_rgba(255,242,0,0.05)]">
+      <div className="flex justify-center mb-6">
+        <GoogleIcon />
+      </div>
+
+      <div className="flex justify-center gap-1 mb-6">
+        {[...Array(testimonial.stars)].map((_, i) => (
+          <Star key={i} className="w-5 h-5 fill-[#fff200] text-[#fff200]" />
+        ))}
+      </div>
+
+      <div className="flex-grow">
+        <p className="text-white/80 text-center text-lg leading-relaxed italic mb-8">
+          "{testimonial.description}"
+        </p>
+      </div>
+
+      <div className="flex items-center justify-center space-x-4 pt-6 border-t border-white/5">
+        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#fff200] to-[#e6db00] flex items-center justify-center text-black font-bold text-lg shrink-0">
+          {testimonial.initials}
+        </div>
+        <div className="text-left">
+          <h4 className="text-white font-bold leading-none mb-1">{testimonial.author}</h4>
+          <p className="text-white/40 text-xs uppercase tracking-wider">{testimonial.date}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [items, setItems] = useState(testimonials);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
-  const [isSmallMobile, setIsSmallMobile] = useState(false);
+  const [direction, setDirection] = useState(0);
+  const [cardsToShow, setCardsToShow] = useState(3);
 
-  const handleNext = () => {
-    if (isAnimating) return;
-    
-    setIsAnimating(true);
-    setCurrentIndex((prev) => (prev + 1) % items.length);
-    
-    // Move first item to end with animation
-    setTimeout(() => {
-      setItems(prev => {
-        const newItems = [...prev];
-        const firstItem = newItems.shift()!;
-        newItems.push(firstItem);
-        return newItems;
-      });
-      setIsAnimating(false);
-    }, 50); // Small delay to trigger CSS transition
-  };
-
-  const handlePrev = () => {
-    if (isAnimating) return;
-    
-    setIsAnimating(true);
-    setCurrentIndex((prev) => (prev - 1 + items.length) % items.length);
-    
-    // Move last item to beginning with animation
-    setTimeout(() => {
-      setItems(prev => {
-        const newItems = [...prev];
-        const lastItem = newItems.pop()!;
-        newItems.unshift(lastItem);
-        return newItems;
-      });
-      setIsAnimating(false);
-    }, 50); // Small delay to trigger CSS transition
-  };
-
-  // Touch handlers for mobile swipe
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
-
-    if (isLeftSwipe) {
-      handleNext();
-    } else if (isRightSwipe) {
-      handlePrev();
-    }
-  };
-
-  const styles = {
-    container: {
-      position: 'relative' as const,
-      width: '100%',
-      height: '100vh',
-      overflow: 'hidden',
-      boxShadow: '0 3px 10px rgba(0,0,0,0.3)',
-      borderRadius: '0',
-    },
-    slider: {
-      position: 'relative' as const,
-      width: '100%',
-      height: '100%',
-      margin: 0,
-      padding: 0,
-      listStyle: 'none' as const,
-    },
-    item: {
-      position: 'absolute' as const,
-      top: '50%',
-      transform: 'translateY(-50%)',
-      zIndex: 1,
-      backgroundPosition: 'center',
-      backgroundSize: 'cover',
-      borderRadius: '20px',
-      boxShadow: '0 20px 30px rgba(255,255,255,0.3) inset',
-      transition: 'all 0.75s cubic-bezier(0.4, 0, 0.2, 1)',
-      backgroundImage: '',
-      width: '200px',
-      height: '300px',
-      left: '',
-      willChange: 'transform, left, width, height, opacity',
-    },
-    itemActive: {
-      left: '0',
-      top: '0',
-      width: '100%',
-      height: '100%',
-      transform: 'none',
-      borderRadius: '0',
-      boxShadow: 'none',
-      opacity: 1,
-      zIndex: 2,
-      position: 'absolute' as const,
-      backgroundPosition: 'center',
-      backgroundSize: 'cover',
-    },
-    itemSecondary: {
-      width: '200px',
-      height: '300px',
-    },
-    content: {
-      width: 'min(30vw, 400px)',
-      position: 'absolute' as const,
-      top: '50%',
-      left: '3rem',
-      transform: 'translateY(-50%)',
-      fontFamily: 'helvetica, sans-serif',
-      color: 'white',
-      textShadow: '0 3px 8px rgba(0,0,0,0.5)',
-      opacity: 1,
-      display: 'block',
-      zIndex: 10,
-    },
-    contentActive: {
-      display: 'block',
-      animation: 'show 0.75s ease-in-out 0.3s forwards',
-    },
-    title: {
-      fontFamily: "'Montserrat', sans-serif",
-      fontWeight: 700,
-      textTransform: 'uppercase' as const,
-      fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)',
-      letterSpacing: '0.08em',
-      marginBottom: '0.8rem',
-      color: '#fff200',
-      textShadow: '0 2px 4px rgba(0,0,0,0.9), 0 4px 8px rgba(0,0,0,0.7), 0 0 20px rgba(255,242,0,0.3)',
-      textDecoration: 'underline',
-      textDecorationColor: '#fff200',
-      textUnderlineOffset: '4px',
-      textDecorationThickness: '2px',
-    },
-    description: {
-      fontFamily: 'system-ui, -apple-system, sans-serif',
-      fontWeight: 400,
-      lineHeight: '1.6',
-      margin: '1.2rem 0 1.8rem',
-      fontSize: 'clamp(0.85rem, 2vw, 1rem)',
-      color: 'rgba(255,255,255,0.95)',
-      textShadow: '0 2px 4px rgba(0,0,0,0.8), 0 1px 2px rgba(0,0,0,0.6)',
-    },
-    button: {
-      width: 'fit-content',
-      backgroundColor: 'rgba(0,0,0,0.1)',
-      color: 'white',
-      border: '2px solid white',
-      borderRadius: '0.25rem',
-      padding: '0.75rem',
-      cursor: 'pointer',
-      fontSize: '0.8rem',
-    },
-    author: {
-      fontFamily: "'Montserrat', sans-serif",
-      fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
-      fontWeight: 600,
-      color: '#fff200',
-      marginTop: '1.2rem',
-      textShadow: '0 1px 3px rgba(0,0,0,0.8), 0 0 10px rgba(255,242,0,0.4)',
-      letterSpacing: '0.02em',
-    },
-    position: {
-      fontFamily: 'system-ui, -apple-system, sans-serif',
-      fontSize: 'clamp(0.75rem, 1.8vw, 0.9rem)',
-      fontWeight: 400,
-      color: 'rgba(255,255,255,0.85)',
-      opacity: 0.9,
-      textShadow: '0 1px 2px rgba(0,0,0,0.7)',
-    },
-    nav: {
-      position: 'absolute' as const,
-      bottom: '2rem',
-      left: '50%',
-      transform: 'translateX(-50%)',
-      zIndex: 5,
-      userSelect: 'none' as const,
-      display: 'flex',
-      gap: '0.5rem',
-    },
-    navButton: {
-      backgroundColor: 'rgba(255,255,255,0.5)',
-      color: 'rgba(0,0,0,0.7)',
-      border: '2px solid rgba(0,0,0,0.6)',
-      width: '50px',
-      height: '50px',
-      borderRadius: '50%',
-      cursor: 'pointer',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontSize: '1.2rem',
-      transition: 'background-color 0.3s ease',
-    },
-  };
-
-  // Detect screen size
   useEffect(() => {
-    const checkScreenSize = () => {
-      const width = window.innerWidth;
-      setIsMobile(width <= 650);
-      setIsSmallMobile(width <= 480);
+    const handleResize = () => {
+      if (window.innerWidth < 768) setCardsToShow(1);
+      else if (window.innerWidth < 1200) setCardsToShow(2);
+      else setCardsToShow(3);
     };
-
-    checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-    return () => window.removeEventListener('resize', checkScreenSize);
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Add keyframes for animation
-  useEffect(() => {
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes show {
-        0% {
-          filter: blur(5px);
-          transform: translateY(calc(-50% + 75px));
-        }
-        100% {
-          opacity: 1;
-          filter: blur(0);
-        }
-      }
-      
-      @keyframes slideInFromRight {
-        0% {
-          transform: translateY(-50%) scale(0.8);
-          opacity: 0;
-          left: calc(50% + 880px);
-        }
-        100% {
-          transform: translateY(-50%) scale(1);
-          opacity: 1;
-          left: calc(50% + 660px);
-        }
-      }
-      
-      @keyframes slideOutToLeft {
-        0% {
-          transform: translateY(-50%) scale(1);
-          opacity: 1;
-          left: 0;
-          width: 100%;
-          height: 100%;
-        }
-        100% {
-          transform: translateY(-50%) scale(0.8);
-          opacity: 0;
-          left: -100%;
-          width: 200px;
-          height: 300px;
-        }
-      }
-      
-      @keyframes moveToActive {
-        0% {
-          left: 50%;
-          width: 200px;
-          height: 300px;
-          transform: translateY(-50%);
-          opacity: 1;
-        }
-        100% {
-          left: 0;
-          width: 100%;
-          height: 100%;
-          transform: none;
-          opacity: 1;
-        }
-      }
-      
-      @keyframes moveFromActive {
-        0% {
-          left: 0;
-          width: 100%;
-          height: 100%;
-          transform: none;
-          opacity: 1;
-        }
-        100% {
-          left: calc(50% + 440px);
-          width: 200px;
-          height: 300px;
-          transform: translateY(-50%);
-          opacity: 1;
-        }
-      }
-      
-      .testimonial-item {
-        transition: all 0.75s cubic-bezier(0.4, 0, 0.2, 1) !important;
-        will-change: transform, left, width, height, opacity;
-      }
-      
-      .testimonial-item:hover {
-        transform: translateY(-50%) scale(1.02);
-      }
-      
-      @media (width > 650px) and (width < 900px) {
-        .testimonial-item {
-          width: 160px !important;
-          height: 270px !important;
-        }
-        .testimonial-item:nth-child(3) { left: 50% !important; }
-        .testimonial-item:nth-child(4) { left: calc(50% + 170px) !important; }
-        .testimonial-item:nth-child(5) { left: calc(50% + 340px) !important; }
-        .testimonial-item:nth-child(6) { left: calc(50% + 510px) !important; opacity: 0 !important; }
-        .testimonial-content .title { font-size: 1rem !important; }
-        .testimonial-content .description { font-size: 0.7rem !important; }
-        .testimonial-content button { font-size: 0.7rem !important; }
-        .testimonial-content { width: min(40vw, 350px) !important; left: 2rem !important; }
-      }
-      
-      @media (width <= 650px) {
-        .testimonial-item {
-          width: 130px !important;
-          height: 220px !important;
-        }
-        .testimonial-item:nth-child(1) {
-          left: 0 !important;
-          top: 0 !important;
-          width: 100vw !important;
-          height: 100vh !important;
-          transform: none !important;
-          border-radius: 0 !important;
-          box-shadow: none !important;
-          opacity: 1 !important;
-          z-index: 2 !important;
-          position: absolute !important;
-          background-position: center !important;
-          background-size: cover !important;
-        }
-        .testimonial-item:nth-child(2) {
-          width: 130px !important;
-          height: 220px !important;
-        }
-        .testimonial-item:nth-child(3) { left: 50% !important; }
-        .testimonial-item:nth-child(4) { left: calc(50% + 140px) !important; }
-        .testimonial-item:nth-child(5) { left: calc(50% + 280px) !important; }
-        .testimonial-item:nth-child(6) { left: calc(50% + 420px) !important; opacity: 0 !important; }
-        .testimonial-content .title { font-size: 0.9rem !important; }
-        .testimonial-content .description { font-size: 0.65rem !important; }
-        .testimonial-content button { font-size: 0.7rem !important; }
-        .testimonial-content { 
-          width: min(45vw, 280px) !important; 
-          left: 1rem !important; 
-          top: 50% !important;
-          transform: translateY(-50%) !important;
-          z-index: 10 !important;
-          position: absolute !important;
-        }
-        .testimonial-content .author { font-size: 0.8rem !important; }
-        .testimonial-content .position { font-size: 0.7rem !important; }
-      }
-      
-      @media (width <= 480px) {
-        .testimonial-item {
-          width: 100px !important;
-          height: 180px !important;
-        }
-        .testimonial-item:nth-child(1) {
-          left: 0 !important;
-          top: 0 !important;
-          width: 100vw !important;
-          height: 100vh !important;
-          transform: none !important;
-          border-radius: 0 !important;
-          box-shadow: none !important;
-          opacity: 1 !important;
-          z-index: 2 !important;
-          position: absolute !important;
-          background-position: center !important;
-          background-size: cover !important;
-        }
-        .testimonial-item:nth-child(2) {
-          width: 100px !important;
-          height: 180px !important;
-        }
-        .testimonial-item:nth-child(3) { left: 50% !important; }
-        .testimonial-item:nth-child(4) { left: calc(50% + 110px) !important; }
-        .testimonial-item:nth-child(5) { left: calc(50% + 220px) !important; }
-        .testimonial-item:nth-child(6) { left: calc(50% + 330px) !important; opacity: 0 !important; }
-        .testimonial-content .title { font-size: 0.8rem !important; }
-        .testimonial-content .description { font-size: 0.6rem !important; line-height: 1.5 !important; }
-        .testimonial-content button { font-size: 0.6rem !important; padding: 0.5rem !important; }
-        .testimonial-content { 
-          width: min(55vw, 220px) !important; 
-          left: 0.5rem !important; 
-          top: 50% !important;
-          transform: translateY(-50%) !important;
-          z-index: 10 !important;
-          position: absolute !important;
-        }
-        .testimonial-content .author { font-size: 0.7rem !important; }
-        .testimonial-content .position { font-size: 0.6rem !important; }
-      }
-    `;
-    document.head.appendChild(style);
-    
-    return () => {
-      document.head.removeChild(style);
-    };
-  }, []);
-
-  const getItemStyle = (index: number) => {
-    const baseStyle = {
-      ...styles.item,
-      backgroundImage: `url(${items[index].backgroundImage})`,
-    };
-
-    if (index === 0) {
-      // Active item - full screen
-      if (isSmallMobile) {
-        return {
-          ...baseStyle,
-          left: '0',
-          top: '0',
-          width: '100vw',
-          height: '100vh',
-          transform: 'none',
-          borderRadius: '0',
-          boxShadow: 'none',
-          opacity: 1,
-          zIndex: 2,
-          position: 'absolute' as const,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-        };
-      } else if (isMobile) {
-        return {
-          ...baseStyle,
-          left: '0',
-          top: '0',
-          width: '100vw',
-          height: '100vh',
-          transform: 'none',
-          borderRadius: '0',
-          boxShadow: 'none',
-          opacity: 1,
-          zIndex: 2,
-          position: 'absolute' as const,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-        };
-      } else {
-        return { ...baseStyle, ...styles.itemActive };
-      }
-    } else if (index === 1) {
-      // Second item
-      if (isSmallMobile) {
-        return { 
-          ...baseStyle, 
-          width: '100px',
-          height: '180px',
-          left: '50%' 
-        };
-      } else if (isMobile) {
-        return { 
-          ...baseStyle, 
-          width: '130px',
-          height: '220px',
-          left: '50%' 
-        };
-      } else {
-        return { 
-          ...baseStyle, 
-          ...styles.itemSecondary, 
-          left: '50%' 
-        };
-      }
-    } else if (index === 2) {
-      if (isSmallMobile) {
-        return { 
-          ...baseStyle, 
-          width: '100px',
-          height: '180px',
-          left: 'calc(50% + 110px)' 
-        };
-      } else if (isMobile) {
-        return { 
-          ...baseStyle, 
-          width: '130px',
-          height: '220px',
-          left: 'calc(50% + 140px)' 
-        };
-      } else {
-        return { 
-          ...baseStyle, 
-          ...styles.itemSecondary, 
-          left: 'calc(50% + 220px)' 
-        };
-      }
-    } else if (index === 3) {
-      if (isSmallMobile) {
-        return { 
-          ...baseStyle, 
-          width: '100px',
-          height: '180px',
-          left: 'calc(50% + 220px)' 
-        };
-      } else if (isMobile) {
-        return { 
-          ...baseStyle, 
-          width: '130px',
-          height: '220px',
-          left: 'calc(50% + 280px)' 
-        };
-      } else {
-        return { 
-          ...baseStyle, 
-          ...styles.itemSecondary, 
-          left: 'calc(50% + 440px)' 
-        };
-      }
-    } else if (index === 4) {
-      if (isSmallMobile) {
-        return { 
-          ...baseStyle, 
-          width: '100px',
-          height: '180px',
-          left: 'calc(50% + 330px)', 
-          opacity: 0 
-        };
-      } else if (isMobile) {
-        return { 
-          ...baseStyle, 
-          width: '130px',
-          height: '220px',
-          left: 'calc(50% + 420px)', 
-          opacity: 0 
-        };
-      } else {
-        return { 
-          ...baseStyle, 
-          ...styles.itemSecondary, 
-          left: 'calc(50% + 660px)', 
-          opacity: 0 
-        };
-      }
-    }
-    
-    return { ...baseStyle, ...styles.itemSecondary, left: 'calc(50% + 880px)', opacity: 0 };
+  const next = () => {
+    setDirection(1);
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
   };
 
-  const getContentStyle = (index: number) => {
-    let contentStyle = { ...styles.content };
-    
-    // Apply mobile-specific styles based on screen size
-    if (isSmallMobile) {
-      contentStyle = {
-        ...contentStyle,
-        width: 'min(55vw, 220px)',
-        left: '0.5rem',
-      };
-    } else if (isMobile) {
-      contentStyle = {
-        ...contentStyle,
-        width: 'min(45vw, 280px)',
-        left: '1rem',
-      };
-    }
-    
-    return index === 1 ? { ...contentStyle, ...styles.contentActive } : contentStyle;
+  const prev = () => {
+    setDirection(-1);
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
   };
+
+  const visibleTestimonials = Array.from({ length: cardsToShow }).map((_, i) => {
+    const iconIndex = (currentIndex + i) % testimonials.length;
+    return testimonials[iconIndex];
+  });
 
   return (
-    <main 
-      id="testimonials-section"
-      style={styles.container}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-    >
-      <ul style={styles.slider}>
-        {items.map((testimonial, index) => (
-          <li
-            key={testimonial.id}
-            className="testimonial-item"
-            style={getItemStyle(index)}
-          >
-          </li>
-        ))}
-      </ul>
-      
-      {/* Content overlay positioned on the left side of the carousel */}
-      <div 
-        className="testimonial-content"
-        style={getContentStyle(1)}
-      >
-        <h2 style={styles.title}>{items[0].title}</h2>
-        <p style={styles.description}>{items[0].description}</p>
-        {items[0].author && (
-          <div style={styles.author}>{items[0].author}</div>
-        )}
-        {items[0].position && (
-          <div style={styles.position}>{items[0].position}</div>
-        )}
+    <section id="testimonials-section" className="relative py-24 bg-black overflow-hidden min-h-[90vh] flex flex-col justify-center">
+      {/* Background decoration */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#fff200]/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#fff200]/5 rounded-full blur-[120px]" />
       </div>
-      
-      <nav style={styles.nav}>
-        <button
-          style={styles.navButton}
-          onClick={handlePrev}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.3)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.5)';
-          }}
-        >
-          ←
-        </button>
-        <button
-          style={styles.navButton}
-          onClick={handleNext}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.3)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.backgroundColor = 'rgba(255,255,255,0.5)';
-          }}
-        >
-          →
-        </button>
-      </nav>
-    </main>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-16">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-5xl font-bold font-montserrat uppercase mb-4"
+            style={{
+              color: '#fff200',
+              textShadow: '0 0 30px rgba(255,242,0,0.2)'
+            }}
+          >
+            CHAMPIONSHIP FEEDBACK
+          </motion.h2>
+          <p className="text-white/60 max-w-2xl mx-auto italic">
+            Trusted by world-class athletes to deliver elite performance results.
+          </p>
+        </div>
+
+        <div className="relative max-w-6xl mx-auto px-4 md:px-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <AnimatePresence mode='popLayout' custom={direction}>
+              {visibleTestimonials.map((testimonial) => (
+                <motion.div
+                  key={`${testimonial.id}-${currentIndex}`}
+                  layout
+                  initial={{ opacity: 0, x: direction * 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: direction * -50 }}
+                  transition={{ duration: 0.4, ease: "easeInOut" }}
+                  className="h-full"
+                >
+                  <TestimonialCard testimonial={testimonial} />
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+
+          {/* Navigation */}
+          <button
+            onClick={prev}
+            className="absolute -left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-[#fff200] hover:text-black transition-all z-20 group"
+          >
+            <ChevronLeft className="group-hover:scale-120 transition-transform" />
+          </button>
+          <button
+            onClick={next}
+            className="absolute -right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-[#fff200] hover:text-black transition-all z-20 group"
+          >
+            <ChevronRight className="group-hover:scale-120 transition-transform" />
+          </button>
+        </div>
+
+        {/* Indicators */}
+        <div className="flex justify-center gap-2 mt-12">
+          {testimonials.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => {
+                setDirection(i > currentIndex ? 1 : -1);
+                setCurrentIndex(i);
+              }}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${i === currentIndex ? 'w-8 bg-[#fff200]' : 'bg-white/20'
+                }`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

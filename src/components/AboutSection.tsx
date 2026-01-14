@@ -252,8 +252,8 @@ export default function AboutSection() {
               style={{
                 background: hoveredCard === 'vision' ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.7)',
                 backdropFilter: 'blur(20px)',
-                boxShadow: hoveredCard === 'vision' ? '0 12px 48px rgba(255, 242, 0, 0.2)' : '0 8px 32px rgba(0, 0, 0, 0.5)',
-                border: hoveredCard === 'vision' ? '1px solid rgba(255, 242, 0, 0.4)' : '1px solid rgba(255, 255, 255, 0.1)',
+                boxShadow: hoveredCard === 'vision' ? '0 12px 48px rgba(0, 0, 0, 0.6)' : '0 8px 32px rgba(0, 0, 0, 0.5)',
+                border: 'none',
               }}
               whileHover={{ y: -8 }}
             >
@@ -278,8 +278,8 @@ export default function AboutSection() {
                 style={{
                   background: hoveredCard === 'mission' ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.7)',
                   backdropFilter: 'blur(20px)',
-                  boxShadow: hoveredCard === 'mission' ? '0 12px 48px rgba(255, 242, 0, 0.2)' : '0 8px 32px rgba(0, 0, 0, 0.5)',
-                  border: hoveredCard === 'mission' ? '1px solid rgba(255, 242, 0, 0.4)' : '1px solid rgba(255, 255, 255, 0.1)',
+                  boxShadow: hoveredCard === 'mission' ? '0 12px 48px rgba(0, 0, 0, 0.6)' : '0 8px 32px rgba(0, 0, 0, 0.5)',
+                  border: 'none',
                 }}
                 whileHover={{ y: -8 }}
               >
@@ -303,8 +303,8 @@ export default function AboutSection() {
                 style={{
                   background: hoveredCard === 'values' ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.7)',
                   backdropFilter: 'blur(20px)',
-                  boxShadow: hoveredCard === 'values' ? '0 12px 48px rgba(255, 242, 0, 0.2)' : '0 8px 32px rgba(0, 0, 0, 0.5)',
-                  border: hoveredCard === 'values' ? '1px solid rgba(255, 242, 0, 0.4)' : '1px solid rgba(255, 255, 255, 0.1)',
+                  boxShadow: hoveredCard === 'values' ? '0 12px 48px rgba(0, 0, 0, 0.6)' : '0 8px 32px rgba(0, 0, 0, 0.5)',
+                  border: 'none',
                 }}
                 whileHover={{ y: -8 }}
               >
@@ -349,7 +349,7 @@ export default function AboutSection() {
             style={{
               background: hoveredCard === 'founder' ? 'rgba(0, 0, 0, 0.8)' : 'rgba(0, 0, 0, 0.7)',
               backdropFilter: 'blur(20px)',
-              border: hoveredCard === 'founder' ? '1px solid rgba(255, 242, 0, 0.5)' : '1px solid rgba(255, 255, 255, 0.15)',
+              border: 'none',
             }}
             whileHover={{ y: -8 }}
           >

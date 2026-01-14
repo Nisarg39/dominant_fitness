@@ -65,8 +65,8 @@ class Pixel {
     const centerOffset = this.maxSizeInteger * 0.5 - this.size * 0.5
     const intensityMultiplier = this.getIntensityMultiplier()
 
-    // Apply extra transparency for better readability
-    const baseOpacity = 0.3 // Significantly reduced
+    // Slightly increased opacity for better visibility on hover
+    const baseOpacity = 0.45
     const opacity = Math.min(1, baseOpacity * intensityMultiplier)
 
     // Extract RGB values and apply opacity
